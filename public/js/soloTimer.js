@@ -13,6 +13,7 @@ function timer(endTime) { //endTime: サーバーから送られるゲームの�
     updateTimer(remainTime);
 
     if (remainTime <= 0) {
+      localStorage.clear();
       clearInterval(intervalId);
       location.href = './soloResult.html';
     }
