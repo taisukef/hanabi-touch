@@ -2,21 +2,21 @@
 <html lang="ja">
 
 <head>
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<meta charset="utf-8">
-	<link rel="stylesheet" href="style.css">
-	<title>花火タイピング</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="utf-8">
+  <link rel="stylesheet" href="style.css">
+  <title>ようこそ、jigインターンへ！</title>
+
+  <script type="module">
+    const message = await fetch("/welcome-message")
+    document.querySelector("body").innerHTML = `<h1>${await message.text()}</h1>`
+  </script>
 </head>
 
 <body>
-	<header>
-		<img id="icon" src="icon.png" alt="アイコン">
-		<p id="title">花火タイピング</p>
-	</header>
-
-	<main>
-
-	</main>
+  <main>
+    <button id="startButton" class="start">スタート</button>
+  </main>
 </body>
 
 </html>
