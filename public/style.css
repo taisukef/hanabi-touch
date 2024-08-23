@@ -1,0 +1,36 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+}
+header {
+  display: flex;
+  flex-direction: row;
+  height: 50px;
+  /* margin-top:3px;
+  margin-bottom:3px; */
+  background-color: black;
+}
+
+#icon {
+  height: 40px;
+  width: 40px;
+  margin: 5px;
+}
+
+#title {
+  display: flex;
+  align-items: center;
+  margin: 10px;
+  color: white;
+  font-weight: bold;
+}
+
+main {
+  height: calc(100vh - 50px);
+  background-color: ;
+}
