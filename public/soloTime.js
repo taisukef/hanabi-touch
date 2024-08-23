@@ -1,19 +1,17 @@
-function updateTimer(duration) {
+function updateTimer(gameTime) {
     const timerId = document.getElementById('timer');
-    timerId.innerHTML = `<p>残り${duration}秒</p>`;
+    timerId.textContent = `残り${gameTime}秒`;
 }
 
 function timer(endTime) {
-    const remainTime = (endTime - new Date().getTime()) / 1000;
-
-    let count = 0;
+    let remainTime = (endTime - new Date().getTime()) / 1000;
 
     const intervalId = setInterval(() => {
-        updateTimer(count);
-        count++;
+        updateTimer(remainTime);
 
-        if (count >= remainTime) {
+        if (remainTime < 0) {
             clearInterval(intervalId);
+            location.href = './soloResult.html';
         }
     }, 1000);
 }
