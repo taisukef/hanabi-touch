@@ -52,7 +52,7 @@ async function getId() {
   }
   
   // enterでゲームスタート
-  document.body.addEventListener('keydown', (event) => {
+  document.addEventListener('keydown', (event) => {
 	if (event.key === 'Enter') {
 	  const element = document.getElementById('enterToBegin');
 	  if (element) {
