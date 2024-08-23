@@ -7,14 +7,13 @@ body {
   display: flex;
   flex-direction: column;
 }
-
 header {
   display: flex;
   flex-direction: row;
   height: 50px;
   /* margin-top:3px;
   margin-bottom:3px; */
-  background-color: black;
+  /* background-color: black; */
 }
 
 #icon {
@@ -36,10 +35,23 @@ main {
   background-color: ;
 }
 
-.start {
+#startButton {
   text-align: center;
   color: #ffffff;
   background-color: #000000;
   border-radius: 10vh;
-  height:
+  height: ;
+}
+
+:root {
+  --width-value: 80%;
+}
+
+#gamePanel {
+  background-color: skyBlue;
+  width: var(--width-value);
+  height: calc(var(--width-value) * 2 / 3);
+
+  max-width: 1200px;
+  max-height: 800px;
 }
