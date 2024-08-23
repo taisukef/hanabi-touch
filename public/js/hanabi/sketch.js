@@ -15,7 +15,7 @@ function FireworkMakeMode() {
       firework_colors,
       firework_types,
       graphicBuffers,
-      launchPos
+      launchPos,
     );
 
     fireworks.push(firework);
@@ -32,7 +32,7 @@ function FireworkContestMode() {
       [_color(), _color(), _color()],
       [_type(), _type(), _type()],
       graphicBuffers,
-      createVector(random(0.1, 0.9) * width, height)
+      createVector(random(0.1, 0.9) * width, height),
     );
 
     fireworks.push(firework);

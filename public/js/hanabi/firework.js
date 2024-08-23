@@ -13,7 +13,7 @@ function kikuParticle(graphicBuffer, origin, vec, color) {
     0.98,
     250,
     vec.mult(5),
-    createVector(0, 0.04)
+    createVector(0, 0.04),
   );
 }
 
@@ -26,7 +26,7 @@ function botanParticle(graphicBuffer, origin, vec, color) {
     0.93,
     300,
     vec.mult(6),
-    createVector(0, 0)
+    createVector(0, 0),
   );
 }
 
@@ -48,7 +48,7 @@ class Firework {
     this.rasingParticle = new RasingParticle(
       this.buffers[0],
       launch,
-      this.colors[0]
+      this.colors[0],
     );
   }
 
@@ -72,12 +72,12 @@ class Firework {
 
       if (type === '牡丹') {
         this.particles.push(
-          botanParticle(this.buffers[1], origin, vec, particleColor)
+          botanParticle(this.buffers[1], origin, vec, particleColor),
         );
       }
       if (type === '菊') {
         this.particles.push(
-          kikuParticle(this.buffers[2], origin, vec, particleColor)
+          kikuParticle(this.buffers[2], origin, vec, particleColor),
         );
       }
     }
