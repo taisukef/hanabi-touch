@@ -1,0 +1,18 @@
+{
+    "deno.enable": true,
+    "deno.unstable": true,
+    "deno.lint": true,
+    "deno.config": "./deno.json",
+    "editor.formatOnSave": true,
+    "[javascript]": {
+        "editor.defaultFormatter": "denoland.vscode-deno"
+    },
+    "[typescript]": {
+        "editor.defaultFormatter": "denoland.vscode-deno"
+    },
+    "markdownlint.config": {
+        "MD024": false,
+        "MD036": false,
+        "MD001": false
+    }
+}
