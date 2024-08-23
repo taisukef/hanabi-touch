@@ -1,3 +1,4 @@
+/* ゲーム用 */
 #entered {
   color: red;
 }
@@ -6,3 +7,11 @@
   font-size: 20px;
 }
 
+/* ソロのみ */
+#enterToBegin {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  font-size: 3vw;
+}
