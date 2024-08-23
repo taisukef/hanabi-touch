@@ -1,6 +1,6 @@
 * {
   box-sizing: border-box;
-  margin: 0;
+  margin: 0px;
 }
 
 body {
@@ -11,9 +11,9 @@ header {
   display: flex;
   flex-direction: row;
   height: 50px;
-  /* margin-top:3px;
-  margin-bottom:3px; */
-  /* background-color: black; */
+  padding-top: 3px;
+  padding-bottom: 3px;
+  background-color: black;
 }
 
 #icon {
