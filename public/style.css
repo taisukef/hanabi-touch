@@ -1,0 +1,57 @@
+* {
+  box-sizing: border-box;
+  margin: 0px;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+}
+header {
+  display: flex;
+  flex-direction: row;
+  height: 50px;
+  padding-top: 3px;
+  padding-bottom: 3px;
+  background-color: black;
+}
+
+#icon {
+  height: 40px;
+  width: 40px;
+  margin: 5px;
+}
+
+#title {
+  display: flex;
+  align-items: center;
+  margin: 10px;
+  color: white;
+  font-weight: bold;
+}
+
+main {
+  height: calc(100vh - 50px);
+  background-color: ;
+}
+
+#startButton {
+  text-align: center;
+  color: #ffffff;
+  background-color: #000000;
+  border-radius: 10vh;
+  height: ;
+}
+
+:root {
+  --width-value: 80%;
+}
+
+#gamePanel {
+  background-color: skyBlue;
+  width: var(--width-value);
+  height: calc(var(--width-value) * 2 / 3);
+
+  max-width: 1200px;
+  max-height: 800px;
+}
