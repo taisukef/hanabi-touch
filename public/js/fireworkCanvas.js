@@ -8,7 +8,9 @@ const kikuTrail = 30;
 const botanTrail = 3;
 const standardFrame = 60;
 
-// ページ読み込み時に一回のみ実行
+/**
+ * p5js ページ読み込み時に一回のみ実行
+ */
 function setup() {
   const result = document.getElementById('gamePanel');
 
@@ -32,6 +34,9 @@ function setup() {
   frameRate(standardFrame);
 }
 
+/**
+ * p5js 一定時間ごとに実行される
+ */
 function draw() {
   colorMode(RGB); // 花火を出す色の指定の仕方
   background(bgColor); // 背景に少し透明なのを重ねてだんだん消えて行くように

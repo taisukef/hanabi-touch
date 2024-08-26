@@ -1,6 +1,6 @@
 /**
- * 
- * 文章、想定入力時間を取得し、設定する。
+ * 文章、想定入力時間を取得し、入力する文字に設定する。
+ * meterの初期化もする。
  */
 async function getSentence() {
   let response;
@@ -41,5 +41,4 @@ async function getSentence() {
     responseObj.sentenceAlphabet;
   document.getElementById('japanese').textContent =
     responseObj.sentenceJapanese;
-
 }

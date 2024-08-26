@@ -31,11 +31,9 @@ async function getId() {
  * サーバーにゲーム開始を伝える
  */
 async function soloGameStart() {
-  let response;
-
   try {
     // POSTリクエストを送信し、レスポンスを受け取る
-    response = await fetch('/solo/start', {
+    const response = await fetch('/solo/start', {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',
@@ -44,25 +42,18 @@ async function soloGameStart() {
 
     // ステータスコードが200でなければエラーハンドリング
     if (response.status !== 200) {
-      if (response.body.errorCode === '10001') {
-        response = getId();
-      } else {
         console.error('Error:', responseObj.message || 'Unknown error');
-        return;
-      }
-
-      if (response.status !== 200) return;
     }
+	const responseObj = await response.json();
+	//タイマーを開始
+	timer(responseObj.endTime);
+  
+	startObserve();
   } catch (error) {
     // ネットワークエラーなどの例外をキャッチして処理
     console.error('Fetch error:', error);
   }
 
-  const responseObj = await response.json();
-  //タイマーを開始
-  timer(responseObj.endTime);
-
-  startObserve();
 }
 
 // enterでゲームスタートできるようにする。
