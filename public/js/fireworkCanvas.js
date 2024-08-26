@@ -34,7 +34,7 @@ function setup() {
 
 function draw() {
   colorMode(RGB); // 花火を出す色の指定の仕方
-  background(bgColor); // 背景に少し透明なのを重ねてだんだん消えて行くように
+  background(color(0, 0, 0)); // 背景に少し透明なのを重ねてだんだん消えて行くように
 
   colorMode(HSB);
   // 花火の更新
@@ -51,7 +51,6 @@ function draw() {
     if (fireworks[i].done) {
       fireworks[i].dispose();
       fireworks.splice(i, 1);
-      background(bgColor);
     }
   }
 
