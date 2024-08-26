@@ -34,7 +34,11 @@ function setup() {
 
 function draw() {
   colorMode(RGB); // 花火を出す色の指定の仕方
-  background(bgColor); // 背景に少し透明なのを重ねてだんだん消えて行くように
+  //background(bgColor); // 背景に少し透明なのを重ねてだんだん消えて行くように
+
+  blendMode(ADD);
+  background(8, 4, 2);
+  blendMode(BLEND);
 
   colorMode(HSB);
   // 花火の更新
