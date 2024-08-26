@@ -15,7 +15,7 @@ function timer(endTime) { //endTime: サーバーから送られるゲームの�
     if (remainTime <= 0) {
       localStorage.clear();
       clearInterval(intervalId);
-      location.href = './soloResult.html'; // リンク直した方がいいかも
+      location.href = '/soloResult.html'; // リンク直した方がいいかも
     }
   }, 1000);
 }
