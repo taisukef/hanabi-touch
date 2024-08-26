@@ -38,12 +38,12 @@ function draw() {
 
   colorMode(HSB);
   // 花火の更新
-  graphicBuffers[0].background(bgcolor);
-  graphicBuffers[1].background(bgcolor);
-  graphicBuffers[2].background(bgcolor);
   graphicBuffers[0].background(0, Math.ceil(255 / raisingTrail));
   graphicBuffers[1].background(0, Math.ceil(255 / botanTrail));
   graphicBuffers[2].background(0, Math.ceil(255 / kikuTrail));
+  graphicBuffers[0].background(bgcolor);
+  graphicBuffers[1].background(bgcolor);
+  graphicBuffers[2].background(bgcolor);
 
   const delta = deltaTime;
   const currentFrame = frameRate();
