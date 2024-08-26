@@ -1,8 +1,12 @@
+/**
+ * 
+ * 文章、想定入力時間を取得し、設定する。
+ */
 async function getSentence() {
   let response;
 
   try {
-    // POSTリクエストを送信し、レスポンスを受け取る
+    // GETリクエストを送信し、レスポンスを受け取る
     response = await fetch('/solo/getSentence', {
       method: 'GET',
       headers: {
