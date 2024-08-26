@@ -77,6 +77,6 @@ onload = async (_event) => {
 
   // もらった変数で設定するように
   setMeter(10);
-  
+
   startMeter();
 };
