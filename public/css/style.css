@@ -7,6 +7,7 @@ body {
   display: flex;
   flex-direction: column;
 }
+
 header {
   display: flex;
   flex-direction: row;
@@ -50,7 +51,21 @@ main {
   font-size: 3vw;
 }
 
-#gamePanel {
+#homePanel {
+  background-color: rgb(20, 20, 50);
+  width: 80%;
+  height: calc(80vw * 2 / 3);
+
+  max-width: 1200px;
+  max-height: 800px;
+  border-radius: 50px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+#defaultCanvas0 {
   background-color: rgb(20, 20, 50);
   width: 80%;
   height: calc(80vw * 2 / 3);
