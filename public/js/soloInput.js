@@ -54,10 +54,35 @@ function update(key) {
 }
 
 // 入力された文字をサーバーを送る
-document.addEventListener('keydown', async (event) => {
-  const isAlphabet = /^[a-z]$/.test(event.key);
+function startObserve(){
+	document.addEventListener('keydown', (event) => {
+		if (event.key.length === 1 && event.key >= 'a' && event.key <= 'z' || event.key === '-') {
+		  const launchPos = createVector(random(width * 0.1, width * 0.9), height);
+	  
+		  // サイズ指定
+		  const speedMultiplier = 0.5;
+		  const lifespanMultiplier = 0.5;
+	  
+		  const firework = new Firework(
+			[
+			  color(random(255), 255, 255),
+			  color(random(255), 255, 255),
+			  color(random(255), 255, 255),
+			],
+			[random(['菊', '牡丹']), random(['菊', '牡丹']), random(['菊', '牡丹'])],
+			graphicBuffers,
+			launchPos,
+			speedMultiplier,
+			lifespanMultiplier,
+		  );
+	  
+		  fireworks.push(firework);
+		  
+		  new Audio('sound/fireworkHugh.mp3').play();
+		  setTimeout(()=>{
+			new Audio('sound/fireworkBoom.mp3').play();
+		  },2300);
+		}
+	  });
 
-  if (isAlphabet) {
-    await sendChar(event.key);
-  }
-});
+}

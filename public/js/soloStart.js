@@ -65,6 +65,8 @@ async function soloGameStart() {
   // もらった変数で設定するように変更する
   setMeter(10);
   startMeter();
+
+  startObserve();
 }
 
 // enterでゲームスタートできるようにする。

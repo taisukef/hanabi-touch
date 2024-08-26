@@ -12,7 +12,7 @@ function setMeter(time) {
 }
 
 /**
- * 　タイマー更新
+ * タイマー更新
  */
 function startMeter() {
   const meter = document.getElementById('meter');
