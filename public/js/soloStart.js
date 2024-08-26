@@ -49,7 +49,7 @@ async function soloGameStart() {
 
     // 正常にレスポンスを受け取った場合、タイマーを開始
     const responseObj = await response.json();
-    timer(responseObj.endtime);
+    timer(responseObj.endTime);
   } catch (error) {
     // ネットワークエラーなどの例外をキャッチして処理
     console.error('Fetch error:', error);
