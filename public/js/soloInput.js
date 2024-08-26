@@ -11,7 +11,7 @@
 // 			body: JSON.stringify({ alphabet: event.key })
 // 		}
 // 	);
-// // responcseが成功ならば
+// // responseが成功ならば
 // }
 
 // クライアントで処理する場合
