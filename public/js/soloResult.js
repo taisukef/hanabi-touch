@@ -32,10 +32,10 @@ onload = async (event) => {
 
 // タイトルに戻るボタン。ひとまず、ボタンのidが「titleButton」と仮定して作ってます。
 document.querySelector('#titleButton').onclick = (event) => {
-  location.href = './index.html';
+  location.href = '/index.html';
 };
 
 // もう一度遊ぶボタン。現段階では、ボタンのidが「restartButton」と仮定して作っています。
 document.querySelector('#restartButton').onclick = (event) => {
-  location.href = './solo.html';
+  location.href = '/solo.html';
 };
