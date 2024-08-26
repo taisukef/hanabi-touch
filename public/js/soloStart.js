@@ -11,11 +11,13 @@ async function getId() {
       },
     });
 
+	const responseObj = await response.json();
+
     // ステータスコードが200でなければエラーハンドリング
     if (response.status !== 200) {
-      const responseObj = await response.json();
-      console.error('Error:', responseObj.message || 'Unknown error');
-      return;
+		console.error('Error:', responseObj.message || 'Unknown error');
+		location.reload();
+		return;
     }
 
     // ステータスコードが200の場合、正常に処理されました
@@ -42,18 +44,17 @@ async function soloGameStart() {
 
     // ステータスコードが200でなければエラーハンドリング
     if (response.status !== 200) {
-        console.error('Error:', responseObj.message || 'Unknown error');
+      console.error('Error:', responseObj.message || 'Unknown error');
     }
-	const responseObj = await response.json();
-	//タイマーを開始
-	timer(responseObj.endTime);
-  
-	startObserve();
+    const responseObj = await response.json();
+    //タイマーを開始
+    timer(responseObj.endTime);
+
+    startObserve();
   } catch (error) {
     // ネットワークエラーなどの例外をキャッチして処理
     console.error('Fetch error:', error);
   }
-
 }
 
 // enterでゲームスタートできるようにする。
