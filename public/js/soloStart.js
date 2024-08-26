@@ -11,13 +11,13 @@ async function getId() {
       },
     });
 
-	const responseObj = await response.json();
+    const responseObj = await response.json();
 
     // ステータスコードが200でなければエラーハンドリング
     if (response.status !== 200) {
-		console.error('Error:', responseObj.message || 'Unknown error');
-		location.reload();
-		return;
+      console.error('Error:', responseObj.message || 'Unknown error');
+      location.reload();
+      return;
     }
 
     // ステータスコードが200の場合、正常に処理されました
