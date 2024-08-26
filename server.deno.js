@@ -5,16 +5,34 @@ function makeId() {
   return crypto.randomUUID();
 }
 
+// 「日本語文章,アルファベット」
+// 形式のcsvファイルを読み込む
 const themeSentencesText = await Deno.readTextFile('./private/sentences.csv');
+// 改行とカンマ区切りで2次元リスト化
 const themeSentences = themeSentencesText.split('\n').map((text) => {
   text.replaceAll('\n', '');
   return text.split(',');
 });
+// ランダムな文章とそのアルファベットの組み合わせを出力
 function getRandomThemeSentence() {
   return themeSentences[Math.floor(Math.random() * themeSentences.length)];
 }
 
+// エラーレスポンス生成
+function makeErrorResponse(errorMessage) {
+  return new Response(
+    JSON.stringify({
+      'errorMessage': errorMessage,
+    }),
+    {
+      status: 400,
+      headers: { 'Content-Type': 'application/json; charset=utf-8' },
+    },
+  );
+}
+
 const expectedTypesPerSec = 2;
+const userSentence = {};
 
 Deno.serve(async (req) => {
   const pathname = new URL(req.url).pathname;
@@ -39,7 +57,13 @@ Deno.serve(async (req) => {
 
   if (req.method === 'GET' && pathname === '/solo/getSentence') {
     const targetSentence = getRandomThemeSentence();
-    console.log(targetSentence);
+    if (!getCookies(req)['id']) {
+      return makeErrorResponse('id in cookies is not set');
+    }
+    const id = getCookies(req)['id'];
+    console.log(id);
+    targetSentence[id] = targetSentence;
+    console.log(targetSentence[id]);
     const response = new Response(
       JSON.stringify({
         'sentenceJapanese': targetSentence[0],
