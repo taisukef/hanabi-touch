@@ -3,7 +3,7 @@ let gravity;
 let bgColor;
 
 let graphicBuffers = [];
-const raisingTrail = 15;
+const raisingTrail = 60;
 const kikuTrail = 30;
 const botanTrail = 3;
 const standardFrame = 60;
@@ -41,9 +41,6 @@ function draw() {
   graphicBuffers[0].background(0, Math.ceil(255 / raisingTrail));
   graphicBuffers[1].background(0, Math.ceil(255 / botanTrail));
   graphicBuffers[2].background(0, Math.ceil(255 / kikuTrail));
-  graphicBuffers[0].background(bgcolor);
-  graphicBuffers[1].background(bgcolor);
-  graphicBuffers[2].background(bgcolor);
 
   const delta = deltaTime;
   const currentFrame = frameRate();
