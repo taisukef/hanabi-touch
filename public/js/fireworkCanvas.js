@@ -54,6 +54,8 @@ function draw() {
     }
   }
 
+  background(bgColor);
+
   // canvasに反映
   blendMode(SCREEN);
   for (let i = 0; i < graphicBuffers.length; i++) {
