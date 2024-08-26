@@ -10,7 +10,7 @@ function makeId() {
 const themeSentencesText = await Deno.readTextFile('./private/sentences.csv');
 // 改行とカンマ区切りで2次元リスト化
 const themeSentences = themeSentencesText.split('\n').map((text) => {
-  text.replaceAll('\n', '');
+  text = text.replaceAll('\r', '');
   return text.split(',');
 });
 
@@ -42,14 +42,17 @@ function makeErrorResponse(errorMessage, errorCode) {
 }
 
 // 期待される1秒間のタイプ数
-const expectedTypesPerSec = 2;
+const EXPECTED_TYPES_PER_SEC = 2;
 // 最後に出力したユーザーごとの文章
 const userSentence = {};
+// 1文字ごとに加点する点数
+const SCORE_PER_CHAR = 100;
 
 Deno.serve(async (req) => {
   const pathname = new URL(req.url).pathname;
   console.log(pathname);
 
+  // ユーザidをcookieに設定する
   if (req.method === 'GET' && pathname === '/getId') {
     if (getCookies(req)['id']) return new Response('id is already set');
     return new Response(
@@ -63,6 +66,7 @@ Deno.serve(async (req) => {
     );
   }
 
+  // cookieのidからユーザごとに文章を取得する
   if (req.method === 'GET' && pathname === '/solo/getSentence') {
     const targetSentence = getRandomThemeSentence();
     if (!getCookies(req)['id']) {
@@ -75,7 +79,7 @@ Deno.serve(async (req) => {
         'sentenceJapanese': targetSentence[0],
         'sentenceAlphabet': targetSentence[1],
         'expectedTime': Math.ceil(
-          targetSentence[1].length / expectedTypesPerSec,
+          targetSentence[1].length / EXPECTED_TYPES_PER_SEC,
         ),
       }),
       {
@@ -84,6 +88,36 @@ Deno.serve(async (req) => {
       },
     );
     return response;
+  }
+
+  // 1文字ごとに正誤判定を行う
+  if (req.method === 'POST' && pathname === '/solo/sendCharacter') {
+    if (!getCookies(req)['id']) {
+      return makeErrorResponse('id in cookies is not set', '10001');
+    }
+    const id = getCookies(req)['id'];
+    if (!userSentence[id][1]) {
+      return makeErrorResponse('sentence is not set', '10002');
+    }
+    const reqeustJson = await req.json();
+    const sentChar = reqeustJson['alphabet'];
+    let isCorrect = false;
+    if (userSentence[id][1][0] === sentChar) { // 送られた文字と文章最初の文字が一致しているか
+      isCorrect = true;
+      userSentence[id][1] = userSentence[id][1].slice(1); // 保持していた文章の1文字目を消去
+    }
+    const isCompleted = userSentence[id][1] === ''; // 文章が空なら完了
+    return new Response(
+      JSON.stringify({
+        'isCompleted': isCompleted,
+        'isCorrect': isCorrect,
+        'score': SCORE_PER_CHAR,
+      }),
+      {
+        status: 200,
+        headers: { 'Content-Type': 'application/json; charset=utf-8' },
+      },
+    );
   }
 
   return serveDir(req, {
