@@ -3,7 +3,7 @@ let gravity;
 let bgColor;
 
 let graphicBuffers = [];
-const raisingTrail = 60;
+const raisingTrail = 1;
 const kikuTrail = 30;
 const botanTrail = 3;
 const standardFrame = 60;
