@@ -59,7 +59,7 @@
 
 /* meter */
 #meter {
-  width: 30vw;
+  width: 25vw;
 }
 
 meter::-webkit-meter-bar {
