@@ -1,0 +1,85 @@
+* {
+  box-sizing: border-box;
+  margin: 0px;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+}
+
+header {
+  display: flex;
+  flex-direction: row;
+  height: 60px;
+  padding-top: 3px;
+  padding-bottom: 3px;
+  background-color: black;
+}
+
+#icon {
+  height: 50px;
+  width: 50px;
+  margin: 5px;
+  margin-left: 30px;
+}
+
+#title {
+  display: flex;
+  align-items: center;
+  margin: 10px;
+  color: white;
+  font-weight: bold;
+}
+
+main {
+  height: calc(100vh - 50px);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: #202020;
+}
+
+#startButton {
+  text-align: center;
+  color: #ffffff;
+  background-color: #000000;
+  border-radius: 3vw;
+  width: 30%;
+  height: 6vw;
+  font-size: 3vw;
+}
+
+#homePanel {
+  background-color: rgb(20, 20, 50);
+  width: 80%;
+  height: calc(80vw * 2 / 3);
+
+  max-width: 1200px;
+  max-height: 800px;
+  border-radius: 50px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+#defaultCanvas0 {
+  background-color: rgb(20, 20, 50);
+  width: 80%;
+  height: calc(80vw * 2 / 3);
+
+  max-width: 1200px;
+  max-height: 800px;
+  border-radius: 50px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+main img {
+  width: 30%;
+  margin-bottom: 30px;
+}

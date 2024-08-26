@@ -1,0 +1,54 @@
+/* ゲーム用 */
+#entered {
+  color: red;
+}
+
+#notEntered {
+  color: white;
+}
+
+#alphabet {
+  font-size: 20px;
+}
+
+#gameHeader {
+  display: flex;
+  flex-direction: row;
+  width: 80%;
+  max-width: 1200px;
+}
+
+/* ソロのみ */
+#enterToBegin {
+  color: white;
+  font-size: 3vw;
+
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+#gamePanel {
+  background-color: rgb(20, 20, 50);
+  width: 80%;
+  height: calc(80vw * 2 / 3);
+
+  max-width: 1200px;
+  max-height: 800px;
+  border-radius: 50px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#timer {
+  color: white;
+  font-size: 2.4vw;
+  margin-left: 3vw;
+}

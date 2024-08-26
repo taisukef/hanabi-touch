@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta charset="utf-8">
+	<link rel="stylesheet" href="css/style.css">
+	<link rel="stylesheet" href="css/solo.css">
+
+	<!-- p5js -->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.7.0/p5.min.js"></script>
+
+	<script src="js/soloStart.js" defer></script>
+	<script src="js/soloIuput.js" defer></script>
+	<script src="js/soloTimer.js" defer></script>
+
+	<script src="js/classFirework.js" defer></script>
+	<script src="js/particles.js" defer></script>
+	<script src="js/createFirework.js" defer></script>
+
+	<title>花火タイピング</title>
+</head>
+
+<body>
+	<header onclick="location.href='index.html'">
+		<img id="icon" src="icon.png" alt="アイコン">
+		<p id="title">花火タイピング</p>
+	</header>
+
+	<main>
+		<div id="gameHeader">
+			<p id="timer">残り時間計算中</p>
+		</div>
+
+		<div id="gamePanel">
+		</div>
+		<div id="enterToBegin">
+			<p>ENTERを押してゲームを開始</p>
+		</div>
+
+		<div id="inputSentence">
+			<p id="japanese"></p>
+			<div>
+				<div id="alphabet">
+					<span id="entered"></span>
+					<span id="notEntered"></span>
+				</div>
+			</div>
+		</div>
+	</main>
+</body>
+
+
+</html>
