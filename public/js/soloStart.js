@@ -68,4 +68,5 @@ document.addEventListener('keydown', (event) => {
 // ページロード時に実行する処理
 onload = async (_event) => {
   await getId();
+  startMeter();
 };

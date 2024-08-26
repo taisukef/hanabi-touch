@@ -14,8 +14,13 @@
 #gameHeader {
   display: flex;
   flex-direction: row;
+  align-items: center;
   width: 80%;
   max-width: 1200px;
+  height: 4vw;
+  justify-content: space-between;
+  padding-left: 5vw;
+  padding-right: 5vw;
 }
 
 /* ソロのみ */
@@ -50,5 +55,25 @@
 #timer {
   color: white;
   font-size: 2.4vw;
-  margin-left: 3vw;
+}
+
+/* meter */
+#meter {
+  width: 30vw;
+}
+
+meter::-webkit-meter-bar {
+  background: #202020;
+}
+
+meter::-webkit-meter-optimum-value {
+  background: rgb(60, 60, 150);
+}
+
+meter::-webkit-meter-suboptimum-value {
+  background: rgb(60, 60, 150);
+}
+
+meter::-webkit-meter-even-less-good-value {
+  background: rgb(60, 60, 150);
 }
