@@ -4,8 +4,10 @@
 }
 
 body {
+  visibility: hidden;
   display: flex;
   flex-direction: column;
+  background-color: #202020;
 }
 
 header {
@@ -38,7 +40,6 @@ main {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  background-color: #202020;
 }
 
 #startButton {
