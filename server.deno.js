@@ -14,12 +14,19 @@ const themeSentences = themeSentencesText.split('\n').map((text) => {
   return text.split(',');
 });
 
-// ランダムな文章とそのアルファベットの組み合わせを出力
+/**
+ * ランダムな文章とそのローマ字文章の組み合わせを出力
+ * @returns [日本語文章, ローマ字文章]
+ */
 function getRandomThemeSentence() {
   return themeSentences[Math.floor(Math.random() * themeSentences.length)];
 }
 
-// エラーレスポンス生成
+/**
+ * エラーレスポンス生成
+ * @param {String} errorMessage bodyのerrorMessageに載せる文字列
+ * @returns 400番のエラーレスポンス
+ */
 function makeErrorResponse(errorMessage) {
   return new Response(
     JSON.stringify({
@@ -32,7 +39,9 @@ function makeErrorResponse(errorMessage) {
   );
 }
 
+// 期待される1秒間のタイプ数
 const expectedTypesPerSec = 2;
+// 最後に出力したユーザーごとの文章
 const userSentence = {};
 
 Deno.serve(async (req) => {
