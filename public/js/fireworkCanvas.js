@@ -64,6 +64,13 @@ function draw() {
   blendMode(BLEND);
 }
 
+/**
+ * ウィンドウがリサイズされた時にp5jsが自動実行
+ */
+function windowResized() {
+  const gamePanel = document.getElementById('gamePanel');
+  resizeCanvas(gamePanel.clientWidth, gamePanel.clientHeight);
+}
 
 // サーバーができたら直す
 document.addEventListener('keydown', (event) => {

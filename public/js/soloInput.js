@@ -14,7 +14,10 @@
 // // responseが成功ならば
 // }
 
-// クライアントで処理する場合
+/**
+ * サーバに入力された文字を送信
+ * @param {string} key 一文字
+ */
 async function sendChar(key) {
   const response = await fetch(
     '/solo/sendCharacter',
@@ -30,7 +33,10 @@ async function sendChar(key) {
   update(key);
 }
 
-//入力した文字の更新
+/**
+ * 入力した文字の更新（idがnotEnteredの文字をidがenteredの要素に移動）
+ * @param {string} key 一文字
+ */
 function update(key) {
   const entered = document.getElementById('entered');
   const notEntered = document.getElementById('notEntered');
@@ -47,7 +53,8 @@ function update(key) {
   }
 }
 
-document.querySelector('body').addEventListener('keydown', async (event) => {
+// 入力された文字をサーバーを送る
+document.addEventListener('keydown', async (event) => {
   const isAlphabet = /^[a-z]$/.test(event.key);
 
   if (isAlphabet) {
