@@ -70,7 +70,7 @@ document.addEventListener('keydown', (event) => {
     }
     soloGameStart(); // Enterキーが押された時にゲームを開始
   }
-}, { once: true });
+} );
 
 // ページロード時に実行する処理
 onload = async (_event) => {
