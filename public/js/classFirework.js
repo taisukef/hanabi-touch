@@ -138,7 +138,7 @@ class Firework {
       }
     }
 
-    for (var i = this.particles.length - 1; i >= 0; i--) {
+    for (let i = this.particles.length - 1; i >= 0; i--) {
       this.particles[i].update(dt);
       if (this.particles[i].done) {
         this.particles.splice(i, 1);
@@ -150,13 +150,13 @@ class Firework {
     if (!this.exploded) {
       this.rasingParticle.draw();
     }
-    for (var i = 0; i < this.particles.length; i++) {
+    for (let i = 0; i < this.particles.length; i++) {
       this.particles[i].draw();
     }
   }
 
   selectIndex(vector) {
-    let xyMag = vector.x * vector.x + vector.y * vector.y;
+    const xyMag = vector.x * vector.x + vector.y * vector.y;
     if (xyMag < 0.3) {
       return 0;
     } else if (xyMag < 0.6) {

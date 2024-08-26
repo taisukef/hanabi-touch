@@ -1,11 +1,11 @@
-let fireworks = [];
+const fireworks = [];
 let gravity;
 let bgColor;
 
 let graphicBuffers = [];
-let raisingTrail = 15;
-let kikuTrail = 30;
-let botanTrail = 3;
+const raisingTrail = 15;
+const kikuTrail = 30;
+const botanTrail = 3;
 const standardFrame = 60;
 
 // ページ読み込み時に一回のみ実行
@@ -37,14 +37,14 @@ function draw() {
   background(bgColor); // 背景に少し透明なのを重ねてだんだん消えて行くように
 
   colorMode(HSB);
-  //　花火の更新
+  // 花火の更新
   graphicBuffers[0].background(0, Math.ceil(255 / raisingTrail));
   graphicBuffers[1].background(0, Math.ceil(255 / botanTrail));
   graphicBuffers[2].background(0, Math.ceil(255 / kikuTrail));
 
   const delta = deltaTime;
   const currentFrame = frameRate();
-  for (var i = fireworks.length - 1; i >= 0; i--) {
+  for (let i = fireworks.length - 1; i >= 0; i--) {
     // フレームレートを考慮して更新をかける
     fireworks[i].update(delta * currentFrame * 0.001);
     fireworks[i].show();
@@ -64,16 +64,7 @@ function draw() {
   blendMode(BLEND);
 }
 
-
-let counter = 0;
 document.addEventListener('keydown', (event) => {
-  // const input = document.getElementById('number');
-  // if(!input) return;
-  // const mod = parseInt(input.value, 10); // 数値に変換
-  // if (isNaN(mod) || mod <= 0) return; // modが無効な場合は何もしない
-  // counter++;
-  // if (counter % mod !== 0) return;
-
   if (event.key.length === 1 && event.key >= 'a' && event.key <= 'z') {
     const launchPos = createVector(random(width * 0.1, width * 0.9), height);
 

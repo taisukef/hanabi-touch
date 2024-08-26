@@ -11,6 +11,13 @@
   font-size: 20px;
 }
 
+#gameHeader {
+  display: flex;
+  flex-direction: row;
+  width: 80%;
+  max-width: 1200px;
+}
+
 /* ソロのみ */
 #enterToBegin {
   color: white;
@@ -42,5 +49,6 @@
 
 #timer {
   color: white;
-  font-size: 3vw;
+  font-size: 2.4vw;
+  margin-left: 3vw;
 }

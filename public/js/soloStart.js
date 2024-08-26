@@ -66,6 +66,6 @@ document.addEventListener('keydown', (event) => {
 }, { once: true });
 
 // ページロード時に実行する処理
-window.onload = async (_event) => {
+onload = async (_event) => {
   await getId();
 };
