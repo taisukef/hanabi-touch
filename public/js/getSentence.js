@@ -28,13 +28,14 @@ async function getSentence() {
 
   const responseObj = await response.json();
 
+  // もらった変数で設定するように変更する
+  setMeter(responseObj.expectedTime);
+  startMeter();
+
   //   文章を設定
   document.getElementById('notEntered').textContent =
     responseObj.sentenceAlphabet;
   document.getElementById('japanese').textContent =
     responseObj.sentenceJapanese;
 
-  // もらった変数で設定するように変更する
-  setMeter(10);
-  startMeter();
 }
