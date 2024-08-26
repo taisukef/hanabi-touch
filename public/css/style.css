@@ -4,6 +4,7 @@
 }
 
 body {
+  visibility: hidden;
   display: flex;
   flex-direction: column;
   background-color: #202020;
