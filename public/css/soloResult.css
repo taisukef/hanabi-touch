@@ -1,0 +1,37 @@
+#result {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 60%;
+    transform: translate(-50%, -50%);
+}
+
+#resultText {
+    color: white;
+    font-size: 3vw;
+}
+
+#buttonResult {
+    display: flex;
+    justify-content: space-between;
+}
+
+#titleButton {
+    background-color: orange;
+    color: black;
+    border-radius: 3vw;
+
+    width: 40%;
+    height: 6%;
+    font-size: 3vw;
+}
+
+#restartButton {
+    background-color: orange;
+    color: black;
+    border-radius: 3vw;
+
+    width: 40%;
+    height: 6%;
+    font-size: 3vw;
+}
