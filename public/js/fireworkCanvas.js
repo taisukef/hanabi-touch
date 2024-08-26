@@ -63,4 +63,3 @@ function draw() {
   }
   blendMode(BLEND);
 }
-

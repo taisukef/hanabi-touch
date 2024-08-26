@@ -62,10 +62,6 @@ async function soloGameStart() {
   //タイマーを開始
   timer(responseObj.endTime);
 
-  // もらった変数で設定するように変更する
-  setMeter(10);
-  startMeter();
-
   startObserve();
 }
 
