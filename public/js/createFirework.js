@@ -64,21 +64,6 @@ function draw() {
   blendMode(BLEND);
 }
 
-document.getElementById('small').onclick = () => {
-  const launchPos = createVector(random(width * 0.4, width * 0.6), height);
-  const firework = new Firework(
-    [
-      color(random(255), 255, 255),
-      color(random(255), 255, 255),
-      color(random(255), 255, 255),
-    ], // ランダムな色
-    [random(['菊', '牡丹']), random(['菊', '牡丹']), random(['菊', '牡丹'])], // ランダムなタイプ
-    graphicBuffers,
-    launchPos,
-  );
-
-  fireworks.push(firework);
-};
 
 let counter = 0;
 document.addEventListener('keydown', (event) => {
