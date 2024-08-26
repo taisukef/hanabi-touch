@@ -97,7 +97,7 @@ Deno.serve(async (req) => {
     }
     const id = getCookies(req)['id'];
     if (!userSentence[id][1]) {
-      makeErrorResponse('sentence is not set', '10002');
+      return makeErrorResponse('sentence is not set', '10002');
     }
     const reqeustJson = await req.json();
     const sentChar = reqeustJson['alphabet'];
