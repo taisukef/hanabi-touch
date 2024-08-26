@@ -1,6 +1,6 @@
 import { serveDir } from 'https://deno.land/std@0.151.0/http/file_server.ts';
 import { getCookies } from 'https://deno.land/std@0.74.0/http/mod.ts';
-import { UserGame } from './private/UserGame.js';
+import { UserGame } from './model/UserGame.js';
 
 function makeId() {
   return crypto.randomUUID();
