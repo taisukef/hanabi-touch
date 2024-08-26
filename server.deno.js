@@ -47,6 +47,8 @@ const EXPECTED_TYPES_PER_SEC = 2;
 const SCORE_PER_CHAR = 100;
 // 1ゲームの制限時間(ms)
 const TIME_LIMIT = 60 * 1000;
+// スコアの初期値
+const INITIALIZED_SCORE = 0;
 
 // 最後に出力したユーザーごとの文章
 const userSentence = {};
@@ -82,6 +84,7 @@ Deno.serve(async (req) => {
     return new Response(
       JSON.stringify({
         'endTime': userEndTime[id],
+        'initializedScore': INITIALIZED_SCORE,
       }),
       {
         status: 200,
