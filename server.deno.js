@@ -48,10 +48,6 @@ Deno.serve(async (req) => {
   const pathname = new URL(req.url).pathname;
   console.log(pathname);
 
-  if (req.method === 'GET' && pathname === '/welcome-message') {
-    Response('jigインターンへようこそ！');
-  }
-
   if (req.method === 'GET' && pathname === '/getId') {
     if (getCookies(req)['id']) return new Response('id is already set');
     return new Response(
