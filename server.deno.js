@@ -25,12 +25,14 @@ function getRandomThemeSentence() {
 /**
  * エラーレスポンス生成
  * @param {String} errorMessage bodyのerrorMessageに載せる文字列
+ * @param {String} errorCode bodyのerrorCodeに載せる文字列
  * @returns 400番のエラーレスポンス
  */
-function makeErrorResponse(errorMessage) {
+function makeErrorResponse(errorMessage, errorCode) {
   return new Response(
     JSON.stringify({
       'errorMessage': errorMessage,
+      'errorCode': errorCode,
     }),
     {
       status: 400,
@@ -64,7 +66,7 @@ Deno.serve(async (req) => {
   if (req.method === 'GET' && pathname === '/solo/getSentence') {
     const targetSentence = getRandomThemeSentence();
     if (!getCookies(req)['id']) {
-      return makeErrorResponse('id in cookies is not set');
+      return makeErrorResponse('id in cookies is not set', '10001');
     }
     const id = getCookies(req)['id'];
     userSentence[id] = targetSentence;
