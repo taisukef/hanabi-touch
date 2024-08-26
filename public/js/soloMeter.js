@@ -1,6 +1,6 @@
 /**
- * @param {number} time  設定する秒
  * meterの初期設定
+ * @param {number} time  設定する秒
  */
 function setMeter(time) {
   const meter = document.getElementById('meter');

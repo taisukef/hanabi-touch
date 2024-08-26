@@ -15,8 +15,8 @@
 // }
 
 /**
- * @param {string} key 一文字
  * サーバに入力された文字を送信
+ * @param {string} key 一文字
  */
 async function sendChar(key) {
   const response = await fetch(
@@ -34,8 +34,8 @@ async function sendChar(key) {
 }
 
 /**
- * @param {string} key 一文字
  * 入力した文字の更新（idがnotEnteredの文字をidがenteredの要素に移動）
+ * @param {string} key 一文字
  */
 function update(key) {
   const entered = document.getElementById('entered');
