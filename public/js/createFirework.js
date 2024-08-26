@@ -64,6 +64,8 @@ function draw() {
   blendMode(BLEND);
 }
 
+
+// サーバーができたら直す
 document.addEventListener('keydown', (event) => {
   if (event.key.length === 1 && event.key >= 'a' && event.key <= 'z') {
     const launchPos = createVector(random(width * 0.1, width * 0.9), height);
