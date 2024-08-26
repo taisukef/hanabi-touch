@@ -13,16 +13,18 @@
 	<script src="js/soloStart.js" defer></script>
 	<script src="js/soloIuput.js" defer></script>
 	<script src="js/soloTimer.js" defer></script>
+	<script src="js/soloMeter.js" defer></script>
+	
 
 	<script src="js/classFirework.js" defer></script>
 	<script src="js/particles.js" defer></script>
-	<script src="js/createFirework.js" defer></script>
+	<script src="js/fireworkCanvas.js" defer></script>
 
 	<title>花火タイピング</title>
 </head>
 
 <body>
-	<header onclick="location.href='index.html'">
+	<header onclick="location.href='/'">
 		<img id="icon" src="icon.png" alt="アイコン">
 		<p id="title">花火タイピング</p>
 	</header>
@@ -30,6 +32,7 @@
 	<main>
 		<div id="gameHeader">
 			<p id="timer">残り時間計算中</p>
+			<meter id="meter" min="0" max="1000" low="33" high="66" time="" optimum="80" value="1000"></meter>
 		</div>
 
 		<div id="gamePanel">
