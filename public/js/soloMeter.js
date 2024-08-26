@@ -15,8 +15,8 @@ function setMeter(time) {
  */
 function startMeter() {
   const meter = document.getElementById('meter');
+  // 1/100秒おきに実行
   setInterval(() => {
-    // 1/100秒おきに実行
     meter.value -= 10/ meter.time;
   }, 10);
 }
