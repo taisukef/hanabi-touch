@@ -5,13 +5,14 @@
 function setMeter(time) {
   const meter = document.getElementById('meter');
   if (meter) {
+    meter.style.display = 'block';
     meter.value = 1000;
     meter.time = time;
   }
 }
 
 /**
- * 　タイマー更新
+ * タイマー更新
  */
 function startMeter() {
   const meter = document.getElementById('meter');
