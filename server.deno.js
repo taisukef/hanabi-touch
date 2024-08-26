@@ -107,6 +107,9 @@ Deno.serve(async (req) => {
       return makeErrorResponse('id in cookies is not set', '10001');
     }
     const id = getCookies(req)['id'];
+    if (!userGames[id]) {
+      return makeErrorResponse('UserGame insntance is not made', '10003');
+    }
     userGames[id].setSentenceNow(targetSentence[0], targetSentence[1]);
     return make200Response({
       'sentenceJapanese': targetSentence[0],
@@ -123,6 +126,9 @@ Deno.serve(async (req) => {
       return makeErrorResponse('id in cookies is not set', '10001');
     }
     const id = getCookies(req)['id'];
+    if (!userGames[id]) {
+      return makeErrorResponse('UserGame insntance is not made', '10003');
+    }
     if (userGames[id].isCompleted()) {
       return makeErrorResponse('sentence is not set', '10002');
     }
