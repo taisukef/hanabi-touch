@@ -13,6 +13,7 @@ const themeSentences = themeSentencesText.split('\n').map((text) => {
   text.replaceAll('\n', '');
   return text.split(',');
 });
+
 // ランダムな文章とそのアルファベットの組み合わせを出力
 function getRandomThemeSentence() {
   return themeSentences[Math.floor(Math.random() * themeSentences.length)];
@@ -61,9 +62,7 @@ Deno.serve(async (req) => {
       return makeErrorResponse('id in cookies is not set');
     }
     const id = getCookies(req)['id'];
-    console.log(id);
-    targetSentence[id] = targetSentence;
-    console.log(targetSentence[id]);
+    userSentence[id] = targetSentence;
     const response = new Response(
       JSON.stringify({
         'sentenceJapanese': targetSentence[0],
