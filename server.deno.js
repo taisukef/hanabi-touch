@@ -1,5 +1,6 @@
 import { serveDir } from 'https://deno.land/std@0.151.0/http/file_server.ts';
 import { getCookies } from 'https://deno.land/std@0.74.0/http/mod.ts';
+import { UserGame } from './private/UserGame.js';
 
 function makeId() {
   return crypto.randomUUID();
@@ -41,6 +42,21 @@ function makeErrorResponse(errorMessage, errorCode) {
   );
 }
 
+/**
+ * 200番レスポンスを生成
+ * @param {JSON} bodyJson bodyに入れる辞書型
+ * @returns 200番のレスポンス
+ */
+function make200Response(bodyJson) {
+  return new Response(
+    JSON.stringify(bodyJson),
+    {
+      status: 200,
+      headers: { 'Content-Type': 'application/json; charset=utf-8' },
+    },
+  );
+}
+
 // 期待される1秒間のタイプ数
 const EXPECTED_TYPES_PER_SEC = 2;
 // 1文字ごとに加点する点数
@@ -50,10 +66,8 @@ const TIME_LIMIT = 60 * 1000;
 // スコアの初期値
 const INITIALIZED_SCORE = 0;
 
-// 最後に出力したユーザーごとの文章
-const userSentence = {};
-// ユーザーごとのゲーム終了時間
-const userEndTime = {};
+// idをキーにuserGameのインスタンスを保持する辞書型
+const userGames = {};
 
 Deno.serve(async (req) => {
   const pathname = new URL(req.url).pathname;
@@ -79,18 +93,11 @@ Deno.serve(async (req) => {
       return makeErrorResponse('id in cookies is not set', '10001');
     }
     const id = getCookies(req)['id'];
-    delete userSentence[id];
-    userEndTime[id] = Date.now() + TIME_LIMIT;
-    return new Response(
-      JSON.stringify({
-        'endTime': userEndTime[id],
-        'initializedScore': INITIALIZED_SCORE,
-      }),
-      {
-        status: 200,
-        headers: { 'Content-Type': 'application/json; charset=utf-8' },
-      },
-    );
+    userGames[id] = new UserGame(id, TIME_LIMIT);
+    return make200Response({
+      'endTime': userGames[id].getEndTime(),
+      'initializedScore': INITIALIZED_SCORE,
+    });
   }
 
   // cookieのidからユーザごとに文章を取得する
@@ -100,21 +107,14 @@ Deno.serve(async (req) => {
       return makeErrorResponse('id in cookies is not set', '10001');
     }
     const id = getCookies(req)['id'];
-    userSentence[id] = targetSentence;
-    const response = new Response(
-      JSON.stringify({
-        'sentenceJapanese': targetSentence[0],
-        'sentenceAlphabet': targetSentence[1],
-        'expectedTime': Math.ceil(
-          targetSentence[1].length / EXPECTED_TYPES_PER_SEC,
-        ),
-      }),
-      {
-        status: 200,
-        headers: { 'Content-Type': 'application/json; charset=utf-8' },
-      },
-    );
-    return response;
+    userGames[id].setSentenceNow(targetSentence[0], targetSentence[1]);
+    return make200Response({
+      'sentenceJapanese': targetSentence[0],
+      'sentenceAlphabet': targetSentence[1],
+      'expectedTime': Math.ceil(
+        targetSentence[1].length / EXPECTED_TYPES_PER_SEC,
+      ),
+    });
   }
 
   // 1文字ごとに正誤判定を行う
@@ -123,28 +123,16 @@ Deno.serve(async (req) => {
       return makeErrorResponse('id in cookies is not set', '10001');
     }
     const id = getCookies(req)['id'];
-    if (!userSentence[id] || !userSentence[id][1]) {
+    if (userGames[id].isCompleted()) {
       return makeErrorResponse('sentence is not set', '10002');
     }
     const reqeustJson = await req.json();
     const sentChar = reqeustJson['alphabet'];
-    let isCorrect = false;
-    if (userSentence[id][1][0] === sentChar) { // 送られた文字と文章最初の文字が一致しているか
-      isCorrect = true;
-      userSentence[id][1] = userSentence[id][1].slice(1); // 保持していた文章の1文字目を消去
-    }
-    const isCompleted = userSentence[id][1] === ''; // 文章が空なら完了
-    return new Response(
-      JSON.stringify({
-        'isCompleted': isCompleted,
-        'isCorrect': isCorrect,
-        'score': SCORE_PER_CHAR,
-      }),
-      {
-        status: 200,
-        headers: { 'Content-Type': 'application/json; charset=utf-8' },
-      },
-    );
+    return make200Response({
+      'isCorrect': userGames[id].judgeCorrectness(sentChar),
+      'isCompleted': userGames[id].isCompleted(),
+      'score': SCORE_PER_CHAR,
+    });
   }
 
   return serveDir(req, {
