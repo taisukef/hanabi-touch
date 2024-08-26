@@ -42,7 +42,7 @@ function makeErrorResponse(errorMessage, errorCode) {
 }
 
 // 期待される1秒間のタイプ数
-const expectedTypesPerSec = 2;
+const EXPECTED_TYPES_PER_SEC = 2;
 // 最後に出力したユーザーごとの文章
 const userSentence = {};
 // 1文字ごとに加点する点数
@@ -79,7 +79,7 @@ Deno.serve(async (req) => {
         'sentenceJapanese': targetSentence[0],
         'sentenceAlphabet': targetSentence[1],
         'expectedTime': Math.ceil(
-          targetSentence[1].length / expectedTypesPerSec,
+          targetSentence[1].length / EXPECTED_TYPES_PER_SEC,
         ),
       }),
       {
