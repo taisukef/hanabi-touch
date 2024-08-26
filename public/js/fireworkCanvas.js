@@ -4,7 +4,7 @@ let bgColor;
 
 let graphicBuffers = [];
 const raisingTrail = 3;
-const kikuTrail = 30;
+const kikuTrail = 3;
 const botanTrail = 3;
 const standardFrame = 60;
 
