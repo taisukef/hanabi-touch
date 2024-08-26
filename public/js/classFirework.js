@@ -4,7 +4,14 @@ const onFireworkDispose = new CustomEvent('onFireworkDispose');
 
 const starCount = 3;
 
-function kikuParticle(graphicBuffer, origin, vec, color) {
+function kikuParticle(
+  graphicBuffer,
+  origin,
+  vec,
+  color,
+  speed = 1,
+  lifespan = 1,
+) {
   return new ExplodeParticle(
     graphicBuffer,
     origin,
@@ -14,10 +21,19 @@ function kikuParticle(graphicBuffer, origin, vec, color) {
     250,
     vec.mult(5),
     createVector(0, 0.04),
+    speed,
+    lifespan,
   );
 }
 
-function botanParticle(graphicBuffer, origin, vec, color) {
+function botanParticle(
+  graphicBuffer,
+  origin,
+  vec,
+  color,
+  speedMultiplier = 1,
+  lifespanMultiplier = 1,
+) {
   return new ExplodeParticle(
     graphicBuffer,
     origin,
@@ -27,6 +43,8 @@ function botanParticle(graphicBuffer, origin, vec, color) {
     300,
     vec.mult(6),
     createVector(0, 0),
+    speedMultiplier,
+    lifespanMultiplier,
   );
 }
 
@@ -37,18 +55,23 @@ class Firework {
   exploded = false;
   particles = [];
   buffers;
+  size;
+  radius;
 
   trailSize;
 
-  constructor(colors, types, buffers, launch) {
+  constructor(colors, types, buffers, launch, size = 1, radius = 1) {
     this.buffers = buffers;
     this.colors = colors;
     this.types = types;
+    this.size = size; // Added size property
+    this.radius = radius; // Added radius property
 
     this.rasingParticle = new RasingParticle(
       this.buffers[0],
       launch,
       this.colors[0],
+      this.radius, // Pass radius to RasingParticle
     );
   }
 
@@ -56,10 +79,10 @@ class Firework {
     let fireworkSum = 0;
     for (let i = 0; i < starCount; i++) {
       if (this.types[i] === '牡丹') {
-        fireworkSum += 50;
+        fireworkSum += 50 * this.size; // Use size property
       }
       if (this.types[i] === '菊') {
-        fireworkSum += 100;
+        fireworkSum += 100 * this.size; // Use size property
       }
     }
 
@@ -72,12 +95,24 @@ class Firework {
 
       if (type === '牡丹') {
         this.particles.push(
-          botanParticle(this.buffers[1], origin, vec, particleColor),
+          botanParticle(
+            this.buffers[1],
+            origin,
+            vec,
+            particleColor,
+            this.radius,
+          ), // Pass radius to botanParticle
         );
       }
       if (type === '菊') {
         this.particles.push(
-          kikuParticle(this.buffers[2], origin, vec, particleColor),
+          kikuParticle(
+            this.buffers[2],
+            origin,
+            vec,
+            particleColor,
+            this.radius,
+          ), // Pass radius to kikuParticle
         );
       }
     }

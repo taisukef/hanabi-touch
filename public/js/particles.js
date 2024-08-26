@@ -39,15 +39,26 @@ class ExplodeParticle extends AbstractParticle {
   #velocityDist;
   #initLife;
 
-  constructor(graphicBuffer, pos, color, r, v, initLife, v0, acc) {
+  constructor(
+    graphicBuffer,
+    pos,
+    color,
+    r,
+    v,
+    initLife,
+    v0,
+    acc,
+    speed = 1,
+    lifespan = 1,
+  ) {
     super(pos, graphicBuffer);
-    this.velocity = v0;
+    this.velocity = v0.mult(speed); // スピードを変更
     this.acceleration = acc;
 
     this.color = color;
     this.radius = r;
-    this.#initLife = initLife;
-    this.#lifespan = initLife;
+    this.#initLife = initLife * lifespan; // ライフスパンを変更
+    this.#lifespan = this.#initLife;
 
     this.#velocityDist = v;
   }
