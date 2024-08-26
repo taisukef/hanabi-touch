@@ -1,4 +1,6 @@
-// idを取得（cookie）
+/**
+ * idを取得（cookie）
+ */
 async function getId() {
   try {
     // GETリクエストを送信し、レスポンスを受け取る
@@ -24,7 +26,10 @@ async function getId() {
   }
 }
 
-// ゲームスタート時に一回のみ実行する関数
+/**
+ * ゲームスタート時に一回のみ実行する関数
+ * サーバーにゲーム開始を伝える
+ */
 async function soloGameStart() {
   try {
     // POSTリクエストを送信し、レスポンスを受け取る
@@ -51,7 +56,8 @@ async function soloGameStart() {
   }
 }
 
-// enterでゲームスタート
+// enterでゲームスタートできるようにする。
+// 押されたら、要素を消してスタートオンを鳴らす。
 document.addEventListener('keydown', (event) => {
   if (event.key === 'Enter') {
     const element = document.getElementById('enterToBegin');

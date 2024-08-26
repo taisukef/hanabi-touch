@@ -64,7 +64,6 @@ function draw() {
   blendMode(BLEND);
 }
 
-
 // サーバーができたら直す
 document.addEventListener('keydown', (event) => {
   if (event.key.length === 1 && event.key >= 'a' && event.key <= 'z') {
