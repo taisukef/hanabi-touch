@@ -51,10 +51,9 @@ function draw() {
     if (fireworks[i].done) {
       fireworks[i].dispose();
       fireworks.splice(i, 1);
+      background(bgColor);
     }
   }
-
-  background(bgColor);
 
   // canvasに反映
   blendMode(SCREEN);
