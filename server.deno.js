@@ -43,10 +43,17 @@ function makeErrorResponse(errorMessage, errorCode) {
 
 // 期待される1秒間のタイプ数
 const EXPECTED_TYPES_PER_SEC = 2;
-// 最後に出力したユーザーごとの文章
-const userSentence = {};
 // 1文字ごとに加点する点数
 const SCORE_PER_CHAR = 100;
+// 1ゲームの制限時間(ms)
+const TIME_LIMIT = 60 * 1000;
+// スコアの初期値
+const INITIALIZED_SCORE = 0;
+
+// 最後に出力したユーザーごとの文章
+const userSentence = {};
+// ユーザーごとのゲーム終了時間
+const userEndTime = {};
 
 Deno.serve(async (req) => {
   const pathname = new URL(req.url).pathname;
@@ -62,6 +69,26 @@ Deno.serve(async (req) => {
         headers: {
           'set-cookie': `id=${makeId()}`,
         },
+      },
+    );
+  }
+
+  // ゲームスタートと同時に初期化
+  if (req.method === 'GET' && pathname === '/solo/start') {
+    if (!getCookies(req)['id']) {
+      return makeErrorResponse('id in cookies is not set', '10001');
+    }
+    const id = getCookies(req)['id'];
+    delete userSentence[id];
+    userEndTime[id] = Date.now() + TIME_LIMIT;
+    return new Response(
+      JSON.stringify({
+        'endTime': userEndTime[id],
+        'initializedScore': INITIALIZED_SCORE,
+      }),
+      {
+        status: 200,
+        headers: { 'Content-Type': 'application/json; charset=utf-8' },
       },
     );
   }
@@ -96,7 +123,7 @@ Deno.serve(async (req) => {
       return makeErrorResponse('id in cookies is not set', '10001');
     }
     const id = getCookies(req)['id'];
-    if (!userSentence[id][1]) {
+    if (!userSentence[id] || !userSentence[id][1]) {
       return makeErrorResponse('sentence is not set', '10002');
     }
     const reqeustJson = await req.json();
