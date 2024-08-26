@@ -34,11 +34,8 @@ function setup() {
 
 function draw() {
   colorMode(RGB); // 花火を出す色の指定の仕方
-  //background(bgColor); // 背景に少し透明なのを重ねてだんだん消えて行くように
 
-  blendMode(ADD);
-  background(8, 4, 2);
-  blendMode(BLEND);
+  background(bgColor); // 背景に少し透明なのを重ねてだんだん消えて行くように
 
   colorMode(HSB);
   // 花火の更新
@@ -86,13 +83,15 @@ document.addEventListener('keydown', (event) => {
     const lifespanMultiplier = 0.5;
     const numberOfParticles = 1;
 
+    const flower = random(['菊', '牡丹']);
+
     const firework = new Firework(
       [
         color(random(255), 255, 255),
         color(random(255), 255, 255),
         color(random(255), 255, 255),
       ],
-      [random(['菊', '牡丹']), random(['菊', '牡丹']), random(['菊', '牡丹'])],
+      [flower, flower, flower],
       graphicBuffers,
       launchPos,
       speedMultiplier,
