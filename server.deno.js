@@ -46,7 +46,7 @@ const expectedTypesPerSec = 2;
 // 最後に出力したユーザーごとの文章
 const userSentence = {};
 // 1文字ごとに加点する点数
-const scorePerChar = 100;
+const SCORE_PER_CHAR = 100;
 
 Deno.serve(async (req) => {
   const pathname = new URL(req.url).pathname;
@@ -111,7 +111,7 @@ Deno.serve(async (req) => {
       JSON.stringify({
         'isCompleted': isCompleted,
         'isCorrect': isCorrect,
-        'score': scorePerChar,
+        'score': SCORE_PER_CHAR,
       }),
       {
         status: 200,
