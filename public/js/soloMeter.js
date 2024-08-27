@@ -28,9 +28,9 @@ function startMeter() {
  * メーター同期
  * 　@param {number} time  減少させる秒数
  */
-function syncMeter(time){
-	const meter = document.getElementById('meter');
-	meter.value = time;
+function syncMeter(time) {
+  const meter = document.getElementById('meter');
+  meter.value = time;
 }
 
 /**

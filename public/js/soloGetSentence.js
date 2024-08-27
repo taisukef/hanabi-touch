@@ -19,7 +19,7 @@ async function fetchSentenceAndRefreshMeter() {
     // ステータスコードが200でなければエラーハンドリング
     if (response.status !== 200) {
       console.error('Error:', responseObj.message || 'Unknown error');
-	  deleteCookie();
+      deleteCookie();
       location.reload();
       return;
     }

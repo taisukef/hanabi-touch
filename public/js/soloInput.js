@@ -32,78 +32,72 @@ async function sendChar(key) {
 
   const responseObj = await response.json();
 
-   // ステータスコードが200でなければエラーハンドリング
-   if (response.status !== 200) {
-	console.error('Error:', responseObj.message || 'Unknown error');
-	deleteCookie();
-	location.reload();
-	return;
+  // ステータスコードが200でなければエラーハンドリング
+  if (response.status !== 200) {
+    console.error('Error:', responseObj.message || 'Unknown error');
+    deleteCookie();
+    location.reload();
+    return;
   }
 
-  
-  if(responseObj.isCorrect){ //正しい入力ならば
-	  // 打った文字の色の更新
-	  update(key);
+  if (responseObj.isCorrect) { //正しい入力ならば
+    // 打った文字の色の更新
+    update(key);
 
-	  const shape  = random(['菊', '牡丹']);
-	  new Firework(
-		[
-		  color(random(255), 255, 255),
-		  color(random(255), 255, 255),
-		  color(random(255), 255, 255),
-		],
-		[ shape,shape,shape
-		],
-		graphicBuffers,
-		launchPos = createVector(
-			random(width * 0.1, width * 0.9),
-			height,
-		  ),// launchPos
-		0.5, //  speedMultiplier
-		0.5 // lifespanMultiplier
-	  ).push();
-	  fireworkHugh.play();
-	  setTimeout(() => {
-		fireworkBoom.play();
-	  }, 1450);
+    const shape = random(['菊', '牡丹']);
+    new Firework(
+      [
+        color(random(255), 255, 255),
+        color(random(255), 255, 255),
+        color(random(255), 255, 255),
+      ],
+      [shape, shape, shape],
+      graphicBuffers,
+      launchPos = createVector(
+        random(width * 0.1, width * 0.9),
+        height,
+      ), // launchPos
+      0.5, //  speedMultiplier
+      0.5, // lifespanMultiplier
+    ).push();
+    fireworkHugh.play();
+    setTimeout(() => {
+      fireworkBoom.play();
+    }, 1450);
+  } else { // 間違った入力ならば
+    miss.play(); // 音声の再生
+    return;
+  }
 
+  // 得点の更新
+  updateScore(responseObj.score);
+  // メーターの更新
+  syncMeter(responseObj.meter);
 
-	}else{ // 間違った入力ならば
-		miss.play();// 音声の再生
-		return;
-	}
-
-
-	// 得点の更新
-	  updateScore(responseObj.score);
-	// メーターの更新
-	  syncMeter(responseObj.meter);
-	  
-	// 最後の文字ならば
-	if(responseObj.isCompleted){
-		const size = responseObj.fireworkSize/10;
-	  new Firework(
-		[
-		  color(random(255), 255, 255),
-		  color(random(255), 255, 255),
-		  color(random(255), 255, 255),
-		],
-		[  random(['菊', '牡丹']), random(['菊', '牡丹']), random(['菊', '牡丹']),
-		],
-		graphicBuffers,
-		launchPos = createVector(
-			width * 0.5,
-			height,
-		  ),// launchPos
-		size, //  speedMultiplier
-		size, // lifespanMultiplier
-		size
-		  ).push();
-	  fireworkHugh.play();
-	  setTimeout(() => {
-		fireworkBoom.play();
-	  }, 1450);
-	}
+  // 最後の文字ならば
+  if (responseObj.isCompleted) {
+    const size = responseObj.fireworkSize / 10;
+    new Firework(
+      [
+        color(random(255), 255, 255),
+        color(random(255), 255, 255),
+        color(random(255), 255, 255),
+      ],
+      [random(['菊', '牡丹']), random(['菊', '牡丹']), random(['菊', '牡丹'])],
+      graphicBuffers,
+      launchPos = createVector(
+        width * 0.5,
+        height,
+      ), // launchPos
+      size, //  speedMultiplier
+      size, // lifespanMultiplier
+      size,
+    ).push();
+    fireworkHugh.play();
+    setTimeout(() => {
+      fireworkBoom.play();
+    }, 1450);
+  }
 }
 
 /**
@@ -124,19 +118,18 @@ function update(key) {
     // enteredの最後にその一文字を追加
     entered.textContent += firstChar;
   }
-
-  
 }
 
 // 入力された文字をサーバーを送る
 function startObserve() {
   document.addEventListener('keydown', (event) => {
     if (
-      event.key.length === 1 && ((event.key >= 'a' && event.key <= 'z' )|| (event.key >= 'A' && event.key <= 'Z')||
-      event.key === '-')
+      event.key.length === 1 &&
+      ((event.key >= 'a' && event.key <= 'z') ||
+        (event.key >= 'A' && event.key <= 'Z') ||
+        event.key === '-')
     ) {
-		sendChar(event.key);
-		}
-	}
-	);
+      sendChar(event.key);
+    }
+  });
 }
