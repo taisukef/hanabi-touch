@@ -3,14 +3,14 @@ function initializeScore(initializedScore){
 	const score = document.getElementById('score');
 	score.textContent = initializedScore;
 	const scorePanel = document.getElementById('scorePanel');
-	scorePanel.style.display = block;
+	scorePanel.style.display = 'block';
 }
 
 /**
  * 得点を追加する関数
- * @param {number} addScore 追加する特典 
+ * @param {number} core 追加する特典 
  */
-function updateScore(addScore){
+function updateScore(score){
 	const score = document.getElementById('score');
-	score.textContent = parseInt(score.textContent) + addScore;
+	score.textContent = score;
 }
