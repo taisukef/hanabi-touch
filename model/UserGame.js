@@ -5,7 +5,7 @@ import {
   METER,
   SCORE_PER_CHAR,
   TIME_LIMIT,
-} from './constantValue.js';
+} from './../utils/constantValue.js';
 
 class UserGame {
   /**
