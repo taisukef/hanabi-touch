@@ -10,6 +10,7 @@
 	<!-- p5js -->
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.7.0/p5.min.js"></script>
 
+	<script src="js/soloLoadSound.js"></script>
 	<script src="js/header.js" defer></script>
 
 	<script src="js/soloStart.js" defer></script>
@@ -20,6 +21,9 @@
 	<script src="js/classFirework.js" defer></script>
 	<script src="js/particles.js" defer></script>
 	<script src="js/fireworkCanvas.js" defer></script>
+	<script src="js/errorHnadle.js" defer></script>
+
+
 
 	<title>花火タイピング</title>
 </head>
@@ -39,13 +43,18 @@
 			<p>ENTERを押してゲームを開始</p>
 		</div>
 
-		<div id="inputSentence">
-			<p id="japanese"></p>
-			<div>
-				<div id="alphabet">
-					<span id="entered"></span>
-					<span id="notEntered"></span>
+		<div id="gameFooter">
+			<div id="inputSentence">
+				<p id="japanese"></p>
+				<div>
+					<div id="alphabet">
+						<span id="entered"></span>
+						<span id="notEntered"></span>
+					</div>
 				</div>
+			</div>
+			<div id="scorePanel">
+				<span id="score"></span>点
 			</div>
 		</div>
 	</main>

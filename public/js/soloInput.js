@@ -60,35 +60,64 @@ function startObserve() {
       event.key.length === 1 && event.key >= 'a' && event.key <= 'z' ||
       event.key === '-'
     ) {
-      const launchPos = createVector(random(width * 0.1, width * 0.9), height);
+      // 次打つ文字が正しいか確認
+      const notEntered = document.getElementById('notEntered');
+      if (!notEntered) return;
 
-      // サイズ指定
-      const speedMultiplier = 0.5;
-      const lifespanMultiplier = 0.5;
+      const notEnteredText = notEntered.textContent;
+      if (notEnteredText === '') return;
 
-      const firework = new Firework(
-        [
-          color(random(255), 255, 255),
-          color(random(255), 255, 255),
-          color(random(255), 255, 255),
-        ],
-        [
-          random(['菊', '牡丹']),
-          random(['菊', '牡丹']),
-          random(['菊', '牡丹']),
-        ],
-        graphicBuffers,
-        launchPos,
-        speedMultiplier,
-        lifespanMultiplier,
-      );
+      // 正しい入力の時
+      if (notEnteredText.charAt(0) === event.key) {
+        // サイズ指定
+        let speedMultiplier;
+        let lifespanMultiplier;
+        let launchPos;
 
-      fireworks.push(firework);
+        if (notEnteredText.length === 1) { // 最後の文字の時
+          speedMultiplier = 6;
+          lifespanMultiplier = 6;
+          launchPos = createVector(
+            width * 0.5,
+            height,
+          );
+        } else {
+          speedMultiplier = 0.5;
+          lifespanMultiplier = 0.5;
+          launchPos = createVector(
+            random(width * 0.1, width * 0.9),
+            height,
+          );
+        }
+        update(event.key);
 
-      new Audio('sound/fireworkHugh.mp3').play();
-      setTimeout(() => {
-        new Audio('sound/fireworkBoom.mp3').play();
-      }, 1450);
+        const firework = new Firework(
+          [
+            color(random(255), 255, 255),
+            color(random(255), 255, 255),
+            color(random(255), 255, 255),
+          ],
+          [
+            random(['菊', '牡丹']),
+            random(['菊', '牡丹']),
+            random(['菊', '牡丹']),
+          ],
+          graphicBuffers,
+          launchPos,
+          speedMultiplier,
+          lifespanMultiplier,
+        );
+
+        fireworks.push(firework);
+
+        fireworkHugh.play();
+        setTimeout(() => {
+          fireworkBoom.play();
+        }, 1450);
+      } else {
+        miss.play();
+        penalty();
+      }
     }
   });
 }

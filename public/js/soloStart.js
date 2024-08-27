@@ -11,10 +11,13 @@ async function getId() {
       },
     });
 
+    const responseObj = await response.json();
+
     // ステータスコードが200でなければエラーハンドリング
     if (response.status !== 200) {
-      const responseObj = await response.json();
       console.error('Error:', responseObj.message || 'Unknown error');
+	  deleteCookie();
+      location.reload();
       return;
     }
 
@@ -31,11 +34,9 @@ async function getId() {
  * サーバーにゲーム開始を伝える
  */
 async function soloGameStart() {
-  let response;
-
   try {
     // POSTリクエストを送信し、レスポンスを受け取る
-    response = await fetch('/solo/start', {
+    const response = await fetch('/solo/start', {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',
@@ -44,25 +45,19 @@ async function soloGameStart() {
 
     // ステータスコードが200でなければエラーハンドリング
     if (response.status !== 200) {
-      if (response.body.errorCode === '10001') {
-        response = getId();
-      } else {
-        console.error('Error:', responseObj.message || 'Unknown error');
-        return;
-      }
-
-      if (response.status !== 200) return;
+      console.error('Error:', responseObj.message || 'Unknown error');
     }
+    const responseObj = await response.json();
+    //タイマーを開始
+    timer(responseObj.endTime);
+	// scoreの初期化
+	initializeScore(responseObj.initializedScore);
+	// キーの監視はじめ
+    startObserve();
   } catch (error) {
     // ネットワークエラーなどの例外をキャッチして処理
     console.error('Fetch error:', error);
   }
-
-  const responseObj = await response.json();
-  //タイマーを開始
-  timer(responseObj.endTime);
-
-  startObserve();
 }
 
 // enterでゲームスタートできるようにする。
@@ -72,13 +67,11 @@ document.addEventListener('keydown', (event) => {
     const element = document.getElementById('enterToBegin');
     if (element) {
       element.remove();
-      //   スタートのサウンドの再生
-      new Audio('sound/start.mp3').play();
-      console.log('play');
-    }
-    soloGameStart(); // Enterキーが押された時にゲームを開始
-  }
-}, { once: true });
+      start.play();
+	  soloGameStart(); // Enterキーが押された時にゲームを開始
+	}
+}
+});
 
 // ページロード時に実行する処理
 onload = async (_event) => {
