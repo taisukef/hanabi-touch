@@ -8,7 +8,7 @@ function initializeScore(initializedScore){
 
 /**
  * 得点を追加する関数
- * @param {number} core 追加する特典 
+ * @param {number} score 追加する特典 
  */
 function updateScore(score){
 	const score = document.getElementById('score');
