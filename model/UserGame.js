@@ -212,7 +212,7 @@ class UserGame {
    * @param {String} alphabet ユーザーから入力された文字
    * @returns {boolean} 正誤判定結果
    */
-  calcScore(alphabet) {
+  judgeAndCalcScore(alphabet) {
     const isCorrect = this.judgeCorrectness(alphabet);
     if (isCorrect) {
       this.totalScore += this.getScorePerChar();
