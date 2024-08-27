@@ -1,4 +1,4 @@
-/**　指定された値に、得点を初期化して、表示 */
+/** 指定された値に、得点を初期化して、表示 */
 function initializeScore(initializedScore){
 	const score = document.getElementById('score');
 	score.textContent = initializedScore;
@@ -8,7 +8,7 @@ function initializeScore(initializedScore){
 
 /**
  * 得点を追加する関数
- * @param {number} addScore　追加する特典 
+ * @param {number} addScore 追加する特典 
  */
 function updateScore(addScore){
 	const score = document.getElementById('score');
