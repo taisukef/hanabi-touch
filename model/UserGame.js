@@ -157,7 +157,7 @@ class UserGame {
    * @returns {Number}
    */
   calcTotalFireworks() {
-    return this.totalCorrectTypeCount + this.totalSentenceCount;
+    return this.totalSentenceCount;
   }
   /**
    * 秒間のタイプ数を計算
