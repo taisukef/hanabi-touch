@@ -1,6 +1,8 @@
 function initializeScore(){
 	const score = document.getElementById('score');
 	score.textContent = 0;
+	const scorePanel = document.getElementById('scorePanel');
+	scorePanel.style.display = block;
 }
 
 /**
