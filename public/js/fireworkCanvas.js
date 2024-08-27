@@ -3,7 +3,7 @@ let gravity;
 let bgColor;
 
 let graphicBuffers = [];
-const raisingTrail = 3; //もともとの値: 15
+const raisingTrail = 6; //もともとの値: 15
 const kikuTrail = 6; //もともとの値: 30
 const botanTrail = 3; //もともとの値: 3
 const standardFrame = 60;
@@ -15,7 +15,7 @@ function setup() {
   const canvas = createCanvas(result.clientWidth, result.clientHeight); // canvasを作成
   canvas.parent(result); // 子要素に追加
 
-  bgColor = color(20, 20, 50); // RGB gamePanel同じ色
+  bgColor = color(0, 0, 0); // RGB gamePanel同じ色
   background(bgColor); // 背景を黒く指定
 
   colorMode(HSB); //花火を出す色の指定の仕方
@@ -34,7 +34,6 @@ function setup() {
 
 function draw() {
   colorMode(RGB); // 花火を出す色の指定の仕方
-
   background(bgColor); // 背景に少し透明なのを重ねてだんだん消えて行くように
 
   colorMode(HSB);
