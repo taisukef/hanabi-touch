@@ -25,6 +25,15 @@ function startMeter() {
 }
 
 /**
+ * メーター同期
+ * 　@param {number} time  減少させる秒数
+ */
+function syncMeter(time) {
+  const meter = document.getElementById('meter');
+  meter.value = time;
+}
+
+/**
  * 打ち間違えた時のペナルティーとして、メーターを減少させる。
  * @param {number} time  減少させる秒数
  */

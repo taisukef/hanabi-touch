@@ -16,7 +16,7 @@ async function getId() {
     // ステータスコードが200でなければエラーハンドリング
     if (response.status !== 200) {
       console.error('Error:', responseObj.message || 'Unknown error');
-	  deleteCookie();
+      deleteCookie();
       location.reload();
       return;
     }
@@ -50,9 +50,9 @@ async function soloGameStart() {
     const responseObj = await response.json();
     //タイマーを開始
     timer(responseObj.endTime);
-	// scoreの初期化
-	initializeScore(responseObj.initializedScore);
-	// キーの監視はじめ
+    // scoreの初期化
+    initializeScore(responseObj.initializedScore);
+    // キーの監視はじめ
     startObserve();
   } catch (error) {
     // ネットワークエラーなどの例外をキャッチして処理
@@ -68,9 +68,9 @@ document.addEventListener('keydown', (event) => {
     if (element) {
       element.remove();
       start.play();
-	  soloGameStart(); // Enterキーが押された時にゲームを開始
-	}
-}
+      soloGameStart(); // Enterキーが押された時にゲームを開始
+    }
+  }
 });
 
 // ページロード時に実行する処理

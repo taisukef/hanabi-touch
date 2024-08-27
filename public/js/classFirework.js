@@ -64,14 +64,14 @@ class Firework {
     this.buffers = buffers;
     this.colors = colors;
     this.types = types;
-    this.size = size; 
+    this.size = size;
     this.radius = radius;
 
     this.rasingParticle = new RasingParticle(
       this.buffers[0],
       launch,
       this.colors[0],
-      this.radius, 
+      this.radius,
     );
   }
 
@@ -79,7 +79,7 @@ class Firework {
     let fireworkSum = 0;
     for (let i = 0; i < starCount; i++) {
       if (this.types[i] === '牡丹') {
-        fireworkSum += 50 * this.size; 
+        fireworkSum += 50 * this.size;
       }
       if (this.types[i] === '菊') {
         fireworkSum += 100 * this.size;
@@ -101,7 +101,7 @@ class Firework {
             vec,
             particleColor,
             this.radius,
-          ), 
+          ),
         );
       }
       if (type === '菊') {
