@@ -1,19 +1,3 @@
-//サーバーで処理する場合
-// あとで作る
-// async function sendChar(){
-// 	const response = await fetch(
-// 		"/solo/sendCharacter",
-// 		{
-// 			method: "POST",
-// 			headers: {
-// 				"Content-Type": "application/json",
-// 			},
-// 			body: JSON.stringify({ alphabet: event.key })
-// 		}
-// 	);
-// // responseが成功ならば
-// }
-
 /**
  * サーバに入力された文字を送信
  * @param {string} key 一文字
@@ -45,7 +29,7 @@ async function sendChar(key) {
     update(key);
 
     const shape = random(['菊', '牡丹']);
-    new Firework(
+     const firework = new Firework(
       [
         color(random(255), 255, 255),
         color(random(255), 255, 255),
@@ -59,7 +43,8 @@ async function sendChar(key) {
       ), // launchPos
       0.5, //  speedMultiplier
       0.5, // lifespanMultiplier
-    ).push();
+    )
+	fireworks.push(firework);
     fireworkHugh.play();
     setTimeout(() => {
       fireworkBoom.play();
@@ -76,8 +61,10 @@ async function sendChar(key) {
 
   // 最後の文字ならば
   if (responseObj.isCompleted) {
+	await fetchSentenceAndRefreshMeter();
+
     const size = responseObj.fireworkSize / 10;
-    new Firework(
+    const firework = new Firework(
       [
         color(random(255), 255, 255),
         color(random(255), 255, 255),
@@ -92,8 +79,9 @@ async function sendChar(key) {
       size, //  speedMultiplier
       size, // lifespanMultiplier
       size,
-    ).push();
-    fireworkHugh.play();
+    )
+	fireworks.push(firework);  
+	fireworkHugh.play();
     setTimeout(() => {
       fireworkBoom.play();
     }, 1450);

@@ -1,4 +1,5 @@
 const PENALTY_TIME = 1.5; // 1.5秒
+let expectedTime;
 
 /**
  * meterの初期設定
@@ -9,7 +10,7 @@ function setMeter(time) {
   if (meter) {
     meter.style.display = 'block';
     meter.value = 1000;
-    meter.time = time;
+	expectedTime = time;
   }
 }
 
@@ -20,13 +21,13 @@ function startMeter() {
   const meter = document.getElementById('meter');
   // 1/100秒おきに実行
   setInterval(() => {
-    meter.value -= 10 / meter.time;
+    meter.value -= parseInt(10 / expectedTime);
   }, 10);
 }
 
 /**
  * メーター同期
- * 　@param {number} time  減少させる秒数
+ * 　@param {number} time 設定される秒数
  */
 function syncMeter(time) {
   const meter = document.getElementById('meter');
@@ -39,5 +40,5 @@ function syncMeter(time) {
  */
 function penalty(time) {
   const meter = document.getElementById('meter');
-  meter.value -= 10 / meter.time * PENALTY_TIME;
+  meter.value -= 10 / expectedTime * PENALTY_TIME;
 }
