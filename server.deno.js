@@ -6,7 +6,7 @@ function makeId() {
   return crypto.randomUUID();
 }
 
-// 「日本語文章,アルファベット」
+// 「漢字入り文章,読み方」
 // 形式のcsvファイルを読み込む
 const themeSentencesText = await Deno.readTextFile('./private/sentences.csv');
 // 改行とカンマ区切りで2次元リスト化
@@ -17,7 +17,7 @@ const themeSentences = themeSentencesText.split('\n').map((text) => {
 
 /**
  * ランダムな文章とそのローマ字文章の組み合わせを出力
- * @returns [日本語文章, ローマ字文章]
+ * @returns [漢字入り文章,読み方]
  */
 function getRandomThemeSentence() {
   return themeSentences[Math.floor(Math.random() * themeSentences.length)];
@@ -104,7 +104,7 @@ Deno.serve(async (req) => {
     userGames[id].setSentenceNow(targetSentence[0], targetSentence[1]);
     return make200Response({
       'sentenceJapanese': targetSentence[0],
-      'sentenceAlphabet': targetSentence[1],
+      'sentenceAlphabet': userGames[id].getRoman(),
       'expectedTime': userGames[id].calcExpectedTime(),
     });
   }
