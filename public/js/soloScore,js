@@ -1,3 +1,4 @@
+/**　得点を初期化して、表示 */
 function initializeScore(){
 	const score = document.getElementById('score');
 	score.textContent = 0;
