@@ -48,6 +48,9 @@ class UserGame {
     if (isCorrect) {
       this.sentenceCur++;
       this.totalCorrectTypeCount++;
+      if (this.isCompleted()) {
+        this.totalSentenceCount++;
+      }
     } else {
       this.sentenceMissTypeCount++;
     }
@@ -125,6 +128,13 @@ class UserGame {
   getMeter() {
     return this.meter;
   }
+  /**
+   * 合計タイプ数を取得
+   * @returns {Number}
+   */
+  getTotalCorrectTypeCount() {
+    return this.totalCorrectTypeCount;
+  }
 
   /**
    * 現在の文章の予測タイムを計算
@@ -141,6 +151,20 @@ class UserGame {
    */
   calcFireworkSize() {
     return Math.ceil(this.meter / 10);
+  }
+  /**
+   * 今までに打ち上がった花火の数を計算
+   * @returns {Number}
+   */
+  calcTotalFireworks() {
+    return this.totalCorrectTypeCount + this.totalSentenceCount;
+  }
+  /**
+   * 秒間のタイプ数を計算
+   * @returns {Number} 小数は丸めない
+   */
+  calcTypesPerSecond() {
+    return this.getTotalCorrectTypeCount() / (TIME_LIMIT / 1000);
   }
   /**
    * 文章完了時の加算スコア

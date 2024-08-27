@@ -133,6 +133,22 @@ Deno.serve(async (req) => {
     });
   }
 
+  if (req.method === 'GET' && pathname === '/solo/getResult') {
+    if (!getCookies(req)['id']) {
+      return makeErrorResponse('id in cookies is not set', '10001');
+    }
+    const id = getCookies(req)['id'];
+    if (!userGames[id]) {
+      return makeErrorResponse('UserGame insntance is not made', '10003');
+    }
+    return make200Response({
+      'score': userGames[id].getTotalScore(),
+      'fireworkCount': userGames[id].calcTotalFireworks(),
+      'typesPerSecond': userGames[id].calcTypesPerSecond(),
+      'typeCount': userGames[id].getTotalCorrectTypeCount(),
+    });
+  }
+
   return serveDir(req, {
     fsRoot: 'public',
     urlRoot: '',
