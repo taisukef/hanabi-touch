@@ -44,7 +44,7 @@ class UserGame {
    * @returns {boolean} 正解ならtrue
    */
   judgeCorrectness(alphabet) {
-    const matchResult = this.sentenceNowTypingText.inputKey(alphabet);
+    const matchResult = this.sentenceNowTypingText.inputKey(alphabet, true);
     const isCorrect = matchResult === 'incomplete' || this.isCompleted();
     this.totalTypeCount++;
     if (isCorrect) {
