@@ -15,19 +15,25 @@ onload = async (event) => {
 
   //スコアの表示
   const scoreResult = document.querySelector('#score');
-  scoreResult.innerHTML = responseObj['score'];
+  scoreResult.innerHTML = `スコア: ${responseObj['score']}点`;
 
   //花火を打ち上げた回数を表示
   const fireworkCountResult = document.querySelector('#fireworkCount');
-  fireworkCountResult.innerHTML = responseObj['fireworkCount'];
+  fireworkCountResult.innerHTML = `大きな花火を打ち上げた回数: ${
+    responseObj['fireworkCount']
+  }回`;
 
   //単位時間当たりのタイプ回数の表示
   const typesPerSecondResult = document.querySelector('#typesPerSecond');
-  typesPerSecondResult.innerHTML = responseObj['typesPerSecond'];
+  typesPerSecondResult.innerHTML = `1秒当たりに正しく入力出来た回数: ${
+    responseObj['typesPerSecond'].toFixed(2)
+  }回`;
 
   //タイプした回数の表示
   const typeCountResult = document.querySelector('#typeCount');
-  typeCountResult.innerHTML = responseObj['typeCount'];
+  typeCountResult.innerHTML = `正しく入力出来た回数: ${
+    responseObj['typeCount']
+  }回`;
 };
 
 // タイトルに戻るボタン。ひとまず、ボタンのidが「titleButton」と仮定して作ってます。
