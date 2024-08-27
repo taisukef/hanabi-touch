@@ -91,14 +91,6 @@ function startObserve() {
         }
         update(event.key);
 
-        // // 最後の文字ならば
-        // // 花火メータから読み取れるようにする
-        // if (notEnteredText.charAt(0) === '') {
-        //   speedMultiplier = 100;
-        //   lifespanMultiplier = 100;
-		//   alert('sss')
-        // }
-
         const firework = new Firework(
           [
             color(random(255), 255, 255),
@@ -118,12 +110,12 @@ function startObserve() {
 
         fireworks.push(firework);
 
-        new Audio('sound/fireworkHugh.mp3').play();
+        fireworkHugh.play();
         setTimeout(() => {
-          new Audio('sound/fireworkBoom.mp3').play();
+          fireworkBoom.play();
         }, 1450);
       } else {
-        new Audio('sound/miss.mp3').play();
+        miss.play();
         penalty();
       }
     }

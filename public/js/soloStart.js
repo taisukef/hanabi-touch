@@ -64,9 +64,8 @@ document.addEventListener('keydown', (event) => {
     const element = document.getElementById('enterToBegin');
     if (element) {
       element.remove();
-      //   スタートのサウンドの再生
-      new Audio('sound/start.mp3').play();
-    }
+      start.play();
+}
     soloGameStart(); // Enterキーが押された時にゲームを開始
   }
 });
