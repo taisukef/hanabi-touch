@@ -3,9 +3,9 @@ let gravity;
 let bgColor;
 
 let graphicBuffers = [];
-const raisingTrail = 15;
-const kikuTrail = 30;
-const botanTrail = 3;
+const raisingTrail = 6; //もともとの値: 15
+const kikuTrail = 6; //もともとの値: 30
+const botanTrail = 3; //もともとの値: 3
 const standardFrame = 60;
 
 /** p5js ページ読み込み時に一回のみ実行 */

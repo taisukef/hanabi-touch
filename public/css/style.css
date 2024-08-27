@@ -50,8 +50,8 @@ main {
 
 #startButton {
   text-align: center;
-  color: #ffffff;
-  background-color: #000000;
+  color: white;
+  background-color: orange;
   border-radius: 3vw;
   width: 30%;
   height: 6vw;
