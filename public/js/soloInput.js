@@ -29,6 +29,25 @@ async function sendChar(key) {
       body: JSON.stringify({ alphabet: key }),
     },
   );
+
+  const responseObj = await response.json();
+
+   // ステータスコードが200でなければエラーハンドリング
+   if (response.status !== 200) {
+	console.error('Error:', responseObj.message || 'Unknown error');
+	deleteCookie();
+	location.reload();
+	return;
+  }
+
+// 得点の更新
+  updateScore(responseObj.score);
+
+// メーターの更新
+  syncMeter(responseObj.meter);
+
+
+
   console.log(key);
   update(key);
 }
