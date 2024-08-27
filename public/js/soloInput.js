@@ -1,19 +1,3 @@
-//サーバーで処理する場合
-// あとで作る
-// async function sendChar(){
-// 	const response = await fetch(
-// 		"/solo/sendCharacter",
-// 		{
-// 			method: "POST",
-// 			headers: {
-// 				"Content-Type": "application/json",
-// 			},
-// 			body: JSON.stringify({ alphabet: event.key })
-// 		}
-// 	);
-// // responseが成功ならば
-// }
-
 /**
  * サーバに入力された文字を送信
  * @param {string} key 一文字
@@ -76,6 +60,8 @@ async function sendChar(key) {
 
   // 最後の文字ならば
   if (responseObj.isCompleted) {
+	await fetchSentenceAndRefreshMeter();
+
     const size = responseObj.fireworkSize / 10;
     new Firework(
       [
