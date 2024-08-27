@@ -40,10 +40,7 @@ class UserGame {
    * @returns {boolean} 正解ならtrue
    */
   judgeCorrectness(alphabet) {
-    if (
-      !(0 <= this.sentenceCur &&
-        this.sentenceCur < this.sentenceNowAlphabet.length)
-    ) {
+    if (this.sentenceCur < 0 || this.isCompleted()) {
       return false;
     }
     const isCorrect = this.sentenceNowAlphabet[this.sentenceCur] === alphabet;
