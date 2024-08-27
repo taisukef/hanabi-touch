@@ -1,12 +1,18 @@
+import {
+  EXPECTED_TYPES_PER_SEC,
+  INITIALIZED_SCORE,
+  SCORE_PER_CHAR,
+  TIME_LIMIT,
+} from './constantValue.js';
+
 class UserGame {
   /**
    * @param {String} id ユーザid
-   * @param {Number} timeLimit 1ゲームの制限時間
    */
-  constructor(id, timeLimit) {
+  constructor(id) {
     this.id = id;
     this.initialize();
-    this.endTime = Date.now() + timeLimit;
+    this.endTime = Date.now() + TIME_LIMIT;
   }
 
   /**
@@ -62,10 +68,49 @@ class UserGame {
 
   /**
    * endTimeのゲッター
-   * @returns {Number} 終了時刻
+   * @returns {Number}
    */
   getEndTime() {
     return this.endTime;
+  }
+
+  /**
+   * 1秒あたりの期待タイプ数を取得
+   * @returns {Number}
+   */
+  getExpectedTypesPerSec() {
+    return EXPECTED_TYPES_PER_SEC;
+  }
+  /**
+   * スコアの初期値を取得
+   * @returns {Number}
+   */
+  getInitializedScore() {
+    return INITIALIZED_SCORE;
+  }
+  /**
+   * 1文字ごとの加算スコアを取得
+   * @returns {Number}
+   */
+  getScorePerChar() {
+    return SCORE_PER_CHAR;
+  }
+  /**
+   * 制限時間[ms]を取得
+   * @returns {Number}
+   */
+  getTimeLimit() {
+    return TIME_LIMIT;
+  }
+
+  /**
+   * 現在の文章の予測タイム
+   * @returns {Number} 予測時間[s]
+   */
+  calcExpectedTime() {
+    return Math.ceil(
+      this.sentenceNowAlphabet.length / this.getExpectedTypesPerSec(),
+    );
   }
 }
 
