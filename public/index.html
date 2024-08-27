@@ -5,6 +5,22 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<meta charset="utf-8">
 	<link rel="stylesheet" href="css/style.css">
+	<style>
+		#startButton {
+			text-align: center;
+			color: white;
+			background-color: orange;
+			border-radius: 3vw;
+			width: 30%;
+			height: 6vw;
+			font-size: 3vw;
+		}
+
+		#gameMain img{
+			width: 30%;
+			margin-bottom:  5%;
+		}
+	</style>
 
 	<script src="js/header.js" defer></script>
 	<title>花火タイピング</title>
@@ -14,9 +30,14 @@
 	<div id="header"></div>
 
 	<main>
-		<div id="homePanel">
-			<img src="icon.png" alt="アイコン">
-			<button id="startButton" onclick="location.href='/solo.html'">スタート</button>
+
+		<div id="game">
+			<div id="gameHeader"></div>
+			<div id="gameMain">
+				<img src="icon.png" alt="アイコン">
+				<button id="startButton" onclick="location.href='/solo.html'">スタート</button>
+			</div>
+			<div id="gameFooter"></div>
 		</div>
 	</main>
 </body>
