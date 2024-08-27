@@ -123,7 +123,7 @@ Deno.serve(async (req) => {
     }
     const reqeustJson = await req.json();
     const sentChar = reqeustJson['alphabet'];
-    const isCorrect = userGames[id].calcScore(sentChar);
+    const isCorrect = userGames[id].judgeAndCalcScore(sentChar);
     return make200Response({
       'isCorrect': isCorrect,
       'isCompleted': userGames[id].isCompleted(),
