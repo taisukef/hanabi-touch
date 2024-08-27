@@ -65,9 +65,9 @@ document.addEventListener('keydown', (event) => {
     if (element) {
       element.remove();
       start.play();
+	  soloGameStart(); // Enterキーが押された時にゲームを開始
+	}
 }
-    soloGameStart(); // Enterキーが押された時にゲームを開始
-  }
 });
 
 // ページロード時に実行する処理
