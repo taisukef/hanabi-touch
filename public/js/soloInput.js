@@ -128,15 +128,15 @@ function update(key) {
   
 }
 
-// // 入力された文字をサーバーを送る
-// function startObserve() {
-//   document.addEventListener('keydown', (event) => {
-//     if (
-//       event.key.length === 1 && ((event.key >= 'a' && event.key <= 'z' )|| (event.key >= 'A' && event.key <= 'Z')||
-//       event.key === '-')
-//     ) {
-
-// 		}
-// 	}
-// 	);
-// }
+// 入力された文字をサーバーを送る
+function startObserve() {
+  document.addEventListener('keydown', (event) => {
+    if (
+      event.key.length === 1 && ((event.key >= 'a' && event.key <= 'z' )|| (event.key >= 'A' && event.key <= 'Z')||
+      event.key === '-')
+    ) {
+		sendChar(event.key);
+		}
+	}
+	);
+}
