@@ -216,10 +216,6 @@ class UserGame {
     const isCorrect = this.judgeCorrectness(alphabet);
     if (isCorrect) {
       this.totalScore += this.getScorePerChar();
-      this.meter = Math.min(
-        METER['METER_MAX'],
-        this.meter + this.calcCorrectBonusMeter(),
-      );
       if (this.isCompleted()) {
         this.totalScore += this.calcSentenceScore();
       }
