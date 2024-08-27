@@ -40,16 +40,17 @@ async function sendChar(key) {
 	return;
   }
 
-// 得点の更新
-  updateScore(responseObj.score);
-
-// メーターの更新
-  syncMeter(responseObj.meter);
-
-
-
-  console.log(key);
-  update(key);
+  //正しい入力ならば
+  if(responseObj.isCorrect){
+	  // 打った文字の色の更新
+	  update(key);
+	}else{
+		miss.play();// 音声の再生
+	}
+	// 得点の更新
+	  updateScore(responseObj.score);
+	// メーターの更新
+	  syncMeter(responseObj.meter);
 }
 
 /**
@@ -76,8 +77,8 @@ function update(key) {
 function startObserve() {
   document.addEventListener('keydown', (event) => {
     if (
-      event.key.length === 1 && event.key >= 'a' && event.key <= 'z' ||
-      event.key === '-'
+      event.key.length === 1 && ((event.key >= 'a' && event.key <= 'z' )|| (event.key >= 'A' && event.key <= 'Z')||
+      event.key === '-')
     ) {
       // 次打つ文字が正しいか確認
       const notEntered = document.getElementById('notEntered');
