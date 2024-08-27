@@ -17,5 +17,5 @@ function timer(endTime) { //endTime: サーバーから送られるゲームの�
       clearInterval(intervalId);
       location.href = '/soloResult.html'; // リンク直した方がいいかも
     }
-  }, 100);
+  }, 50);
 }
