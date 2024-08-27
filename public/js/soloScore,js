@@ -1,0 +1,13 @@
+function initializeScore(){
+	const score = document.getElementById('score');
+	score.textContent = 0;
+}
+
+/**
+ * 得点を追加する関数
+ * @param {number} addScore　追加する特典 
+ */
+function updateScore(addScore){
+	const score = document.getElementById('score');
+	score.textContent = parseInt(score.textContent) + addScore;
+}

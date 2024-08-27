@@ -94,3 +94,7 @@ main img {
 #meter {
   display: none;
 }
+
+#scorePanel {
+  display: none;
+}
