@@ -130,6 +130,8 @@ Deno.serve(async (req) => {
       'score': userGames[id].getTotalScore(),
       'meter': userGames[id].getMeter(),
       'fireworkSize': userGames[id].calcFireworkSize(),
+      'enteredChars': userGames[id].getCompletedRoman(),
+      'notEnteredChars': userGames[id].getRemainingRoman(),
     });
   }
 
