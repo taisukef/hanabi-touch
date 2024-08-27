@@ -50,7 +50,9 @@ async function soloGameStart() {
     const responseObj = await response.json();
     //タイマーを開始
     timer(responseObj.endTime);
-
+	// scoreの初期化
+	initializeScore(responseObj.initializedScore);
+	// キーの監視はじめ
     startObserve();
   } catch (error) {
     // ネットワークエラーなどの例外をキャッチして処理

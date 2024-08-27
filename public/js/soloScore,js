@@ -1,7 +1,7 @@
-/**　得点を初期化して、表示 */
-function initializeScore(){
+/**　指定された値に、得点を初期化して、表示 */
+function initializeScore(initializedScore){
 	const score = document.getElementById('score');
-	score.textContent = 0;
+	score.textContent = initializedScore;
 	const scorePanel = document.getElementById('scorePanel');
 	scorePanel.style.display = block;
 }
