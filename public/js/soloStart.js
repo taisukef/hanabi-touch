@@ -66,11 +66,10 @@ document.addEventListener('keydown', (event) => {
       element.remove();
       //   スタートのサウンドの再生
       new Audio('sound/start.mp3').play();
-      console.log('play');
     }
     soloGameStart(); // Enterキーが押された時にゲームを開始
   }
-} );
+});
 
 // ページロード時に実行する処理
 onload = async (_event) => {
