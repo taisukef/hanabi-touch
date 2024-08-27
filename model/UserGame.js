@@ -1,3 +1,5 @@
+import { TypingText } from 'npm:@mogamoga1024/typing-jp';
+
 import {
   EXPECTED_TYPES_PER_SEC,
   INITIALIZED_SCORE,
