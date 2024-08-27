@@ -75,6 +75,7 @@ class UserGame {
     this.sentenceNowAlphabet = alphabet;
     this.sentenceStartTime = Date.now();
     this.sentenceMissTypeCount = 0;
+    this.sentenceCur = 0;
   }
 
   /**
@@ -189,12 +190,18 @@ class UserGame {
    */
   calcMeterNow() {
     const diffTime = (Date.now() - this.sentenceStartTime) / 1000; // 文章が始まってから何秒経ったか
+    // その文章における合計ミスペナルティ減少量
     const sentencePenalty = this.calcMissPenaltyMeter() *
-      this.sentenceMissTypeCount; // その文章における合計ミスペナルティ減少量
-    // 最小値を下回らないように計算結果とminを取る
-    this.meter = Math.max(
-      METER['METER_MAX'] - diffTime / this.calcExpectedTime() - sentencePenalty,
-      METER['METER_MIN'],
+      this.sentenceMissTypeCount;
+    // その文章における合計ボーナス上昇量
+    const sentenceBonus = this.calcCorrectBonusMeter() * this.sentenceCur;
+    // メーター量を計算
+    this.meter = METER['METER_MAX'] - diffTime / this.calcExpectedTime() -
+      sentencePenalty + sentenceBonus;
+    // メータのレンジに収まるようにminとmaxを取る
+    this.meter = Math.min(
+      Math.max(this.meter, METER['METER_MIN']),
+      METER['METER_MAX'],
     );
     this.meter = Math.ceil(this.meter);
   }
@@ -209,7 +216,7 @@ class UserGame {
       this.totalScore += this.getScorePerChar();
       this.meter = Math.min(
         METER['METER_MAX'],
-        this.meter - this.calcCorrectBonusMeter(),
+        this.meter + this.calcCorrectBonusMeter(),
       );
       if (this.isCompleted()) {
         this.totalScore += this.calcSentenceScore();
