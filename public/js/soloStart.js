@@ -62,13 +62,14 @@ async function soloGameStart() {
 
 // enterでゲームスタートできるようにする。
 // 押されたら、要素を消してスタートオンを鳴らす。
-document.addEventListener('keydown', (event) => {
+document.addEventListener('keydown', async(event) => {
   if (event.key === 'Enter') {
     const element = document.getElementById('enterToBegin');
     if (element) {
       element.remove();
       start.play();
       soloGameStart(); // Enterキーが押された時にゲームを開始
+	  await fetchSentenceAndRefreshMeter();
     }
   }
 });
