@@ -1,4 +1,12 @@
 /* ゲーム用 */
+#inputSentence {
+  display: flex;
+  flex-direction: row;
+  padding: 2vw;
+  width: 80%;
+  max-width: 1200px;
+}
+
 #entered {
   color: red;
 }
@@ -8,7 +16,13 @@
 }
 
 #alphabet {
-  font-size: 20px;
+  font-size: 2vw;
+}
+
+#japanese {
+  font-size: 2vw;
+  color: white;
+  margin-right: 4vw;
 }
 
 #gameHeader {
@@ -60,6 +74,16 @@
 /* meter */
 #meter {
   width: 25vw;
+}
+
+#gameFooter {
+  display: flex;
+  flex-direction: row;
+  width: 80%;
+  max-width: 1200px;
+  color: white;
+  font-size: 2.4vw;
+  align-items : center;
 }
 
 meter::-webkit-meter-bar {

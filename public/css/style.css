@@ -1,9 +1,16 @@
 * {
   box-sizing: border-box;
   margin: 0px;
+
+  /* テキストを選択できないように */
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
 }
 
 body {
+  visibility: hidden;
   display: flex;
   flex-direction: column;
   background-color: #202020;
@@ -82,4 +89,12 @@ main {
 main img {
   width: 30%;
   margin-bottom: 30px;
+}
+
+#meter {
+  display: none;
+}
+
+#scorePanel {
+  display: none;
 }

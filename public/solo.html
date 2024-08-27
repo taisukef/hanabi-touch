@@ -10,15 +10,21 @@
 	<!-- p5js -->
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.7.0/p5.min.js"></script>
 
+	<script src="js/soloLoadSound.js"></script>
+	<script src="js/header.js" defer></script>
+
 	<script src="js/soloStart.js" defer></script>
-	<script src="js/soloIuput.js" defer></script>
+	<script src="js/soloInput.js" defer></script>
 	<script src="js/soloTimer.js" defer></script>
-	<script src="./js/header.js" defer></script>
 	<script src="js/soloMeter.js" defer></script>
 
 	<script src="js/classFirework.js" defer></script>
 	<script src="js/particles.js" defer></script>
 	<script src="js/fireworkCanvas.js" defer></script>
+	<script src="js/errorHnadle.js" defer></script>
+	<script src="js/soloScore.js" defer></script>
+
+
 
 	<title>花火タイピング</title>
 </head>
@@ -28,7 +34,7 @@
 
 	<main>
 		<div id="gameHeader">
-			<p id="timer">残り時間計算中</p>
+			<p id="timer"></p>
 			<meter id="meter" min="0" max="1000" low="33" high="66" time="" optimum="80" value="1000"></meter>
 		</div>
 
@@ -38,13 +44,18 @@
 			<p>ENTERを押してゲームを開始</p>
 		</div>
 
-		<div id="inputSentence">
-			<p id="japanese"></p>
-			<div>
-				<div id="alphabet">
-					<span id="entered"></span>
-					<span id="notEntered"></span>
+		<div id="gameFooter">
+			<div id="inputSentence">
+				<p id="japanese"></p>
+				<div>
+					<div id="alphabet">
+						<span id="entered"></span>
+						<span id="notEntered"></span>
+					</div>
 				</div>
+			</div>
+			<div id="scorePanel">
+				<span id="score"></span>点
 			</div>
 		</div>
 	</main>
