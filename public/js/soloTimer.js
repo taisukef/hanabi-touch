@@ -8,7 +8,7 @@ function timer(endTime) { //endTime: サーバーから送られるゲームの�
    サーバー側から終了時刻が送られる→以下の記述が発動するまでの計算時間によっては中途半端な時間からカウントダウンするかも*/
   updateTimer(Math.floor((endTime - new Date().getTime()) / 1000));
 
-  const intervalId = setInterval(() => { // 1秒ごとに以下の処理を行う
+  const intervalId = setInterval(() => { // 0.1秒ごとに以下の処理を行う
     const remainTime = Math.floor((endTime - new Date().getTime()) / 100) / 10;
     updateTimer(remainTime);
 
