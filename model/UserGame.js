@@ -30,6 +30,7 @@ class UserGame {
     this.totalCorrectTypeCount = 0; // このゲームの合計正解タイプ数
     this.sentenceStartTime = 0; // その文章が始まった時刻
     this.sentenceMissTypeCount = 0; // その文章でのミスタイプ数
+    this.sentenceCur = 0; // その文章での現在の位置
     this.meter = METER['METER_MAX']; // 花火メーター
   }
 
@@ -39,11 +40,17 @@ class UserGame {
    * @returns {boolean} 正解ならtrue
    */
   judgeCorrectness(alphabet) {
-    const isCorrect = this.sentenceNowAlphabet[0] === alphabet;
+    if (
+      !(0 <= this.sentenceCur &&
+        this.sentenceCur < this.sentenceNowAlphabet.length)
+    ) {
+      return false;
+    }
+    const isCorrect = this.sentenceNowAlphabet[this.sentenceCur] === alphabet;
     this.totalTypeCount++;
     if (isCorrect) {
+      this.sentenceCur++;
       this.totalCorrectTypeCount++;
-      this.sentenceNowAlphabet = this.sentenceNowAlphabet.slice(1); // 1文字目を削除
     } else {
       this.sentenceMissTypeCount++;
     }
@@ -55,7 +62,7 @@ class UserGame {
    * @returns {boolean} 文章が完了したのならtrueそうでないならfalse
    */
   isCompleted() {
-    return this.sentenceNowAlphabet === '';
+    return this.sentenceNowAlphabet.length <= this.sentenceCur;
   }
 
   /**
