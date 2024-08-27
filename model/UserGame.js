@@ -189,21 +189,26 @@ class UserGame {
    * 現在のメーターの値を計算してmeterに代入
    */
   calcMeterNow() {
-    const diffTime = (Date.now() - this.sentenceStartTime) / 1000; // 文章が始まってから何秒経ったか
+    // 文章が始まってから何秒経ったか
+    const diffTime = (Date.now() - this.sentenceStartTime) / 1000;
+    // 経過時間による減少量
+    const decreaseByTime = diffTime / this.calcExpectedTime() *
+      METER['METER_MAX'];
     // その文章における合計ミスペナルティ減少量
     const sentencePenalty = this.calcMissPenaltyMeter() *
       this.sentenceMissTypeCount;
     // その文章における合計ボーナス上昇量
     const sentenceBonus = this.calcCorrectBonusMeter() * this.sentenceCur;
     // メーター量を計算
-    this.meter = METER['METER_MAX'] - diffTime / this.calcExpectedTime() -
-      sentencePenalty + sentenceBonus;
+    this.meter = METER['METER_MAX'] - decreaseByTime - sentencePenalty +
+      sentenceBonus;
+    // 計算結果切り上げ
+    this.meter = Math.ceil(this.meter);
     // メータのレンジに収まるようにminとmaxを取る
     this.meter = Math.min(
       Math.max(this.meter, METER['METER_MIN']),
       METER['METER_MAX'],
     );
-    this.meter = Math.ceil(this.meter);
   }
   /**
    * ユーザーからの1文字を入れて正誤判定、スコア加点などをする
