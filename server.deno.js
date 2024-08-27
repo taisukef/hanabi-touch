@@ -57,15 +57,6 @@ function make200Response(bodyJson) {
   );
 }
 
-// 期待される1秒間のタイプ数
-const EXPECTED_TYPES_PER_SEC = 2;
-// 1文字ごとに加点する点数
-const SCORE_PER_CHAR = 100;
-// 1ゲームの制限時間(ms)
-const TIME_LIMIT = 60 * 1000;
-// スコアの初期値
-const INITIALIZED_SCORE = 0;
-
 // idをキーにuserGameのインスタンスを保持する辞書型
 const userGames = {};
 
@@ -93,10 +84,10 @@ Deno.serve(async (req) => {
       return makeErrorResponse('id in cookies is not set', '10001');
     }
     const id = getCookies(req)['id'];
-    userGames[id] = new UserGame(id, TIME_LIMIT);
+    userGames[id] = new UserGame(id);
     return make200Response({
       'endTime': userGames[id].getEndTime(),
-      'initializedScore': INITIALIZED_SCORE,
+      'initializedScore': userGames[id].getInitializedScore(),
     });
   }
 
@@ -114,9 +105,7 @@ Deno.serve(async (req) => {
     return make200Response({
       'sentenceJapanese': targetSentence[0],
       'sentenceAlphabet': targetSentence[1],
-      'expectedTime': Math.ceil(
-        targetSentence[1].length / EXPECTED_TYPES_PER_SEC,
-      ),
+      'expectedTime': userGames[id].calcExpectedTime(),
     });
   }
 
@@ -134,10 +123,13 @@ Deno.serve(async (req) => {
     }
     const reqeustJson = await req.json();
     const sentChar = reqeustJson['alphabet'];
+    const isCorrect = userGames[id].calcScore(sentChar);
     return make200Response({
-      'isCorrect': userGames[id].judgeCorrectness(sentChar),
+      'isCorrect': isCorrect,
       'isCompleted': userGames[id].isCompleted(),
-      'score': SCORE_PER_CHAR,
+      'score': userGames[id].getTotalScore(),
+      'meter': userGames[id].getMeter(),
+      'fireworkSize': userGames[id].calcFireworkSize(),
     });
   }
 
