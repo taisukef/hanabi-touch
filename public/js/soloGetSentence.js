@@ -23,12 +23,11 @@ async function fetchSentenceAndRefreshMeter() {
       location.reload();
       return;
     }
-    // メーターを設定
+    // // メーターを設定
     setMeter(responseObj.expectedTime);
-    startMeter();
 
     //  文章を設定
-	document.getElementById('entered').textContent = "";
+    document.getElementById('entered').textContent = '';
     document.getElementById('notEntered').textContent =
       responseObj.sentenceAlphabet;
     document.getElementById('japanese').textContent =
