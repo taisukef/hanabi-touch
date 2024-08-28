@@ -13,8 +13,10 @@ async function sendChar(key) {
       body: JSON.stringify({ alphabet: key }),
     },
   );
-
+  
+  
   const responseObj = await response.json();
+//   console.log(responseObj);
 
   // ステータスコードが200でなければエラーハンドリング
   if (response.status !== 200) {
@@ -51,13 +53,14 @@ async function sendChar(key) {
     }, 1450);
   } else { // 間違った入力ならば
     miss.play(); // 音声の再生
-    return;
   }
 
   // 得点の更新
   updateScore(responseObj.score);
   // メーターの更新
   syncMeter(responseObj.meter);
+//   console.log(responseObj);
+  
 
   // 最後の文字ならば
   if (responseObj.isCompleted) {
