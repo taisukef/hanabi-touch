@@ -63,7 +63,7 @@ async function soloGameStart() {
       responseObj.sentenceJapanese;
 
     // メーターを設定
-    setMeter(responseObj.expectedTime);
+    initializeMeter(responseObj.expectedTime);
     startMeter();
 
     // キーの監視はじめ

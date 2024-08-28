@@ -1,11 +1,17 @@
 let expectedTime;
 let doubleTime;
 
+/** メーターをdoubleTimeをIntにキャストした値に変更 */
+function setMeter(){
+	const meter = document.getElementById('meter');
+	meter.value = parseInt(doubleTime);
+}
+
 /**
  * meterの初期設定
  * @param {number} time  設定する秒
  */
-function setMeter(time) {
+function initializeMeter(time) {
   const meter = document.getElementById('meter');
   if (meter) {
     meter.style.display = 'block';
@@ -23,7 +29,7 @@ function startMeter() {
   // 1/100秒おきに実行
   setInterval(() => {
 	doubleTime -= 10 / expectedTime;
-    meter.value = parseInt(doubleTime);
+    setMeter();
   }, 10);
 }
 
@@ -32,7 +38,8 @@ function startMeter() {
  * 　@param {number} time 設定される秒数
  */
 function syncMeter(time) {
-  const meter = document.getElementById('meter');
   doubleTime = time;
-  meter.value = time;
+  setMeter();
 }
+
+
