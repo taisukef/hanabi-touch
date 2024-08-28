@@ -94,6 +94,7 @@ Deno.serve(async (req) => {
       'sentenceJapanese': userGames[id].getNowJapanese(),
       'sentenceAlphabet': userGames[id].getCompletedRoman() +
         userGames[id].getRemainingRoman(),
+      'sentenceKana': userGames[id].getNowYomigana(),
       'expectedTime': userGames[id].calcExpectedTime(),
     });
   }
@@ -111,6 +112,7 @@ Deno.serve(async (req) => {
       'sentenceJapanese': userGames[id].getNowJapanese(),
       'sentenceAlphabet': userGames[id].getCompletedRoman() +
         userGames[id].getRemainingRoman(),
+      'sentenceKana': userGames[id].getNowYomigana(),
       'expectedTime': userGames[id].calcExpectedTime(),
     });
   }
