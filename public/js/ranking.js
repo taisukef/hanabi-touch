@@ -7,5 +7,9 @@ onload = async (event) => {
     const responseJson = await response.text();
     const responseObj = JSON.parse(responseJson);
 
-    console.log(responseObj['top10Results'][0]['score']);
+    const rank1 = document.querySelector('#rank1');
+    rank1.innerHTML = `1位. ${responseObj['top10Results'][0]['userName']}　${
+        responseObj['top10Results'][0]['score']
+    }`;
+    //console.log(responseObj['top10Results'][0]['score']);
 };
