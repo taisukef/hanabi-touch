@@ -6,8 +6,6 @@ const SCORE_PER_CHAR = 100;
 const TIME_LIMIT = 60 * 1000;
 // スコアの初期値
 const INITIALIZED_SCORE = 0;
-// typingTextの初期値文字列(コンストラクタに空文字列は入れられないため)
-const INITIALIZED_TYPINGTEXT = 'test';
 
 // メーターに関する数値を載せた辞書型
 const METER = {
@@ -30,7 +28,6 @@ const LAST_COEFFICIENT = {
 export {
   EXPECTED_TYPES_PER_SEC,
   INITIALIZED_SCORE,
-  INITIALIZED_TYPINGTEXT,
   LAST_COEFFICIENT,
   METER,
   SCORE_PER_CHAR,
