@@ -52,6 +52,11 @@ async function soloGameStart() {
     timer(responseObj.endTime);
     // scoreの初期化
     initializeScore(responseObj.initializedScore);
+
+	// 入力文字の表示開始
+	const scorePanel = document.getElementById('sentence');
+	scorePanel.style.display = 'flex';
+
     // キーの監視はじめ
     startObserve();
   } catch (error) {
