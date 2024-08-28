@@ -10,24 +10,34 @@
 onload = async (event) => {
   // サーバーから結果情報を受け取る
   const response = await fetch('/solo/getResult', { method: 'GET' });
+
+  // エラー処理
+  if (response.status !== 200) {
+    console.error('Error:', responseObj.message || 'Unknown error');
+    const scoreResult = document.querySelector('#score');
+    scoreResult.innerHTML = '結果を正しく取得できませんでした';
+  }
+
   const responseJson = await response.text();
   const responseObj = JSON.parse(responseJson);
 
   //スコアの表示
   const scoreResult = document.querySelector('#score');
-  scoreResult.innerHTML = responseObj['score'];
+  scoreResult.innerHTML = `スコア: ${responseObj['score']}`;
 
   //花火を打ち上げた回数を表示
   const fireworkCountResult = document.querySelector('#fireworkCount');
-  fireworkCountResult.innerHTML = responseObj['fireworkCount'];
+  fireworkCountResult.innerHTML = `大花火数: ${responseObj['fireworkCount']}`;
 
   //単位時間当たりのタイプ回数の表示
   const typesPerSecondResult = document.querySelector('#typesPerSecond');
-  typesPerSecondResult.innerHTML = responseObj['typesPerSecond'];
+  typesPerSecondResult.innerHTML = `秒間タイプ数: ${
+    responseObj['typesPerSecond'].toFixed(2)
+  }`;
 
   //タイプした回数の表示
   const typeCountResult = document.querySelector('#typeCount');
-  typeCountResult.innerHTML = responseObj['typeCount'];
+  typeCountResult.innerHTML = `正解タイプ数: ${responseObj['typeCount']}`;
 };
 
 // タイトルに戻るボタン。ひとまず、ボタンのidが「titleButton」と仮定して作ってます。
