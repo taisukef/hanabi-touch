@@ -61,6 +61,7 @@
   text-align: center;
 }
 
+
 progress {
   display: none;
   -webkit-appearance: none;
@@ -68,40 +69,44 @@ progress {
   border: none;
 }
 
-
-
-/* barの色 */
-//firefox用
-.red::-moz-progress-bar {
-  background-color: red;
+/* Firefox 用 */
+#red {
+  background-color: #ffefef;
 }
-.yellow::-moz-progress-bar {
-  background-color: yellow;
+#yellow {
+  background-color: #ffffdf;
 }
-.blue::-moz-progress-bar {
-  background-color: blue;
+#blue {
+  background-color: #efefff;
 }
 
-//chrome,safari用
-.red::-webkit-progress-value {
-  background-color: red;
+#red::-moz-progress-bar {
+  background-color: #ff0000;
 }
-.yellow::-webkit-progress-value {
-  background-color: yellow;
+#yellow::-moz-progress-bar {
+  background-color: #ffffdf;
 }
-.blue::-webkit-progress-value {
-  background-color: blue;
-}
-
-barの背景
-.red::-webkit-progress-bar {
-  background-color: pink;
+#blue::-moz-progress-bar {
+  background-color: #efefff;
 }
 
-.yellow::-webkit-progress-value {
-  background-color: yellow;
+/* Chrome, Safari 用 */
+#red::-webkit-progress-bar {
+  background-color: #ffefef;
+}
+#yellow::-webkit-progress-bar {
+  background-color: #ffffdf;
+}
+#blue::-webkit-progress-bar {
+  background-color: #efefff;
 }
 
-.red::-webkit-progress-bar {
-  background-color: aqua;
+#red::-webkit-progress-value {
+  background-color: #ff0000;
+}
+#yellow::-webkit-progress-value {
+  background-color: #ffff00;
+}
+#blue::-webkit-progress-value {
+  background-color: #0000ff;
 }
