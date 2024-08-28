@@ -49,6 +49,11 @@ async function soloGameStart() {
     timer(responseObj.endTime);
     // scoreの初期化
     initializeScore(responseObj.initializedScore);
+	// 最初の文字を設定
+	document.getElementById('notEntered').textContent = responseObj.sentenceAlphabet;
+	document.getElementById('japanese').textContent = responseObj.sentenceJapanese;
+
+
     // キーの監視はじめ
     startObserve();
   } catch (error) {
@@ -66,7 +71,6 @@ document.addEventListener('keydown', async(event) => {
       element.remove();
       start.play();
       soloGameStart(); // Enterキーが押された時にゲームを開始
-	  await fetchSentenceAndRefreshMeter();
     }
   }
 });
