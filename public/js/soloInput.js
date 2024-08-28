@@ -48,9 +48,6 @@ async function sendChar(key) {
     );
     fireworks.push(firework);
 	new Audio(fireworkHugh.src).play();
-    setTimeout(() => {
-		new Audio(fireworkBoom.src).play();
-    }, 1400);
   } else { // 間違った入力ならば
 	new Audio(miss.src).play();
   }

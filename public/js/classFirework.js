@@ -76,6 +76,7 @@ class Firework {
   }
 
   explode() {
+	new Audio(fireworkBoom.src).play();
     let fireworkSum = 0;
     for (let i = 0; i < starCount; i++) {
       if (this.types[i] === '牡丹') {
