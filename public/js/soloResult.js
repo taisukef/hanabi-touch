@@ -39,6 +39,10 @@ onload = async (event) => {
   const typeCountResult = document.querySelector('#typeCount');
   typeCountResult.innerHTML = `${responseObj['typeCount']}`;
 
+  //ミスタイプ数の表示
+  const typeMissCountResult = document.querySelector('#typeMissCount');
+  typeMissCountResult.innerHTML = `${responseObj['typeMissCount']}`;
+
   document.getElementById('resultContents').style.visibility = 'visible';
 };
 
