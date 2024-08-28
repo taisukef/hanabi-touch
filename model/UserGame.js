@@ -134,7 +134,7 @@ class UserGame {
    * 現在の日本語文章を取得
    * @returns {String}
    */
-  getJapanese() {
+  getNowJapanese() {
     return this.sentenceNowJapanese;
   }
   /**
