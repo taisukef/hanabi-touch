@@ -183,6 +183,13 @@ class UserGame {
     return this.totalSentenceCount;
   }
   /**
+   * このゲームにおける合計ミスタイプ数
+   * @returns {Number}
+   */
+  calcTotalMissType() {
+    return this.totalTypeCount - this.totalCorrectTypeCount;
+  }
+  /**
    * 秒間のタイプ数を計算
    * @returns {Number} 小数は丸めない
    */

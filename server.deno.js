@@ -161,6 +161,7 @@ Deno.serve(async (req) => {
       'fireworkCount': userGames[id].calcTotalFireworks(),
       'typesPerSecond': userGames[id].calcTypesPerSecond(),
       'typeCount': userGames[id].getTotalCorrectTypeCount(),
+      'typeMissCount': userGames[id].calcTotalMissType(),
     });
   }
 
