@@ -7,6 +7,7 @@ async function loadHeader() {
 
   // ヘッダーの読み込みが完了したら、ページ全体を表示
   document.body.style.visibility = 'visible';
+  windowResized();
 }
 
 // DOMの解析が完了したらloadHeaderを呼び出す

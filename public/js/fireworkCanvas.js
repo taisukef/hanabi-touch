@@ -8,11 +8,25 @@ const kikuTrail = 6; //もともとの値: 30
 const botanTrail = 3; //もともとの値: 3
 const standardFrame = 60;
 
+/**
+ * canvasのサイズを計算
+ * @returns {width:number,height:number} canvasのサイズ
+ */
+function calcCanvasSize(){
+	const ASPECT = 100/56; // アスペクト比  横 / 縦
+	
+	const canvasWidth = Math.min(0.95 * windowWidth, 0.94 * windowHeight * 10 / 7);
+	const canvasHeight = canvasWidth / ASPECT ;
+
+	return {width: canvasWidth, height:canvasHeight};
+}
+
 /** p5js ページ読み込み時に一回のみ実行 */
 function setup() {
-  const result = document.getElementById('gamePanel');
+  const result = document.getElementById('gameMain');
+  const { width, height } = calcCanvasSize();
 
-  const canvas = createCanvas(result.clientWidth, result.clientHeight); // canvasを作成
+  const canvas = createCanvas(width, height); // canvasを作成
   canvas.parent(result); // 子要素に追加
 
   bgColor = color(20, 20, 50); // RGB gamePanel同じ色
@@ -67,6 +81,6 @@ function draw() {
 
 /** ウィンドウがリサイズされた時にp5jsが自動実行  */
 function windowResized() {
-  const gamePanel = document.getElementById('gamePanel');
-  resizeCanvas(gamePanel.clientWidth, gamePanel.clientHeight);
+	const { width, height } = calcCanvasSize();
+	resizeCanvas(width, height);
 }
