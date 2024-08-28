@@ -81,13 +81,21 @@ Deno.serve(async (req) => {
   }
 
   // ゲームスタートと同時に初期化
-  if (req.method === 'GET' && pathname === '/solo/start') {
+  if (req.method === 'POST' && pathname === '/solo/start') {
     if (!getCookies(req)['id']) {
       return makeErrorResponse('id in cookies is not set', '10001');
     }
     const id = getCookies(req)['id'];
+    // 送られてきた難易度を取得
+    const reqeustJson = await req.json();
+    const difficulty = reqeustJson['difficulty'];
     const targetSentence = getRandomThemeSentence();
-    userGames[id] = new UserGame(id, targetSentence[0], targetSentence[1]);
+    userGames[id] = new UserGame(
+      id,
+      difficulty,
+      targetSentence[0],
+      targetSentence[1],
+    );
     return make200Response({
       'endTime': userGames[id].getEndTime(),
       'initializedScore': userGames[id].getInitializedScore(),

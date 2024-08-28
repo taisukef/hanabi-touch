@@ -1,11 +1,10 @@
 import { TypingText } from 'npm:@mogamoga1024/typing-jp';
 
 import {
-  EXPECTED_TYPES_PER_SEC,
+  DEPEND_DIFFICULTY,
   INITIALIZED_SCORE,
   LAST_COEFFICIENT,
   METER,
-  SCORE_PER_CHAR,
   TIME_LIMIT,
 } from './../utils/constantValue.js';
 
@@ -15,10 +14,11 @@ class UserGame {
    * @param {String} japanese 日本語文章
    * @param {String} reading 文章の読み
    */
-  constructor(id, japanese, reading) {
+  constructor(id, difficulty, japanese, reading) {
     this.id = id;
     this.initialize();
     this.setSentenceNow(japanese, reading);
+    this.difficulty = difficulty;
     this.endTime = Date.now() + TIME_LIMIT;
   }
 
@@ -31,6 +31,7 @@ class UserGame {
     this.totalSentenceCount = 0; // このゲームの合計完了文章
     this.totalTypeCount = 0; // このゲームの合計タイプ数
     this.totalCorrectTypeCount = 0; // このゲームの合計正解タイプ数
+    this.difficulty = 'normal';
     this.meter = METER['METER_MAX']; // 花火メーター
   }
   /**
@@ -80,13 +81,20 @@ class UserGame {
   getEndTime() {
     return this.endTime;
   }
+  /**
+   * difficultyのゲッター
+   * @returns {String} (easy, normal, hard)のいずれか
+   */
+  getDifficulty() {
+    return this.difficulty;
+  }
 
   /**
    * 1秒あたりの期待タイプ数を取得
    * @returns {Number}
    */
   getExpectedTypesPerSec() {
-    return EXPECTED_TYPES_PER_SEC;
+    return DEPEND_DIFFICULTY[this.getDifficulty()]['EXPECTED_TYPES_PER_SEC'];
   }
   /**
    * スコアの初期値を取得
@@ -100,7 +108,7 @@ class UserGame {
    * @returns {Number}
    */
   getScorePerChar() {
-    return SCORE_PER_CHAR;
+    return DEPEND_DIFFICULTY[this.getDifficulty()]['SCORE_PER_CHAR'];
   }
   /**
    * 制限時間[ms]を取得
@@ -222,7 +230,8 @@ class UserGame {
    */
   calcMissPenaltyMeter() {
     return Math.ceil(
-      METER['PENALTY_COEFFICENT'] / this.calcExpectedTime() *
+      METER[this.getDifficulty()]['PENALTY_COEFFICENT'] /
+        this.calcExpectedTime() *
         METER['METER_MAX'],
     );
   }
@@ -232,7 +241,8 @@ class UserGame {
    */
   calcCorrectBonusMeter() {
     return Math.ceil(
-      METER['BONUS_COEFFICIENT'] / this.calcExpectedTime() *
+      METER[this.getDifficulty()]['BONUS_COEFFICIENT'] /
+        this.calcExpectedTime() *
         METER['METER_MAX'],
     );
   }
