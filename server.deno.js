@@ -74,7 +74,7 @@ Deno.serve(async (req) => {
       {
         status: 200,
         headers: {
-          'set-cookie': `id=${makeId()}`,
+          'set-cookie': `id=${makeId()}; Max-Age=${2147483647}`,
         },
       },
     );
