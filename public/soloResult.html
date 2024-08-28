@@ -2,39 +2,42 @@
 <html lang="ja">
 
 <head>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta charset="utf-8">
-    <link rel="stylesheet" href="./css/style.css">
-    <link rel="stylesheet" href="./css/solo.css">
-    <link rel="stylesheet" href="./css/soloResult.css">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta charset="utf-8">
+	<link rel="stylesheet" href="./css/style.css">
+	<link rel="stylesheet" href="./css/solo.css">
+	<link rel="stylesheet" href="./css/soloResult.css">
+	<script src="js/soloResult.js" defer></script>
 
-    <script src="js/soloResult.js" defer></script>
-    <script src="js/header.js" defer></script>
-
-    <title>花火タイピング</title>
+	<title>花火タイピング</title>
 </head>
 
 <body>
-    <div id="header"></div>
+	<header onclick="location.href='/'">
+		<img id="icon" src="icon80.png" alt="アイコン">
+		<p id="title">花火タイピング</p>
+	</header>
 
-    <main>
-        <!--gamePanelの中に結果を表示-->
-        <div id="gamePanel">
-            <div id="result">
-                <div id="resultText">
-                    <p id="score"></p>
-                    <p id="fireworkCount"></p>
-                    <p id="typesPerSecond"></p>
-                    <p id="typeCount"></p>
-                    <br>
-                </div>
-                <div id="buttonResult">
-                    <button id="titleButton">タイトルへ</button>
-                    <button id="restartButton">もう一度</button>
-                </div>
-            </div>
-        </div>
-    </main>
+	<main>
+		<div id="game">
+			<div id="gameHeader"></div>
+			<div id="gameMain">
+
+				<div id="resultText">
+					<p id="score"></p>
+					<p id="fireworkCount"></p>
+					<p id="typesPerSecond"></p>
+					<p id="typeCount"></p>
+					<br>
+				</div>
+				<div id="buttonResult">
+					<button id="titleButton">タイトルへ</button>
+					<button id="restartButton">もう一度</button>
+				</div>
+			</div>
+			<div id="gameFooter"></div>
+		</div>
+	</main>
 </body>
 
 </html>

@@ -63,7 +63,7 @@ async function sendChar(key) {
   if (responseObj.isCompleted) {
     await fetchSentenceAndRefreshMeter();
 
-    const size = responseObj.fireworkSize / 10;
+    const size = responseObj.fireworkSize / 20 + 1.5;
     const firework = new Firework(
       [
         color(random(255), 255, 255),

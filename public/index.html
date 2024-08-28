@@ -5,18 +5,25 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<meta charset="utf-8">
 	<link rel="stylesheet" href="css/style.css">
-
-	<script src="js/header.js" defer></script>
+	<link rel="stylesheet" href="css/index.css">
 	<title>花火タイピング</title>
 </head>
 
 <body>
-	<div id="header"></div>
+
+	<header onclick="location.href='/'">
+		<img id="icon" src="icon80.png" alt="アイコン">
+		<p id="title">花火タイピング</p>
+	</header>
 
 	<main>
-		<div id="homePanel">
-			<img src="icon.png" alt="アイコン">
-			<button id="startButton" onclick="location.href='/solo.html'">スタート</button>
+		<div id="game">
+			<div id="gameHeader"></div>
+			<div id="gameMain">
+				<img src="icon.png" alt="アイコン">
+				<button id="startButton" onclick="location.href='/solo.html'">スタート</button>
+			</div>
+			<div id="gameFooter"></div>
 		</div>
 	</main>
 </body>

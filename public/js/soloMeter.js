@@ -20,7 +20,7 @@ function startMeter() {
   const meter = document.getElementById('meter');
   // 1/100秒おきに実行
   setInterval(() => {
-    meter.value -= parseInt(10 / expectedTime);	
+    meter.value -= parseInt(10 / expectedTime);
   }, 10);
 }
 

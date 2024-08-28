@@ -1,103 +1,66 @@
-/* ゲーム用 */
-#inputSentence {
+#game {
+  font-size: calc(min(95vw, calc(94vh * 10 / 7)) / 40);
+}
+
+#enterToBegin {
+  position: absolute;
+  font-size: calc(min(95vw, calc(94vh * 10 / 7)) / 20);
+  width: 100%;
+  text-align: center;
+}
+
+#gameMain {
+  z-index: -2;
+  justify-content: center;
+}
+
+#defaultCanvas0 {
+  border-radius: 10vh;
+  position: absolute;
+  z-index: -1;
+}
+
+#timer {
+  font-size: calc(min(95vw, calc(94vh * 10 / 7)) / 30);
+}
+
+#meter {
+  display: none;
+}
+
+#sentence {
+  margin-top: calc(min(95vw, calc(94vh * 10 / 7)) / 3);
+  padding: calc(min(95vw, calc(94vh * 10 / 7)) * 0.02);
+  z-index: 1;
+  background-color: rgba(255, 255, 255, 0.1);
+
+  display: none;
+  flex-direction: column;
+  align-items: center;
+
+  height: 20%;
+  width: 100%;
+}
+
+#alphabet {
+  justify-content: center;
   display: flex;
-  flex-direction: row;
-  padding: 2vw;
-  width: 80%;
-  max-width: 1200px;
+  width: calc(min(95vw, calc(94vh * 10 / 7)) * 0.7);
+}
+
+#scorePanel {
+  display: none;
+  justify-content: flex-end;
+  align-items: center;
+  width: calc(min(95vw, calc(94vh * 10 / 7)) * 0.2);
+  font-size: calc(min(95vw, calc(94vh * 10 / 7)) / 30);
 }
 
 #entered {
   color: red;
 }
 
-#notEntered {
-  color: white;
-}
-
 #alphabet {
-  font-size: 2vw;
-}
-
-#japanese {
-  font-size: 2vw;
-  color: white;
-  margin-right: 4vw;
-}
-
-#gameHeader {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  width: 80%;
-  max-width: 1200px;
-  height: 4vw;
-  justify-content: space-between;
-  padding-left: 5vw;
-  padding-right: 5vw;
-}
-
-/* ソロのみ */
-#enterToBegin {
-  color: white;
-  font-size: 3vw;
-
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-}
-
-#gamePanel {
-  background-color: rgb(20, 20, 50);
-  width: 80%;
-  height: calc(80vw * 2 / 3);
-
-  max-width: 1200px;
-  max-height: 800px;
-  border-radius: 50px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-#timer {
-  color: white;
-  font-size: 2.4vw;
-}
-
-/* meter */
-#meter {
-  width: 25vw;
-}
-
-#gameFooter {
-  display: flex;
-  flex-direction: row;
-  width: 80%;
-  max-width: 1200px;
-  color: white;
-  font-size: 2.4vw;
-  align-items : center;
-}
-
-meter::-webkit-meter-bar {
-  background: #202020;
-}
-
-meter::-webkit-meter-optimum-value {
-  background: rgb(60, 60, 150);
-}
-
-meter::-webkit-meter-suboptimum-value {
-  background: rgb(60, 60, 150);
-}
-
-meter::-webkit-meter-even-less-good-value {
-  background: rgb(60, 60, 150);
+  width: 100%;
+  text-align: center;
 }
