@@ -89,6 +89,10 @@ Deno.serve(async (req) => {
     return make200Response({
       'endTime': userGames[id].getEndTime(),
       'initializedScore': userGames[id].getInitializedScore(),
+      'sentenceJapanese': userGames[id].getNowJapanese(),
+      'sentenceAlphabet': userGames[id].getCompletedRoman() +
+        userGames[id].getRemainingRoman(),
+      'expectedTime': userGames[id].calcExpectedTime(),
     });
   }
 
