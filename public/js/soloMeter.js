@@ -23,7 +23,6 @@ function startMeter() {
   // 1/100秒おきに実行
   setInterval(() => {
 	doubleTime -= 10 / expectedTime;
-
     meter.value = parseInt(doubleTime);
   }, 10);
 }
@@ -34,5 +33,6 @@ function startMeter() {
  */
 function syncMeter(time) {
   const meter = document.getElementById('meter');
+  doubleTime = time;
   meter.value = time;
 }
