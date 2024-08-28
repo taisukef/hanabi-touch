@@ -1,0 +1,14 @@
+#ranks {
+    font-size: calc(min(95vw, calc(94vh * 10 / 7)) / 40);
+}
+
+#titleButton {
+    text-align: center;
+    color: black;
+    background-color: orange;
+    border-radius: calc(min(95vw, calc(94vh * 10 / 7)) * 0.1);
+    width: 20%;
+    height: 10%;
+    font-weight: bold;
+    font-size: calc(min(95vw, calc(94vh * 10 / 7)) * 0.02);
+}
