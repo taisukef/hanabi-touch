@@ -41,7 +41,7 @@ onload = async (event) => {
 };
 
 // もう一度遊ぶボタン。現段階では、ボタンのidが「restartButton」と仮定して作っています。
-document.getElementById('restartButton').onclick = (event) => {
+document.querySelector('#restartButton').onclick = (event) => {
   location.href = '/solo.html';
 };
 
