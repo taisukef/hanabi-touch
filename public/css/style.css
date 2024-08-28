@@ -47,24 +47,23 @@ main {
 
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  align-item: center;
-  padding: calc(min(95vw, calc(94vh * 10 / 7)) / 70) 0px;
 }
 
 #gameHeader {
   width: 100%;
   height: 10%;
+
   display: flex;
   padding-left: calc(min(95vw, calc(94vh * 10 / 7)) * 0.15);
   padding-right: calc(min(95vw, calc(94vh * 10 / 7)) * 0.15);
   justify-content: space-between;
+  align-items: center;
 }
 
 #gameMain {
-  // アスペクト比 横100/縦56
+  // アスペクト比 横100/縦59.5
   width: 100%;
-  height: 80%;
+  height: 85%;
 
   background-color: rgb(20, 20, 50);
   border-radius: 10vh;
@@ -72,10 +71,9 @@ main {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
 }
 
 #gameFooter {
   width: 100%;
-  height: 10%;
+  height: 5%;
 }
