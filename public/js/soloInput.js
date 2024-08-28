@@ -25,9 +25,7 @@ async function sendChar(key) {
   }
 
   if (responseObj.isCorrect) { //正しい入力ならば
-    // 打った文字の色の更新
-	console.log(responseObj);
-	
+    // 打った文字の色の更新	
     updateWord(responseObj.enteredChars,responseObj.notEnteredChars);
 	
     const shape = random(['菊', '牡丹']);
