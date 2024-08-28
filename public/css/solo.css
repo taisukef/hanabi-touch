@@ -32,7 +32,7 @@
   margin-top: calc(min(95vw, calc(94vh * 10 / 7)) / 3);
   padding: calc(min(95vw, calc(94vh * 10 / 7)) * 0.02);
   z-index: 1;
-  background-color: rgba(255, 255, 255, 0.1);
+  background-color: rgba(0, 0, 0, 0.3);
 
   display: none;
   flex-direction: column;
