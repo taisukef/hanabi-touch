@@ -2,6 +2,8 @@ import { serveDir } from 'https://deno.land/std@0.151.0/http/file_server.ts';
 import { getCookies } from 'https://deno.land/std@0.74.0/http/mod.ts';
 import { UserGame } from './model/UserGame.js';
 
+import { OUTPUT_TOPRANKING_NUMBER } from './utils/constantValue.js';
+
 function makeId() {
   return crypto.randomUUID();
 }
@@ -145,6 +147,7 @@ Deno.serve(async (req) => {
     return response;
   }
 
+  // 結果取得
   if (req.method === 'GET' && pathname === '/solo/getResult') {
     if (!getCookies(req)['id']) {
       return makeErrorResponse('id in cookies is not set', '10001');
@@ -158,6 +161,50 @@ Deno.serve(async (req) => {
       'fireworkCount': userGames[id].calcTotalFireworks(),
       'typesPerSecond': userGames[id].calcTypesPerSecond(),
       'typeCount': userGames[id].getTotalCorrectTypeCount(),
+    });
+  }
+
+  // ランキング送信
+  if (req.method === 'POST' && pathname === '/solo/sendRanking') {
+    if (!getCookies(req)['id']) {
+      return makeErrorResponse('id in cookies is not set', '10001');
+    }
+    const id = getCookies(req)['id'];
+    if (!userGames[id]) {
+      return makeErrorResponse('UserGame insntance is not made', '10003');
+    }
+    // POST時に送信されてユーザーネームを取得
+    const reqeustJson = await req.json();
+    const userName = reqeustJson['userName'];
+    // Deno KVにアクセス
+    const kv = await Deno.openKv();
+    // キーと値を設定しkvにセット
+    const kvKey = ['ranking', id];
+    const kvValue = {
+      'score': userGames[id].getTotalScore(),
+      'userName': userName,
+    };
+    const kvResult = await kv.set(kvKey, kvValue);
+    // 成功したかをレスポンスに載せる
+    return make200Response({
+      'isSuccessful': kvResult['ok'],
+    });
+  }
+
+  if (req.method === 'GET' && pathname === '/solo/getRanking') {
+    // Deno KVにアクセス
+    const kv = await Deno.openKv();
+    // ランキングに登録されているkeyを取得してリスト化
+    const listResult = await kv.list({ prefix: ['ranking'] });
+    const listRanking = [];
+    for await (const item of listResult) {
+      listRanking.push(item['value']);
+    }
+    // 降順ソート
+    listRanking.sort((a, b) => (a.score > b.score ? -1 : 1));
+    // 上位10位までスライスして返答
+    return make200Response({
+      'top10Results': listRanking.slice(0, OUTPUT_TOPRANKING_NUMBER),
     });
   }
 
