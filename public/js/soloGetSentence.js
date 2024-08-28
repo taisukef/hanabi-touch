@@ -23,7 +23,7 @@ async function fetchSentenceAndRefreshMeter() {
       location.reload();
       return;
     }
-    // // メーターを設定
+    // メーターを設定
     setMeter(responseObj.expectedTime);
 
     //  文章を設定
