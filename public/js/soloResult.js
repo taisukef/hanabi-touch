@@ -38,6 +38,8 @@ onload = async (event) => {
   //タイプした回数の表示
   const typeCountResult = document.querySelector('#typeCount');
   typeCountResult.innerHTML = `${responseObj['typeCount']}`;
+
+  document.getElementById('resultContents').style.visibility = 'visible';
 };
 
 // もう一度遊ぶボタン。現段階では、ボタンのidが「restartButton」と仮定して作っています。
