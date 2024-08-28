@@ -8,7 +8,7 @@ onload = async (event) => {
     const responseObj = JSON.parse(responseJson);
     const ranking = responseObj['top10Results'];
 
-    for (i = 0; i < ranking.length; i++) {
+    for (let i = 0; i < ranking.length; i++) {
         const rank = document.querySelector(`#rank${i + 1}`);
         const name = document.querySelector(`#name${i + 1}`);
         const score = document.querySelector(`#score${i + 1}`);
