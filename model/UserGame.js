@@ -32,7 +32,6 @@ class UserGame {
     this.totalTypeCount = 0; // このゲームの合計タイプ数
     this.totalCorrectTypeCount = 0; // このゲームの合計正解タイプ数
     this.meter = METER['METER_MAX']; // 花火メーター
-    this.sentencePreJapanese = ''; // 前回の日本語文章
   }
   /**
    * 文章と文章時刻のセッター
@@ -59,7 +58,6 @@ class UserGame {
       this.totalCorrectTypeCount++;
       if (this.isCompleted()) {
         this.totalSentenceCount++;
-        this.sentencePreJapanese = this.sentenceNowJapanese;
       }
     } else {
       this.sentenceMissTypeCount++;
@@ -138,13 +136,6 @@ class UserGame {
    */
   getNowJapanese() {
     return this.sentenceNowJapanese;
-  }
-  /**
-   * ひとつ前の日本語文章を取得
-   * @returns {String}
-   */
-  getPreJapanese() {
-    return this.sentencePreJapanese;
   }
   /**
    * 現在の状態に関わらずにタイプ文字を取得

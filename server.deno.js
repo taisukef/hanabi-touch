@@ -133,7 +133,7 @@ Deno.serve(async (req) => {
     // 前回と違う文章が出るまで再抽選
     if (userGames[id].isCompleted()) {
       let targetSentence = getRandomThemeSentence();
-      while (userGames[id].getPreJapanese() === targetSentence[0]) {
+      while (userGames[id].getNowJapanese() === targetSentence[0]) {
         targetSentence = getRandomThemeSentence();
       }
       userGames[id].setSentenceNow(targetSentence[0], targetSentence[1]);
