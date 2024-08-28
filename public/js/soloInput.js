@@ -13,10 +13,9 @@ async function sendChar(key) {
       body: JSON.stringify({ alphabet: key }),
     },
   );
-  
-  
+
   const responseObj = await response.json();
-//   console.log(responseObj);
+  //   console.log(responseObj);
 
   // ステータスコードが200でなければエラーハンドリング
   if (response.status !== 200) {
@@ -47,17 +46,16 @@ async function sendChar(key) {
       0.5, // lifespanMultiplier
     );
     fireworks.push(firework);
-	new Audio(fireworkHugh.src).play();
+    new Audio(fireworkHugh.src).play();
   } else { // 間違った入力ならば
-	new Audio(miss.src).play();
+    new Audio(miss.src).play();
   }
 
   // 得点の更新
   updateScore(responseObj.score);
   // メーターの更新
   syncMeter(responseObj.meter);
-//   console.log(responseObj);
-  
+  //   console.log(responseObj);
 
   // 最後の文字ならば
   if (responseObj.isCompleted) {
@@ -81,9 +79,9 @@ async function sendChar(key) {
       size,
     );
     fireworks.push(firework);
-	new Audio(fireworkHugh.src).play();
+    new Audio(fireworkHugh.src).play();
     setTimeout(() => {
-		new Audio(fireworkBoom.src).play();
+      new Audio(fireworkBoom.src).play();
     }, 1450);
   }
 }
