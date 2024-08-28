@@ -42,20 +42,20 @@ onload = async (event) => {
   document.getElementById('resultContents').style.visibility = 'visible';
 };
 
-// もう一度遊ぶボタン。現段階では、ボタンのidが「restartButton」と仮定して作っています。
+// もう一度遊ぶボタン
 document.querySelector('#restartButton').onclick = (event) => {
   location.href = '/solo.html';
 };
-
+// ランキング画面に遷移するボタン
 document.querySelector('#rankingButton').onclick = (event) => {
   location.href = 'ranking.html';
 };
 
-// タイトルに戻るボタン。ひとまず、ボタンのidが「titleButton」と仮定して作ってます。
+// タイトルに戻るボタン
 document.querySelector('#titleButton').onclick = (event) => {
   location.href = '/index.html';
 };
-
+// 記録をランキングに登録するボタン
 document.querySelector('#sendRanking').onclick = async (event) => {
   const name = prompt('ランキングに表示する名前を入力してください');
   const response = await fetch(
