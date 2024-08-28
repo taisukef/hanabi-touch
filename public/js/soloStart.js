@@ -30,23 +30,24 @@ async function getId() {
  * ゲームスタート時に一回のみ実行する関数
  * サーバーにゲーム開始を伝える
  */
-async function soloGameStart() {
+async function soloGameStart(difficulty) {
   try {
     // POSTリクエストを送信し、レスポンスを受け取る
     const response = await fetch('/solo/start', {
-      method: 'GET',
+      method: 'POST',
       headers: {
         'Content-Type': 'application/json',
       },
+      body: JSON.stringify({ difficulty: difficulty }),
     });
 
+    const responseObj = await response.json();
     // ステータスコードが200でなければエラーハンドリング
     if (response.status !== 200) {
       console.error('Error:', responseObj.message || 'Unknown error');
       deleteCookie();
       location.reload();
     }
-    const responseObj = await response.json();
     //タイマーを開始
     timer(responseObj.endTime);
     // scoreの初期化
@@ -74,17 +75,76 @@ async function soloGameStart() {
   }
 }
 
-// enterでゲームスタートできるようにする。
+// enterでその時選択している難易度でゲームスタートできるようにする。
 // 押されたら、要素を消してスタートオンを鳴らす。
 document.addEventListener('keydown', async (event) => {
+  const option = document.getElementById('option');
+  if (!option) return;
+
+  const element = option.querySelector('.selected');
+  if (!element) return;
   if (event.key === 'Enter') {
-    const element = document.getElementById('enterToBegin');
-    if (element) {
-      element.remove();
-      start.play();
-      soloGameStart(); // Enterキーが押された時にゲームを開始
+    soloGameStart(element.value);
+    option.remove();
+    start.play();
+  } else if (event.key === 'ArrowLeft') {
+    if (element.value === 'easy') return;
+    element.classList.remove('selected');
+
+    if (element.value === 'normal') {
+      option.querySelector('[value="easy"]').classList.add('selected');
+    } else {
+      option.querySelector('[value="normal"]').classList.add('selected');
+    }
+  } else if (event.key === 'ArrowRight') {
+    if (element.value === 'hard') return;
+    element.classList.remove('selected');
+
+    if (element.value === 'normal') {
+      option.querySelector('[value="hard"]').classList.add('selected');
+    } else {
+      option.querySelector('[value="normal"]').classList.add('selected');
     }
   }
+});
+
+// document.querySelectorAll('.difficultyButton').forEach((button) =>
+//   button.onclick = () => {
+
+// 	console.log(button);
+
+//     const option = document.getElementById('option');
+//     if (option) {
+//       soloGameStart(button.value);
+//       option.remove();
+//       start.play();
+//     }
+//   }
+// );
+// document.querySelectorAll('.difficultyButton').forEach((button) => {
+// 	console.log(button);
+// 	button.addEventListener("click", () => {
+// 		console.log("click");
+
+// 	  const option = document.getElementById('option');
+// 	  if (option) {
+// 		soloGameStart(button.value);
+// 		option.remove();
+// 		start.play();
+// 	  }
+// ;	});
+//   });
+
+document.querySelectorAll('.difficultyButton').forEach((button) => {
+  button.addEventListener('click', () => {
+    console.log('Button clicked:', button.value); // デバッグ用ログ
+    const option = document.getElementById('option');
+    if (option) {
+      soloGameStart(button.value);
+      option.remove();
+      start.play();
+    }
+  });
 });
 
 // ページロード時に実行する処理
