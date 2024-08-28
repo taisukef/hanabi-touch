@@ -20,9 +20,6 @@ async function getId() {
       location.reload();
       return;
     }
-
-    // ステータスコードが200の場合、正常に処理されました
-    console.log('ID retrieved successfully');
   } catch (error) {
     // ネットワークエラーなどの例外をキャッチして処理
     console.error('Fetch error:', error);
@@ -46,6 +43,8 @@ async function soloGameStart() {
     // ステータスコードが200でなければエラーハンドリング
     if (response.status !== 200) {
       console.error('Error:', responseObj.message || 'Unknown error');
+      deleteCookie();
+      location.reload();
     }
     const responseObj = await response.json();
     //タイマーを開始
@@ -53,9 +52,19 @@ async function soloGameStart() {
     // scoreの初期化
     initializeScore(responseObj.initializedScore);
 
-	// 入力文字の表示開始
-	const scorePanel = document.getElementById('sentence');
-	scorePanel.style.display = 'flex';
+	　// 入力文字の表示開始
+	　const scorePanel = document.getElementById('sentence');
+	　scorePanel.style.display = 'flex';
+
+    // 最初の文字を設定
+    document.getElementById('notEntered').textContent =
+      responseObj.sentenceAlphabet;
+    document.getElementById('japanese').textContent =
+      responseObj.sentenceJapanese;
+
+    // メーターを設定
+    setMeter(responseObj.expectedTime);
+    startMeter();
 
     // キーの監視はじめ
     startObserve();
@@ -67,14 +76,13 @@ async function soloGameStart() {
 
 // enterでゲームスタートできるようにする。
 // 押されたら、要素を消してスタートオンを鳴らす。
-document.addEventListener('keydown', async(event) => {
+document.addEventListener('keydown', async (event) => {
   if (event.key === 'Enter') {
     const element = document.getElementById('enterToBegin');
     if (element) {
       element.remove();
       start.play();
       soloGameStart(); // Enterキーが押された時にゲームを開始
-	  await fetchSentenceAndRefreshMeter();
     }
   }
 });

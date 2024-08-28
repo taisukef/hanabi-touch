@@ -6,7 +6,7 @@ function makeId() {
   return crypto.randomUUID();
 }
 
-// 「日本語文章,アルファベット」
+// 「漢字入り文章,読み方」
 // 形式のcsvファイルを読み込む
 const themeSentencesText = await Deno.readTextFile('./private/sentences.csv');
 // 改行とカンマ区切りで2次元リスト化
@@ -17,7 +17,7 @@ const themeSentences = themeSentencesText.split('\n').map((text) => {
 
 /**
  * ランダムな文章とそのローマ字文章の組み合わせを出力
- * @returns [日本語文章, ローマ字文章]
+ * @returns [漢字入り文章,読み方]
  */
 function getRandomThemeSentence() {
   return themeSentences[Math.floor(Math.random() * themeSentences.length)];
@@ -84,16 +84,20 @@ Deno.serve(async (req) => {
       return makeErrorResponse('id in cookies is not set', '10001');
     }
     const id = getCookies(req)['id'];
-    userGames[id] = new UserGame(id);
+    const targetSentence = getRandomThemeSentence();
+    userGames[id] = new UserGame(id, targetSentence[0], targetSentence[1]);
     return make200Response({
       'endTime': userGames[id].getEndTime(),
       'initializedScore': userGames[id].getInitializedScore(),
+      'sentenceJapanese': userGames[id].getNowJapanese(),
+      'sentenceAlphabet': userGames[id].getCompletedRoman() +
+        userGames[id].getRemainingRoman(),
+      'expectedTime': userGames[id].calcExpectedTime(),
     });
   }
 
   // cookieのidからユーザごとに文章を取得する
   if (req.method === 'GET' && pathname === '/solo/getSentence') {
-    const targetSentence = getRandomThemeSentence();
     if (!getCookies(req)['id']) {
       return makeErrorResponse('id in cookies is not set', '10001');
     }
@@ -101,10 +105,10 @@ Deno.serve(async (req) => {
     if (!userGames[id]) {
       return makeErrorResponse('UserGame insntance is not made', '10003');
     }
-    userGames[id].setSentenceNow(targetSentence[0], targetSentence[1]);
     return make200Response({
-      'sentenceJapanese': targetSentence[0],
-      'sentenceAlphabet': targetSentence[1],
+      'sentenceJapanese': userGames[id].getNowJapanese(),
+      'sentenceAlphabet': userGames[id].getCompletedRoman() +
+        userGames[id].getRemainingRoman(),
       'expectedTime': userGames[id].calcExpectedTime(),
     });
   }
@@ -118,19 +122,27 @@ Deno.serve(async (req) => {
     if (!userGames[id]) {
       return makeErrorResponse('UserGame insntance is not made', '10003');
     }
-    if (userGames[id].isCompleted()) {
-      return makeErrorResponse('sentence is not set', '10002');
-    }
     const reqeustJson = await req.json();
     const sentChar = reqeustJson['alphabet'];
     const isCorrect = userGames[id].judgeAndCalcScore(sentChar);
-    return make200Response({
+    const response = make200Response({
       'isCorrect': isCorrect,
       'isCompleted': userGames[id].isCompleted(),
       'score': userGames[id].getTotalScore(),
       'meter': userGames[id].getMeter(),
       'fireworkSize': userGames[id].calcFireworkSize(),
+      'enteredChars': userGames[id].getCompletedRoman(),
+      'notEnteredChars': userGames[id].getRemainingRoman(),
     });
+    // 前回と違う文章が出るまで再抽選
+    if (userGames[id].isCompleted()) {
+      let targetSentence = getRandomThemeSentence();
+      while (userGames[id].getNowJapanese() === targetSentence[0]) {
+        targetSentence = getRandomThemeSentence();
+      }
+      userGames[id].setSentenceNow(targetSentence[0], targetSentence[1]);
+    }
+    return response;
   }
 
   if (req.method === 'GET' && pathname === '/solo/getResult') {

@@ -1,3 +1,5 @@
+import { TypingText } from 'npm:@mogamoga1024/typing-jp';
+
 import {
   EXPECTED_TYPES_PER_SEC,
   INITIALIZED_SCORE,
@@ -10,10 +12,13 @@ import {
 class UserGame {
   /**
    * @param {String} id ユーザid
+   * @param {String} japanese 日本語文章
+   * @param {String} reading 文章の読み
    */
-  constructor(id) {
+  constructor(id, japanese, reading) {
     this.id = id;
     this.initialize();
+    this.setSentenceNow(japanese, reading);
     this.endTime = Date.now() + TIME_LIMIT;
   }
 
@@ -21,17 +26,23 @@ class UserGame {
    * メンバ変数の初期化(idを除く)
    */
   initialize() {
-    this.sentenceNowJapanese = ''; // 現在の文章の日本語
-    this.sentenceNowAlphabet = ''; // 現在の文章のアルファベット
     this.endTime = 0; // このゲームの終了時刻
     this.totalScore = 0; // このゲームの合計スコア
     this.totalSentenceCount = 0; // このゲームの合計完了文章
     this.totalTypeCount = 0; // このゲームの合計タイプ数
     this.totalCorrectTypeCount = 0; // このゲームの合計正解タイプ数
-    this.sentenceStartTime = 0; // その文章が始まった時刻
-    this.sentenceMissTypeCount = 0; // その文章でのミスタイプ数
-    this.sentenceCur = 0; // その文章での現在の位置
     this.meter = METER['METER_MAX']; // 花火メーター
+  }
+  /**
+   * 文章と文章時刻のセッター
+   * @param {String} japanese
+   * @param {String} reading
+   */
+  setSentenceNow(japanese, reading) {
+    this.sentenceNowJapanese = japanese; // 現在の文章の日本語
+    this.sentenceNowTypingText = new TypingText(reading); // 現在の文章の読み方
+    this.sentenceStartTime = Date.now(); // その文章が始まった時刻
+    this.sentenceMissTypeCount = 0; // その文章でのミスタイプ数
   }
 
   /**
@@ -40,13 +51,10 @@ class UserGame {
    * @returns {boolean} 正解ならtrue
    */
   judgeCorrectness(alphabet) {
-    if (this.sentenceCur < 0 || this.isCompleted()) {
-      return false;
-    }
-    const isCorrect = this.sentenceNowAlphabet[this.sentenceCur] === alphabet;
+    const matchResult = this.sentenceNowTypingText.inputKey(alphabet, true);
+    const isCorrect = matchResult === 'incomplete' || this.isCompleted();
     this.totalTypeCount++;
     if (isCorrect) {
-      this.sentenceCur++;
       this.totalCorrectTypeCount++;
       if (this.isCompleted()) {
         this.totalSentenceCount++;
@@ -62,20 +70,7 @@ class UserGame {
    * @returns {boolean} 文章が完了したのならtrueそうでないならfalse
    */
   isCompleted() {
-    return this.sentenceNowAlphabet.length <= this.sentenceCur;
-  }
-
-  /**
-   * 文章と文章時刻のセッター
-   * @param {String} japanese
-   * @param {String} alphabet
-   */
-  setSentenceNow(japanese, alphabet) {
-    this.sentenceNowJapanese = japanese;
-    this.sentenceNowAlphabet = alphabet;
-    this.sentenceStartTime = Date.now();
-    this.sentenceMissTypeCount = 0;
-    this.sentenceCur = 0;
+    return this.getRemainingRoman() === '';
   }
 
   /**
@@ -135,6 +130,34 @@ class UserGame {
   getTotalCorrectTypeCount() {
     return this.totalCorrectTypeCount;
   }
+  /**
+   * 現在の日本語文章を取得
+   * @returns {String}
+   */
+  getNowJapanese() {
+    return this.sentenceNowJapanese;
+  }
+  /**
+   * 現在の状態に関わらずにタイプ文字を取得
+   * @returns {String}
+   */
+  getRoman() {
+    return this.sentenceNowTypingText.roman;
+  }
+  /**
+   * 残りタイプ文字を取得
+   * @returns {String}
+   */
+  getRemainingRoman() {
+    return this.sentenceNowTypingText.remainingRoman;
+  }
+  /**
+   * タイプ済みの文字を取得
+   * @returns {String}
+   */
+  getCompletedRoman() {
+    return this.sentenceNowTypingText.completedRoman;
+  }
 
   /**
    * 現在の文章の予測タイムを計算
@@ -142,7 +165,7 @@ class UserGame {
    */
   calcExpectedTime() {
     return Math.ceil(
-      this.sentenceNowAlphabet.length / this.getExpectedTypesPerSec(),
+      this.getRoman().length / this.getExpectedTypesPerSec(),
     );
   }
   /**
@@ -174,7 +197,7 @@ class UserGame {
     let scoreDiff = 0;
     // (文字数×メーター/10)
     scoreDiff += Math.ceil(
-      this.sentenceNowAlphabet.length * this.meter / 10,
+      this.getCompletedRoman().length * this.meter / 10,
     );
     // 加点分に最終倍率をかける
     if (this.meter >= LAST_COEFFICIENT['THRESHOLD_BIG_FIREWORK']) {
@@ -219,7 +242,8 @@ class UserGame {
     const sentencePenalty = this.calcMissPenaltyMeter() *
       this.sentenceMissTypeCount;
     // その文章における合計ボーナス上昇量
-    const sentenceBonus = this.calcCorrectBonusMeter() * this.sentenceCur;
+    const sentenceBonus = this.calcCorrectBonusMeter() *
+      this.getCompletedRoman().length;
     // メーター量を計算
     this.meter = METER['METER_MAX'] - decreaseByTime - sentencePenalty +
       sentenceBonus;
