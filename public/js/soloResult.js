@@ -48,6 +48,7 @@ document.querySelector('#restartButton').onclick = (event) => {
 };
 
 document.querySelector('#rankingButton').onclick = (event) => {
+  location.href = 'ranking.html';
 };
 
 // タイトルに戻るボタン。ひとまず、ボタンのidが「titleButton」と仮定して作ってます。
@@ -55,5 +56,22 @@ document.querySelector('#titleButton').onclick = (event) => {
   location.href = '/index.html';
 };
 
-document.querySelector('#sendButton').onclick = (event) => {
+document.querySelector('#sendRanking').onclick = async (event) => {
+  const name = prompt('ランキングに表示する名前を入力してください');
+  const response = await fetch(
+    '/solo/sendRanking',
+    {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ userName: name }),
+    },
+  );
+  const responseObj = await response.json();
+  if (!responseObj['isSuccessful']) {
+    alert('結果を正しく送信できませんでした');
+  } else {
+    alert('ランキングに登録しました');
+  }
 };
