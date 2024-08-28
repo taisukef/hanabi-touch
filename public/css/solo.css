@@ -69,19 +69,24 @@ progress {
   border: none;
 }
 
-/* Firefox 用 */
-#red {
-  background-color: #ffefef;
-}
-#yellow {
-  background-color: #ffffdf;
-}
-#blue {
-  background-color: #efefff;
+/* #meter::-webkit-progress-value {
+  background-color: red;
 }
 
-#red::-moz-progress-bar {
-  background-color: #ff0000;
+#meter.red::-webkit-progress-value {
+  background-color: red;
+}
+#meter.yellow::-webkit-progress-value {
+  background-color: yellow;
+}
+#meter.blue::-webkit-progress-value {
+  background-color: blue;
+} */
+
+/* barの色 */
+//firefox用
+.red::-moz-progress-bar {
+  background-color: red;
 }
 #yellow::-moz-progress-bar {
   background-color: #ffffdf;
