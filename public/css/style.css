@@ -59,7 +59,7 @@ main {
 }
 
 #gameMain {
-  // アスペクト比 横100/縦59.5
+  /* アスペクト比 横100/縦59.5 */
   width: 100%;
   height: 85%;
 
@@ -68,6 +68,7 @@ main {
 
   display: flex;
   flex-direction: column;
+  justify-content: center;
   align-items: center;
 }
 

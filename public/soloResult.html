@@ -2,42 +2,52 @@
 <html lang="ja">
 
 <head>
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<meta charset="utf-8">
-	<link rel="stylesheet" href="./css/style.css">
-	<link rel="stylesheet" href="./css/solo.css">
-	<link rel="stylesheet" href="./css/soloResult.css">
-	<script src="js/soloResult.js" defer></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="./css/style.css">
+    <link rel="stylesheet" href="./css/soloResult.css">
+    <script src="js/soloResult.js" defer></script>
 
-	<title>花火タイピング</title>
+    <title>花火タイピング</title>
 </head>
 
 <body>
-	<header onclick="location.href='/'">
-		<img id="icon" src="icon80.png" alt="アイコン">
-		<p id="title">花火タイピング</p>
-	</header>
+    <header onclick="location.href='/'">
+        <img id="icon" src="icon80.png" alt="アイコン">
+        <p id="title">花火タイピング</p>
+    </header>
 
-	<main>
-		<div id="game">
-			<div id="gameHeader"></div>
-			<div id="gameMain">
-
-				<div id="resultText">
-					<p id="score"></p>
-					<p id="fireworkCount"></p>
-					<p id="typesPerSecond"></p>
-					<p id="typeCount"></p>
-					<br>
-				</div>
-				<div id="buttonResult">
-					<button id="titleButton">タイトルへ</button>
-					<button id="restartButton">もう一度</button>
-				</div>
-			</div>
-			<div id="gameFooter"></div>
-		</div>
-	</main>
+    <main>
+        <div id="game">
+            <div id="gameHeader"></div>
+            <div id="gameMain">
+                <div id="resultContents">
+                    <div id="resultText">
+                        <p id="score"></p>
+                        <button id="sendRanking">登録</button>
+                    </div>
+                    <div id="detailResult">
+                        <div id="detailText">
+                            <p>大花火数: </p>
+                            <p>秒間タイプ数: </p>
+                            <p>正解タイプ数: </p>
+                        </div>
+                        <div id="detailScore">
+                            <p id="fireworkCount"></p>
+                            <p id="typesPerSecond"></p>
+                            <p id="typeCount"></p>
+                        </div>
+                    </div>
+                    <div id="buttonResult">
+                        <button id="restartButton" onclick="location.href='/solo'">もう一度</button>
+                        <button id="rankingButton">ランキング</button>
+                        <button id="titleButton">タイトルへ</button>
+                    </div>
+                </div>
+            </div>
+            <div id="gameFooter"></div>
+        </div>
+    </main>
 </body>
 
 </html>
