@@ -3,6 +3,9 @@ const TIME_LIMIT = 60 * 1000;
 // スコアの初期値
 const INITIALIZED_SCORE = 0;
 
+// 難易度を表す文字列
+const DIFFICULTY_STRING = ['easy', 'normal', 'hard'];
+
 // 難易度で変化する箇所
 const DEPEND_DIFFICULTY = {
   'easy': {
@@ -52,6 +55,7 @@ const OUTPUT_TOPRANKING_NUMBER = 10;
 
 export {
   DEPEND_DIFFICULTY,
+  DIFFICULTY_STRING,
   INITIALIZED_SCORE,
   LAST_COEFFICIENT,
   METER,
