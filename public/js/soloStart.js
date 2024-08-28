@@ -20,9 +20,6 @@ async function getId() {
       location.reload();
       return;
     }
-
-    // ステータスコードが200の場合、正常に処理されました
-    console.log('ID retrieved successfully');
   } catch (error) {
     // ネットワークエラーなどの例外をキャッチして処理
     console.error('Fetch error:', error);

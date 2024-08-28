@@ -28,6 +28,7 @@ async function fetchSentenceAndRefreshMeter() {
     startMeter();
 
     //  文章を設定
+	document.getElementById('entered').textContent = "";
     document.getElementById('notEntered').textContent =
       responseObj.sentenceAlphabet;
     document.getElementById('japanese').textContent =
