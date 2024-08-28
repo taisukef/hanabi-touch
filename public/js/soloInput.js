@@ -62,11 +62,21 @@ async function sendChar(key) {
     await fetchSentenceAndRefreshMeter();
 
     const size = responseObj.fireworkSize / 20 + 1.5;
+    const fireworkColor = getMeterColor();
+    let colorFrom; // 色彩の閾値のうち小さい方
+    if (fireworkColor === 'red') {
+      colorFrom = 280;
+    } else if (fireworkColor === 'yellow') {
+      colorFrom = 40;
+    } else { // blue
+      colorFrom = 170;
+
+    }
     const firework = new Firework(
       [
-        color(random(255), 255, 255),
-        color(random(255), 255, 255),
-        color(random(255), 255, 255),
+        color(random(colorFrom, colorFrom + 120) % 360, 255, 255),
+        color(random(colorFrom, colorFrom + 120) % 360, 255, 255),
+        color(random(colorFrom, colorFrom + 120) % 360, 255, 255),
       ],
       [random(['菊', '牡丹']), random(['菊', '牡丹']), random(['菊', '牡丹'])],
       graphicBuffers,

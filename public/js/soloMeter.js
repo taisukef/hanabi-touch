@@ -56,3 +56,11 @@ function syncMeter(time) {
   setMeter();
   updateColor();
 }
+
+/**
+ * メーターの色を取得
+ * @returns {string} 　メーターの色
+ */
+function getMeterColor() {
+  return document.querySelector('progress').id;
+}
