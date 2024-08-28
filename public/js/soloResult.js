@@ -40,12 +40,18 @@ onload = async (event) => {
   typeCountResult.innerHTML = `${responseObj['typeCount']}`;
 };
 
+// もう一度遊ぶボタン。現段階では、ボタンのidが「restartButton」と仮定して作っています。
+document.getElementById('restartButton').onclick = (event) => {
+  location.href = '/solo.html';
+};
+
+document.querySelector('#rankingButton').onclick = (event) => {
+};
+
 // タイトルに戻るボタン。ひとまず、ボタンのidが「titleButton」と仮定して作ってます。
 document.querySelector('#titleButton').onclick = (event) => {
   location.href = '/index.html';
 };
 
-// もう一度遊ぶボタン。現段階では、ボタンのidが「restartButton」と仮定して作っています。
-document.querySelector('#restartButton').onclick = (event) => {
-  location.href = '/solo.html';
+document.querySelector('#sendButton').onclick = (event) => {
 };

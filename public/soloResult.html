@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta charset="utf-8">
     <link rel="stylesheet" href="./css/style.css">
-    <link rel="stylesheet" href="./css/solo.css">
     <link rel="stylesheet" href="./css/soloResult.css">
     <script src="js/soloResult.js" defer></script>
 
@@ -23,7 +22,7 @@
             <div id="gameHeader"></div>
             <div id="gameMain">
                 <div id="resultText">
-                    <p id="score">ここにscore</p>
+                    <p id="score">0</p>
                     <button id="sendRanking">登録</button>
                 </div>
                 <div id="detailResult">
@@ -39,7 +38,7 @@
                     </div>
                 </div>
                 <div id="buttonResult">
-                    <button id="restartButton">もう一度</button>
+                    <button id="restartButton" onclick="location.href='/solo'">もう一度</button>
                     <button id="rankingButton">ランキング</button>
                     <button id="titleButton">タイトルへ</button>
                 </div>
