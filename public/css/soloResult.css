@@ -1,37 +1,21 @@
-#result {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    width: 60%;
-    transform: translate(-50%, -50%);
-}
-
-#resultText {
-    color: white;
-    font-size: 3vw;
+#game {
+  font-size: calc(min(95vw, calc(94vh * 10 / 7)) / 20);
 }
 
 #buttonResult {
-    display: flex;
-    justify-content: space-between;
+  display: flex;
+  justify-content: center;
+  height: 20%;
+  width: 100%;
 }
 
-#titleButton {
-    background-color: orange;
-    color: black;
-    border-radius: 3vw;
+button {
+  background-color: orange;
+  color: black;
+  border-radius: calc(min(95vw, calc(94vh * 10 / 7)) / 20);
 
-    width: 40%;
-    height: 6%;
-    font-size: 3vw;
-}
-
-#restartButton {
-    background-color: orange;
-    color: black;
-    border-radius: 3vw;
-
-    width: 40%;
-    height: 6%;
-    font-size: 3vw;
+  width: 20%;
+  height: 60%;
+  margin: calc(min(95vw, calc(94vh * 10 / 7)) / 20);
+  font-size: calc(min(95vw, calc(94vh * 10 / 7)) / 35);
 }
