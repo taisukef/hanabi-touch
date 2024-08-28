@@ -72,17 +72,15 @@ async function sendChar(key) {
       graphicBuffers,
       launchPos = createVector(
         width * 0.5,
-        height,
+        height * 0.5,
       ), // launchPos
       size, //  speedMultiplier
       size, // lifespanMultiplier
       size,
+      true, // すぐ開くように
     );
     fireworks.push(firework);
-    new Audio(fireworkHugh.src).play();
-    setTimeout(() => {
-      new Audio(fireworkBoom.src).play();
-    }, 1450);
+    new Audio(fireworkBoom.src).play();
   }
 }
 

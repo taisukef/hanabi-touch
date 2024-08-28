@@ -60,7 +60,15 @@ class Firework {
 
   trailSize;
 
-  constructor(colors, types, buffers, launch, size = 1, radius = 1) {
+  constructor(
+    colors,
+    types,
+    buffers,
+    launch,
+    size = 1,
+    radius = 1,
+    openNow = false,
+  ) {
     this.buffers = buffers;
     this.colors = colors;
     this.types = types;
@@ -73,6 +81,12 @@ class Firework {
       this.colors[0],
       this.radius,
     );
+
+    if (openNow) {
+      document.dispatchEvent(onFireworkExplode);
+      this.exploded = true;
+      this.explode();
+    }
   }
 
   explode() {
