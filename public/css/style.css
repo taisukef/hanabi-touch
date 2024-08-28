@@ -20,8 +20,8 @@ body {
 header {
   height: 6vh;
   background-color: black;
-  font-size: 4vh;
-  padding: 0.5vh;
+  font-size: 3vh;
+  padding: 1.5vh;
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -29,7 +29,7 @@ header {
 
 header img {
   height: 5vh;
-  margin: 0.5vh 1.5vh;
+  margin: 1.5vh 1.5vh;
 }
 
 main {
