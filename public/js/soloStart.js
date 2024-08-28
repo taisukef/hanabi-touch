@@ -43,6 +43,7 @@ async function soloGameStart() {
     // ステータスコードが200でなければエラーハンドリング
     if (response.status !== 200) {
       console.error('Error:', responseObj.message || 'Unknown error');
+	  deleteCookie();
       location.reload();
     }
     const responseObj = await response.json();
