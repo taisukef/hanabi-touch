@@ -47,12 +47,12 @@ async function sendChar(key) {
       0.5, // lifespanMultiplier
     );
     fireworks.push(firework);
-    fireworkHugh.play();
+	new Audio(fireworkHugh.src).play();
     setTimeout(() => {
-      fireworkBoom.play();
-    }, 1450);
+		new Audio(fireworkBoom.src).play();
+    }, 1400);
   } else { // 間違った入力ならば
-    miss.play(); // 音声の再生
+	new Audio(miss.src).play();
   }
 
   // 得点の更新
@@ -84,9 +84,9 @@ async function sendChar(key) {
       size,
     );
     fireworks.push(firework);
-    fireworkHugh.play();
+	new Audio(fireworkHugh.src).play();
     setTimeout(() => {
-      fireworkBoom.play();
+		new Audio(fireworkBoom.src).play();
     }, 1450);
   }
 }
