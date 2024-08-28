@@ -4,7 +4,7 @@
 	background-color: orange;
 	border-radius: calc(min(95vw, calc(94vh * 10 / 7)) * 0.1);
 	width: 30%;
-	height: 20%;
+	height: 15%;
 	font-size: calc(min(95vw, calc(94vh * 10 / 7)) * 0.05);
 }
 
