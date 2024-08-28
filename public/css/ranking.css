@@ -1,16 +1,17 @@
 #top10 {
     width: 80%;
+    height: 70%;
     font-size: calc(min(95vw, calc(94vh * 10 / 7)) / 30);
     display: flex;
     flex-direction: row;
     justify-content: space-around;
-    align-items: center;
+    align-items: space-around;
     visibility: hidden;
 }
 
 #ranks {
     display: flex;
-    justify-content: flex-end;
+    align-items: flex-end;
     flex-direction: column;
 
 }
