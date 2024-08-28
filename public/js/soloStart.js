@@ -52,9 +52,9 @@ async function soloGameStart() {
     // scoreの初期化
     initializeScore(responseObj.initializedScore);
 
-	　// 入力文字の表示開始
-	　const scorePanel = document.getElementById('sentence');
-	　scorePanel.style.display = 'flex';
+    // 入力文字の表示開始
+    const scorePanel = document.getElementById('sentence');
+    scorePanel.style.display = 'flex';
 
     // 最初の文字を設定
     document.getElementById('notEntered').textContent =

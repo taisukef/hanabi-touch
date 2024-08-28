@@ -12,13 +12,16 @@ const standardFrame = 60;
  * canvasのサイズを計算
  * @returns {width:number,height:number} canvasのサイズ
  */
-function calcCanvasSize(){
-	const ASPECT = 100/56; // アスペクト比  横 / 縦
-	
-	const canvasWidth = Math.min(0.95 * windowWidth, 0.94 * windowHeight * 10 / 7);
-	const canvasHeight = canvasWidth / ASPECT ;
+function calcCanvasSize() {
+  const ASPECT = 100 / 56; // アスペクト比  横 / 縦
 
-	return {width: canvasWidth, height:canvasHeight};
+  const canvasWidth = Math.min(
+    0.95 * windowWidth,
+    0.94 * windowHeight * 10 / 7,
+  );
+  const canvasHeight = canvasWidth / ASPECT;
+
+  return { width: canvasWidth, height: canvasHeight };
 }
 
 /** p5js ページ読み込み時に一回のみ実行 */
@@ -81,6 +84,6 @@ function draw() {
 
 /** ウィンドウがリサイズされた時にp5jsが自動実行  */
 function windowResized() {
-	const { width, height } = calcCanvasSize();
-	resizeCanvas(width, height);
+  const { width, height } = calcCanvasSize();
+  resizeCanvas(width, height);
 }
