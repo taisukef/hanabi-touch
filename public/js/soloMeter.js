@@ -1,4 +1,5 @@
 let expectedTime;
+let doubleTime;
 
 /**
  * meterの初期設定
@@ -8,6 +9,7 @@ function setMeter(time) {
   const meter = document.getElementById('meter');
   if (meter) {
     meter.style.display = 'block';
+	doubleTime = 1000;
     meter.value = 1000;
     expectedTime = time;
   }
@@ -20,7 +22,9 @@ function startMeter() {
   const meter = document.getElementById('meter');
   // 1/100秒おきに実行
   setInterval(() => {
-    meter.value -= parseInt(10 / expectedTime);
+	doubleTime -= 10 / expectedTime;
+
+    meter.value = parseInt(doubleTime);
   }, 10);
 }
 
