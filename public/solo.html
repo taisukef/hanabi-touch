@@ -10,13 +10,13 @@
 			font-size: calc(min(95vw, calc(94vh * 10 / 7)) / 40);
 		}
 
-
-
 		#enterToBegin {
 			font-size: calc(min(95vw, calc(94vh * 10 / 7)) / 20);
 		}
 
-
+		#timer {
+			font-size: calc(min(95vw, calc(94vh * 10 / 7)) / 30);
+		}
 
 		#gameFooter {
 			display: flex;
@@ -29,7 +29,6 @@
 
 		#meter {
 			display: none;
-			
 		}
 
 		#sentence {
@@ -83,7 +82,7 @@
 		<div id="game">
 			<div id="gameHeader">
 				<p id="timer"></p>
-				<meter id="meter" min="0" max="1000" low="33" high="66" optimum="80" value="1000"></meter>
+				<progress id="meter" min="1" max="1000" low="33" high="66" optimum="80" value="1000"></progress>
 			</div>
 
 			<div id="gameMain">
