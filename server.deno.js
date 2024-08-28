@@ -121,11 +121,7 @@ Deno.serve(async (req) => {
     const reqeustJson = await req.json();
     const sentChar = reqeustJson['alphabet'];
     const isCorrect = userGames[id].judgeAndCalcScore(sentChar);
-    if (userGames[id].isCompleted()) {
-      const targetSentence = getRandomThemeSentence();
-      userGames[id].setSentenceNow(targetSentence[0], targetSentence[1]);
-    }
-    return make200Response({
+    const response = make200Response({
       'isCorrect': isCorrect,
       'isCompleted': userGames[id].isCompleted(),
       'score': userGames[id].getTotalScore(),
@@ -134,6 +130,11 @@ Deno.serve(async (req) => {
       'enteredChars': userGames[id].getCompletedRoman(),
       'notEnteredChars': userGames[id].getRemainingRoman(),
     });
+    if (userGames[id].isCompleted()) {
+      const targetSentence = getRandomThemeSentence();
+      userGames[id].setSentenceNow(targetSentence[0], targetSentence[1]);
+    }
+    return response;
   }
 
   if (req.method === 'GET' && pathname === '/solo/getResult') {
