@@ -1,5 +1,9 @@
-#ranks {
+#top10 {
     font-size: calc(min(95vw, calc(94vh * 10 / 7)) / 40);
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
 }
 
 #titleButton {

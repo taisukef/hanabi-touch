@@ -10,9 +10,11 @@ onload = async (event) => {
 
     for (i = 0; i < ranking.length; i++) {
         const rank = document.querySelector(`#rank${i + 1}`);
-        rank.innerHTML = `${i + 1}位. ${ranking[i]['userName']}　${
-            ranking[i]['score']
-        }`;
+        const name = document.querySelector(`#name${i + 1}`);
+        const score = document.querySelector(`#score${i + 1}`);
+        rank.innerHTML = `${i + 1}位`;
+        name.innerHTML = `${ranking[i + 1]['userName']}`;
+        score.innerHTMK = `${ranking[i + 1]['score']}`;
     }
     //console.log(responseObj['top10Results'][0]['score']);
 };
