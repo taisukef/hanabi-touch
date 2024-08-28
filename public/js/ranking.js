@@ -6,10 +6,13 @@ onload = async (event) => {
     const response = await fetch('/solo/getRanking', { method: 'GET' });
     const responseJson = await response.text();
     const responseObj = JSON.parse(responseJson);
+    const ranking = responseObj['top10Results'];
 
-    const rank1 = document.querySelector('#rank1');
-    rank1.innerHTML = `1位. ${responseObj['top10Results'][0]['userName']}　${
-        responseObj['top10Results'][0]['score']
-    }`;
+    for (i = 0; i < ranking.length; i++) {
+        const rank = document.querySelector(`#rank${i + 1}`);
+        rank.innerHTML = `${i + 1}位. ${ranking[i]['userName']}　${
+            ranking[i]['score']
+        }`;
+    }
     //console.log(responseObj['top10Results'][0]['score']);
 };
