@@ -102,7 +102,7 @@ Deno.serve(async (req) => {
       return makeErrorResponse('UserGame insntance is not made', '10003');
     }
     return make200Response({
-      'sentenceJapanese': userGames[id].getJapanese(),
+      'sentenceJapanese': userGames[id].getNowJapanese(),
       'sentenceAlphabet': userGames[id].getCompletedRoman() +
         userGames[id].getRemainingRoman(),
       'expectedTime': userGames[id].calcExpectedTime(),
@@ -130,8 +130,12 @@ Deno.serve(async (req) => {
       'enteredChars': userGames[id].getCompletedRoman(),
       'notEnteredChars': userGames[id].getRemainingRoman(),
     });
+    // 前回と違う文章が出るまで再抽選
     if (userGames[id].isCompleted()) {
-      const targetSentence = getRandomThemeSentence();
+      let targetSentence = getRandomThemeSentence();
+      while (userGames[id].getPreJapanese() === targetSentence[0]) {
+        targetSentence = getRandomThemeSentence();
+      }
       userGames[id].setSentenceNow(targetSentence[0], targetSentence[1]);
     }
     return response;
