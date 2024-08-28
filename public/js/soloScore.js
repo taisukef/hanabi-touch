@@ -2,7 +2,7 @@
 function initializeScore(initializedScore) {
   updateScore(initializedScore);
   const scorePanel = document.getElementById('scorePanel');
-  scorePanel.style.display = 'block';
+  scorePanel.style.display = 'flex';
 }
 
 /**

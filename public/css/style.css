@@ -45,17 +45,20 @@ main {
   aspect-ratio: 10/7;
   width: min(95vw, calc(94vh * 10 / 7));
 
-  background-color: red;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-item: center;
-  padding: calc(min(95vw, calc(94vh * 10 / 7)) /70) 0px;
+  padding: calc(min(95vw, calc(94vh * 10 / 7)) / 70) 0px;
 }
 
 #gameHeader {
   width: 100%;
   height: 10%;
+  display: flex;
+  padding-left: calc(min(95vw, calc(94vh * 10 / 7)) * 0.15);
+  padding-right: calc(min(95vw, calc(94vh * 10 / 7)) * 0.15);
+  justify-content: space-between;
 }
 
 #gameMain {
@@ -75,47 +78,3 @@ main {
   width: 100%;
   height: 10%;
 }
-
-/*
-
-
-#homePanel {
-  background-color: rgb(20, 20, 50);
-  width: 80%;
-  height: calc(80vw * 2 / 3);
-
-  max-width: 1200px;
-  max-height: 800px;
-  border-radius: 50px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-}
-
-#defaultCanvas0 {
-  background-color: rgb(20, 20, 50);
-  width: 80%;
-  height: calc(80vw * 2 / 3);
-
-  max-width: 1200px;
-  max-height: 800px;
-  border-radius: 50px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-}
-
-main img {
-  width: 30%;
-  margin-bottom: 30px;
-}
-
-#meter {
-  display: none;
-}
-
-#scorePanel {
-  display: none;
-} */

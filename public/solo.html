@@ -5,7 +5,55 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<meta charset="utf-8">
 	<link rel="stylesheet" href="css/style.css">
-	<link rel="stylesheet" href="css/solo.css">
+	<style>
+		#game {
+			font-size: calc(min(95vw, calc(94vh * 10 / 7)) / 40);
+		}
+
+
+
+		#enterToBegin {
+			font-size: calc(min(95vw, calc(94vh * 10 / 7)) / 20);
+		}
+
+
+
+		#gameFooter {
+			display: flex;
+			padding-left: calc(min(95vw, calc(94vh * 10 / 7)) * 0.15);
+			padding-right: calc(min(95vw, calc(94vh * 10 / 7)) * 0.15);
+			justify-content: space-between;
+
+		}
+
+
+		#meter {
+			display: none;
+			
+		}
+
+		#sentence {
+			height: 100%;
+		}
+
+		#alphabet {
+			display: flex;
+			width: calc(min(95vw, calc(94vh * 10 / 7)) *0.7);
+		}
+
+		#scorePanel {
+			display: none;
+			justify-content: flex-end;
+			align-items: center;
+			width: calc(min(95vw, calc(94vh * 10 / 7)) * 0.2);
+			font-size: calc(min(95vw, calc(94vh * 10 / 7)) / 30);
+		}
+
+		#entered {
+			color: red;
+		}
+	</style>
+	<!-- <link rel="stylesheet" href="css/solo.css">  -->
 
 	<!-- p5js -->
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.7.0/p5.min.js"></script>
@@ -25,8 +73,6 @@
 	<script src="js/soloScore.js" defer></script>
 	<script src="js/soloGetSentence.js" defer></script>
 
-
-
 	<title>花火タイピング</title>
 </head>
 
@@ -34,29 +80,31 @@
 	<div id="header"></div>
 
 	<main>
-		<div id="gameHeader">
-			<p id="timer"></p>
-			<meter id="meter" min="0" max="1000" low="33" high="66"  optimum="80" value="1000"></meter>
-		</div>
+		<div id="game">
+			<div id="gameHeader">
+				<p id="timer"></p>
+				<meter id="meter" min="0" max="1000" low="33" high="66" optimum="80" value="1000"></meter>
+			</div>
 
-		<div id="gamePanel">
-		</div>
-		<div id="enterToBegin">
-			<p>ENTERを押してゲームを開始</p>
-		</div>
-
-		<div id="gameFooter">
-			<div id="inputSentence">
-				<p id="japanese"></p>
-				<div>
-					<div id="alphabet">
-						<span id="entered"></span>
-						<span id="notEntered"></span>
-					</div>
+			<div id="gameMain">
+				<div id="enterToBegin">
+					<p>ENTERを押してゲームを開始</p>
 				</div>
 			</div>
-			<div id="scorePanel">
-				<span id="score"></span>点
+
+			<div id="gameFooter">
+				<div id="sentences">
+					<p id="japanese"></p>
+					<div>
+						<div id="alphabet">
+							<span id="entered"></span>
+							<span id="notEntered"></span>
+						</div>
+					</div>
+				</div>
+				<div id="scorePanel">
+					<span id="score"></span>点
+				</div>
 			</div>
 		</div>
 	</main>
