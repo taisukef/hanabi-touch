@@ -84,7 +84,8 @@ Deno.serve(async (req) => {
       return makeErrorResponse('id in cookies is not set', '10001');
     }
     const id = getCookies(req)['id'];
-    userGames[id] = new UserGame(id);
+    const targetSentence = getRandomThemeSentence();
+    userGames[id] = new UserGame(id, targetSentence[0], targetSentence[1]);
     return make200Response({
       'endTime': userGames[id].getEndTime(),
       'initializedScore': userGames[id].getInitializedScore(),
@@ -93,7 +94,6 @@ Deno.serve(async (req) => {
 
   // cookieのidからユーザごとに文章を取得する
   if (req.method === 'GET' && pathname === '/solo/getSentence') {
-    const targetSentence = getRandomThemeSentence();
     if (!getCookies(req)['id']) {
       return makeErrorResponse('id in cookies is not set', '10001');
     }
@@ -101,10 +101,10 @@ Deno.serve(async (req) => {
     if (!userGames[id]) {
       return makeErrorResponse('UserGame insntance is not made', '10003');
     }
-    userGames[id].setSentenceNow(targetSentence[0], targetSentence[1]);
     return make200Response({
-      'sentenceJapanese': targetSentence[0],
-      'sentenceAlphabet': userGames[id].getRoman(),
+      'sentenceJapanese': userGames[id].getJapanese(),
+      'sentenceAlphabet': userGames[id].getCompletedRoman() +
+        userGames[id].getRemainingRoman(),
       'expectedTime': userGames[id].calcExpectedTime(),
     });
   }
@@ -118,13 +118,11 @@ Deno.serve(async (req) => {
     if (!userGames[id]) {
       return makeErrorResponse('UserGame insntance is not made', '10003');
     }
-    if (userGames[id].isCompleted()) {
-      return makeErrorResponse('sentence is not set', '10002');
-    }
     const reqeustJson = await req.json();
     const sentChar = reqeustJson['alphabet'];
-    return make200Response({
-      'isCorrect': userGames[id].judgeAndCalcScore(sentChar),
+    const isCorrect = userGames[id].judgeAndCalcScore(sentChar);
+    const response = make200Response({
+      'isCorrect': isCorrect,
       'isCompleted': userGames[id].isCompleted(),
       'score': userGames[id].getTotalScore(),
       'meter': userGames[id].getMeter(),
@@ -132,6 +130,11 @@ Deno.serve(async (req) => {
       'enteredChars': userGames[id].getCompletedRoman(),
       'notEnteredChars': userGames[id].getRemainingRoman(),
     });
+    if (userGames[id].isCompleted()) {
+      const targetSentence = getRandomThemeSentence();
+      userGames[id].setSentenceNow(targetSentence[0], targetSentence[1]);
+    }
+    return response;
   }
 
   if (req.method === 'GET' && pathname === '/solo/getResult') {

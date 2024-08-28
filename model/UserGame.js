@@ -3,22 +3,22 @@ import { TypingText } from 'npm:@mogamoga1024/typing-jp';
 import {
   EXPECTED_TYPES_PER_SEC,
   INITIALIZED_SCORE,
-  INITIALIZED_TYPINGTEXT,
   LAST_COEFFICIENT,
   METER,
   SCORE_PER_CHAR,
   TIME_LIMIT,
 } from './../utils/constantValue.js';
-import { readLong } from 'https://deno.land/std@0.178.0/io/read_long.ts';
-import { match } from 'https://deno.land/x/path_to_regexp@v6.2.1/index.ts';
 
 class UserGame {
   /**
    * @param {String} id ユーザid
+   * @param {String} japanese 日本語文章
+   * @param {String} reading 文章の読み
    */
-  constructor(id) {
+  constructor(id, japanese, reading) {
     this.id = id;
     this.initialize();
+    this.setSentenceNow(japanese, reading);
     this.endTime = Date.now() + TIME_LIMIT;
   }
 
@@ -26,16 +26,23 @@ class UserGame {
    * メンバ変数の初期化(idを除く)
    */
   initialize() {
-    this.sentenceNowJapanese = ''; // 現在の文章の日本語
-    this.sentenceNowTypingText = new TypingText(INITIALIZED_TYPINGTEXT); // 現在の文章の読み方
     this.endTime = 0; // このゲームの終了時刻
     this.totalScore = 0; // このゲームの合計スコア
     this.totalSentenceCount = 0; // このゲームの合計完了文章
     this.totalTypeCount = 0; // このゲームの合計タイプ数
     this.totalCorrectTypeCount = 0; // このゲームの合計正解タイプ数
-    this.sentenceStartTime = 0; // その文章が始まった時刻
-    this.sentenceMissTypeCount = 0; // その文章でのミスタイプ数
     this.meter = METER['METER_MAX']; // 花火メーター
+  }
+  /**
+   * 文章と文章時刻のセッター
+   * @param {String} japanese
+   * @param {String} reading
+   */
+  setSentenceNow(japanese, reading) {
+    this.sentenceNowJapanese = japanese; // 現在の文章の日本語
+    this.sentenceNowTypingText = new TypingText(reading); // 現在の文章の読み方
+    this.sentenceStartTime = Date.now(); // その文章が始まった時刻
+    this.sentenceMissTypeCount = 0; // その文章でのミスタイプ数
   }
 
   /**
@@ -63,20 +70,7 @@ class UserGame {
    * @returns {boolean} 文章が完了したのならtrueそうでないならfalse
    */
   isCompleted() {
-    return (this.getRemainingRoman() === '' ||
-      this.getRemainingRoman() === INITIALIZED_TYPINGTEXT);
-  }
-
-  /**
-   * 文章と文章時刻のセッター
-   * @param {String} japanese
-   * @param {String} reading
-   */
-  setSentenceNow(japanese, reading) {
-    this.sentenceNowJapanese = japanese;
-    this.sentenceNowTypingText = new TypingText(reading);
-    this.sentenceStartTime = Date.now();
-    this.sentenceMissTypeCount = 0;
+    return this.getRemainingRoman() === '';
   }
 
   /**
@@ -135,6 +129,13 @@ class UserGame {
    */
   getTotalCorrectTypeCount() {
     return this.totalCorrectTypeCount;
+  }
+  /**
+   * 現在の日本語文章を取得
+   * @returns {String}
+   */
+  getJapanese() {
+    return this.sentenceNowJapanese;
   }
   /**
    * 現在の状態に関わらずにタイプ文字を取得
