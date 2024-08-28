@@ -3,8 +3,21 @@ let doubleTime;
 
 /** メーターをdoubleTimeをIntにキャストした値に変更 */
 function setMeter(){
-	const meter = document.getElementById('meter');
-	meter.value = parseInt(doubleTime);
+	const meter = document.querySelector('progress');
+	meter.value = parseInt(doubleTime > 0 ? doubleTime: 1);
+
+	updateColor();
+}
+
+function updateColor(){
+	const meter = document.querySelector('progress');
+	if(meter.value >= 666 ){
+		meter.id='red';
+	}else if(meter.value >= 333){
+		meter.id='yellow';
+	}else{
+		meter.id='blue';
+	}
 }
 
 /**
@@ -12,8 +25,8 @@ function setMeter(){
  * @param {number} time  設定する秒
  */
 function initializeMeter(time) {
-  const meter = document.getElementById('meter');
-  if (meter) {
+	const meter = document.querySelector('progress');
+	if (meter) {
     meter.style.display = 'block';
 	doubleTime = 1000;
     meter.value = 1000;
@@ -25,11 +38,12 @@ function initializeMeter(time) {
  * タイマー更新
  */
 function startMeter() {
-  const meter = document.getElementById('meter');
+  const meter = document.querySelector('progress');
   // 1/100秒おきに実行
   setInterval(() => {
 	doubleTime -= 10 / expectedTime;
     setMeter();
+	updateColor();
   }, 10);
 }
 
@@ -40,6 +54,5 @@ function startMeter() {
 function syncMeter(time) {
   doubleTime = time;
   setMeter();
+  updateColor();
 }
-
-
