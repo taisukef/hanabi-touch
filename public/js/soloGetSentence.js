@@ -32,6 +32,7 @@ async function fetchSentenceAndRefreshMeter() {
       responseObj.sentenceAlphabet;
     document.getElementById('japanese').textContent =
       responseObj.sentenceJapanese;
+    document.getElementById('kana').textContent = responseObj.sentenceKana;
   } catch (error) {
     // ネットワークエラーなどの例外をキャッチして処理
     console.error('Fetch error:', error);

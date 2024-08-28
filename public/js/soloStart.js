@@ -61,6 +61,7 @@ async function soloGameStart() {
       responseObj.sentenceAlphabet;
     document.getElementById('japanese').textContent =
       responseObj.sentenceJapanese;
+    document.getElementById('kana').textContent = responseObj.sentenceKana;
 
     // メーターを設定
     setMeter(responseObj.expectedTime);
