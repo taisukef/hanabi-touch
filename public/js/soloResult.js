@@ -10,6 +10,14 @@
 onload = async (event) => {
   // サーバーから結果情報を受け取る
   const response = await fetch('/solo/getResult', { method: 'GET' });
+
+  // エラー処理
+  if (response.status !== 200) {
+    console.error('Error:', responseObj.message || 'Unknown error');
+    const scoreResult = document.querySelector('#score');
+    scoreResult.innerHTML = '結果を正しく取得できませんでした';
+  }
+
   const responseJson = await response.text();
   const responseObj = JSON.parse(responseJson);
 
