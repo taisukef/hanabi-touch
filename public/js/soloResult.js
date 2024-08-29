@@ -25,6 +25,12 @@ onload = async (event) => {
   const scoreResult = document.querySelector('#score');
   scoreResult.innerHTML = `${responseObj['score']}`;
 
+  const highScoreId = document.querySelector('#highScore');
+  highScoreId.innerHTML = `ハイスコア: ${responseObj['highScore']}`;
+  if (responseObj['score'] >= responseObj['highScore']) {
+    highScoreId += '  自己ベスト更新!';
+  }
+
   //花火を打ち上げた回数を表示
   const fireworkCountResult = document.querySelector('#fireworkCount');
   fireworkCountResult.innerHTML = `${responseObj['fireworkCount']}`;

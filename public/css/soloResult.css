@@ -26,6 +26,10 @@
     margin-left: calc(min(95vw, calc(94vh * 10 / 7)) / 5);
 }
 
+#highScore {
+    font-size: calc(min(95vw, calc(94vh * 10 / 7)) / 30);
+}
+
 #sendRanking {
     width: calc(min(95vw, calc(94vh * 10 / 7)) / 10);
     height: 30%;
