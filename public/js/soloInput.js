@@ -15,6 +15,7 @@ async function sendChar(key) {
   );
 
   const responseObj = await response.json();
+  //   console.log(responseObj);
 
   // ステータスコードが200でなければエラーハンドリング
   if (response.status !== 200) {
@@ -45,46 +46,51 @@ async function sendChar(key) {
       0.5, // lifespanMultiplier
     );
     fireworks.push(firework);
-    fireworkHugh.play();
-    setTimeout(() => {
-      fireworkBoom.play();
-    }, 1450);
+    new Audio(fireworkHugh.src).play();
   } else { // 間違った入力ならば
-    miss.play(); // 音声の再生
-    return;
+    new Audio(miss.src).play();
   }
 
   // 得点の更新
   updateScore(responseObj.score);
   // メーターの更新
   syncMeter(responseObj.meter);
+  //   console.log(responseObj);
 
   // 最後の文字ならば
   if (responseObj.isCompleted) {
     await fetchSentenceAndRefreshMeter();
 
     const size = responseObj.fireworkSize / 20 + 1.5;
+    const fireworkColor = getMeterColor();
+    let colorFrom; // 色彩の閾値のうち小さい方
+    if (fireworkColor === 'red') {
+      colorFrom = 280;
+    } else if (fireworkColor === 'yellow') {
+      colorFrom = 40;
+    } else { // blue
+      colorFrom = 170;
+
+    }
     const firework = new Firework(
       [
-        color(random(255), 255, 255),
-        color(random(255), 255, 255),
-        color(random(255), 255, 255),
+        color(random(colorFrom, colorFrom + 120) % 360, 255, 255),
+        color(random(colorFrom, colorFrom + 120) % 360, 255, 255),
+        color(random(colorFrom, colorFrom + 120) % 360, 255, 255),
       ],
       [random(['菊', '牡丹']), random(['菊', '牡丹']), random(['菊', '牡丹'])],
       graphicBuffers,
       launchPos = createVector(
         width * 0.5,
-        height,
+        height * 0.5,
       ), // launchPos
       size, //  speedMultiplier
       size, // lifespanMultiplier
       size,
+      true, // すぐ開くように
     );
     fireworks.push(firework);
-    fireworkHugh.play();
-    setTimeout(() => {
-      fireworkBoom.play();
-    }, 1450);
+    new Audio(fireworkBoom.src).play();
   }
 }
 

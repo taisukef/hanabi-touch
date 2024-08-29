@@ -64,7 +64,7 @@ async function soloGameStart() {
     document.getElementById('kana').textContent = responseObj.sentenceKana;
 
     // メーターを設定
-    setMeter(responseObj.expectedTime);
+    initializeMeter(responseObj.expectedTime);
     startMeter();
 
     // キーの監視はじめ
