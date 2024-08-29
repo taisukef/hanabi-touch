@@ -1,20 +1,19 @@
 let expectedTime;
 let doubleTime;
-const OFFSET = 50;
 
 /** メーターをdoubleTimeをIntにキャストした値に変更 */
 function setMeter() {
   const meter = document.querySelector('progress');
-  meter.value = parseInt(doubleTime > 0 ? doubleTime + OFFSET : OFFSET);
+  meter.value = parseInt(doubleTime > 0 ? doubleTime : 1);
 
   updateColor();
 }
 
 function updateColor() {
   const meter = document.querySelector('progress');
-  if (meter.value >= 666 + OFFSET) {
+  if (meter.value >= 666) {
     meter.id = 'red';
-  } else if (meter.value >= 333 + OFFSET) {
+  } else if (meter.value >= 333) {
     meter.id = 'yellow';
   } else {
     meter.id = 'blue';
@@ -30,7 +29,7 @@ function initializeMeter(time) {
   if (meter) {
     meter.style.display = 'block';
     doubleTime = 1000;
-    meter.value = 1000 + OFFSET;
+    meter.value = 1000;
     expectedTime = time;
   }
 }
