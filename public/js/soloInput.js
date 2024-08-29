@@ -110,6 +110,8 @@ function updateWord(responseObj) {
   setWord('alphabet', responseObj.notEnteredChars, responseObj.enteredChars);
 }
 
+// サーバーに送信できる記号
+const sendableSymbols = ",._+-*/'#%=;:!?<>()[]{}";
 // 入力された文字をサーバーを送る
 function startObserve() {
   document.addEventListener('keydown', (event) => {
@@ -117,7 +119,8 @@ function startObserve() {
       event.key.length === 1 &&
       ((event.key >= 'a' && event.key <= 'z') ||
         (event.key >= 'A' && event.key <= 'Z') ||
-        event.key === '-')
+        (event.key >= '0' && event.key <= '9') ||
+        sendableSymbols.includes(event.key))
     ) {
       sendChar(event.key);
     }
