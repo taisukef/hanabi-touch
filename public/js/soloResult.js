@@ -74,8 +74,8 @@ document.querySelector('#titleButton').onclick = (event) => {
 // 記録をランキングに登録するボタン
 document.querySelector('#sendRanking').onclick = async (event) => {
   const name = prompt('ランキングに表示する名前を入力してください');
-  if (name.length === 0) {
-    alert('その名前は登録できません');
+  if (name.length < 1 || name.length >= 10) {
+    alert('1文字以上10文字以内で入力してください');
   } else if (name.includes('<') || name.includes('>')) {
     alert('使用できない文字が含まれています');
   } else {
