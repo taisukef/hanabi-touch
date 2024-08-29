@@ -25,18 +25,26 @@ async function displayRanking(difficulty) {
         nameId.textContent = `${ranking[i]['userName']}`;
         scoreId.innerText = `${ranking[i]['score']}`;
     }
+    document.querySelector(`#${difficulty}Button`).style.background =
+        'rgba(255, 255, 255, 0.15)';
 }
 
 document.querySelector('#easyButton').onclick = (event) => {
     displayRanking('easy');
+    document.querySelector('#normalButton').style.background = 'midnightblue';
+    document.querySelector('#hardButton').style.background = 'midnightblue';
 };
 
 document.querySelector('#normalButton').onclick = (event) => {
     displayRanking('normal');
+    document.querySelector('#easyButton').style.background = 'midnightblue';
+    document.querySelector('#hardButton').style.background = 'midnightblue';
 };
 
 document.querySelector('#hardButton').onclick = (event) => {
     displayRanking('hard');
+    document.querySelector('#normalButton').style.background = 'midnightblue';
+    document.querySelector('#easyButton').style.background = 'midnightblue';
 };
 
 onload = async (event) => {

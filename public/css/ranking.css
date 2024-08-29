@@ -4,14 +4,22 @@
 }
 
 #difficulties {
+    width: 80%;
     display: flex;
     flex-direction: row;
+    justify-content: space-between;
 }
 
 #difficulties button {
+    color: white;
+    width: 33%;
     text-align: center;
     font-size: calc(min(95vw, calc(94vh * 10 / 7)) * 0.025);
-    border-radius: calc(min(95vw, calc(94vh * 10 / 7)) * 0.1);
+    border-top-left-radius: calc(min(95vw, calc(94vh * 10 / 7)) * 0.02);
+    border-top-right-radius: calc(min(95vw, calc(94vh * 10 / 7)) * 0.02);
+    background-color: midnightblue;
+    border-color: rgb(20, 20, 50);
+    /*border-radius: calc(min(95vw, calc(94vh * 10 / 7)) * 0.1);*/
 }
 
 #top10 {
@@ -23,6 +31,9 @@
     justify-content: space-around;
     align-items: space-around;
     visibility: hidden;
+    background-color: rgba(255, 255, 255, 0.15);
+    border-bottom-left-radius: calc(min(95vw, calc(94vh * 10 / 7)) * 0.02);
+    border-bottom-right-radius: calc(min(95vw, calc(94vh * 10 / 7)) * 0.02);
 }
 
 #ranks {
@@ -39,6 +50,7 @@
     font-weight: bold;
     font-size: calc(min(95vw, calc(94vh * 10 / 7)) * 0.02);
     visibility: hidden;
+    margin-top: 1.5%;
 }
 
 button {
