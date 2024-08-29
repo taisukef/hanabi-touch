@@ -6,15 +6,11 @@ async function getId() {
     // GETリクエストを送信し、レスポンスを受け取る
     const response = await fetch('/getId', {
       method: 'GET',
-      headers: {
-        'Content-Type': 'application/json',
-      },
     });
-
-    const responseObj = await response.json();
 
     // ステータスコードが200でなければエラーハンドリング
     if (response.status !== 200) {
+      const responseObj = await response.json();
       console.error('Error:', responseObj.message || 'Unknown error');
       deleteCookie();
       location.reload();
