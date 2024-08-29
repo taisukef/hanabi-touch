@@ -15,7 +15,6 @@ async function sendChar(key) {
   );
 
   const responseObj = await response.json();
-  //   console.log(responseObj);
 
   // ステータスコードが200でなければエラーハンドリング
   if (response.status !== 200) {
@@ -55,7 +54,6 @@ async function sendChar(key) {
   updateScore(responseObj.score);
   // メーターの更新
   syncMeter(responseObj.meter);
-  //   console.log(responseObj);
 
   // 最後の文字ならば
   if (responseObj.isCompleted) {
@@ -120,7 +118,6 @@ function startObserve() {
  */
 function setWord(id, notEntered, entered = '') {
   const elem = document.getElementById(id);
-  console.log(elem);
 
   elem.querySelector('.notEntered').textContent = notEntered;
   elem.querySelector('.entered').textContent = entered;

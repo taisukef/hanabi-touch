@@ -27,9 +27,7 @@ async function fetchSentenceAndRefreshMeter() {
     initializeMeter(responseObj.expectedTime);
 
     //  文章を設定
-    console.log(responseObj.sentenceKana, responseObj.sentenceJapanese);
-
-    setWord('kana', responseObj.sentenceKana);
+       setWord('kana', responseObj.sentenceKana);
     setWord('alphabet', responseObj.sentenceAlphabet);
     document.getElementById('japanese').textContent =
       responseObj.sentenceJapanese;
