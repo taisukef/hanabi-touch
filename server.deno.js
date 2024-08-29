@@ -188,6 +188,10 @@ Deno.serve(async (req) => {
     // ハイスコア再取得
     const highScore =
       (await kv.get(['highScore', userGames[id].getDifficulty(), id]))['value'];
+    // ランキングスコア取得
+    const rankingScore =
+      (await kv.get(['ranking', userGames[id].getDifficulty(), id]))['value']
+        ?.score;
     return make200Response({
       'score': userGames[id].getTotalScore(),
       'fireworkCount': userGames[id].calcTotalFireworks(),
@@ -195,6 +199,7 @@ Deno.serve(async (req) => {
       'typeCount': userGames[id].getTotalCorrectTypeCount(),
       'typeMissCount': userGames[id].calcTotalMissType(),
       'highScore': highScore,
+      'rankingScore': rankingScore,
     });
   }
 
@@ -212,17 +217,25 @@ Deno.serve(async (req) => {
     const userName = reqeustJson['userName'];
     // Deno KVにアクセス
     const kv = await Deno.openKv();
-    // キーと値を設定しkvにセット
+    // ハイスコア取得
+    const highScore =
+      (await kv.get(['highScore', userGames[id].getDifficulty(), id]))['value'];
+    // キーと値を設定
     const kvKey = ['ranking', userGames[id].getDifficulty(), id];
-    const kvValue = {
-      'score': userGames[id].getTotalScore(),
-      'userName': userName,
-    };
-    const kvResult = await kv.set(kvKey, kvValue);
-    // 成功したかをレスポンスに載せる
-    return make200Response({
-      'isSuccessful': kvResult['ok'],
-    });
+    const kvValue = { 'score': highScore, 'userName': userName };
+    // ランキングスコアが未登録、またはそれよりハイスコアが上ならスコアを登録する
+    const rankingScore = (await kv.get(kvKey))['value']?.score;
+    if (!rankingScore || highScore > rankingScore) {
+      const kvResult = await kv.set(kvKey, kvValue);
+      return make200Response({
+        'isSuccessful': kvResult['ok'],
+      });
+    } // ハイスコアがランキングスコア以下なら登録しない
+    else {
+      return make200Response({
+        'isSuccessful': false,
+      });
+    }
   }
 
   if (req.method === 'POST' && pathname === '/solo/getRanking') {
