@@ -97,7 +97,7 @@ function updateWord(responseObj) {
 }
 
 // サーバーに送信できる記号
-const sendableSymbols = "._+-*/'#%=;:!?<>()[]{}";
+const sendableSymbols = ",._+-*/'#%=;:!?<>()[]{}";
 // 入力された文字をサーバーを送る
 function startObserve() {
   document.addEventListener('keydown', (event) => {
