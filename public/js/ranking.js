@@ -67,7 +67,9 @@ onload = async (event) => {
 
 // Enterが押されたらタイトルへ戻る
 document.addEventListener('keydown', (event) => {
-    document.querySelector('#titleButton').dispatchEvent(
-        new PointerEvent('click'),
-    );
+    if (event.key === 'Enter') {
+        document.querySelector('#titleButton').dispatchEvent(
+            new PointerEvent('click'),
+        );
+    }
 });
