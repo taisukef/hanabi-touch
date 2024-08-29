@@ -15,6 +15,7 @@ body {
   flex-direction: column;
   justify-content: center;
   background-color: #252525;
+  width: 100vw;
 }
 
 header {
