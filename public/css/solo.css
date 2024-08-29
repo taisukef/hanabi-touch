@@ -2,11 +2,16 @@
   font-size: calc(min(95vw, calc(94vh * 10 / 7)) / 40);
 }
 
+#explanation{
+	margin-top: calc(min(95vw, calc(94vh * 10 / 7)) / 40);
+	font-size: calc(min(95vw, calc(94vh * 10 / 7)) / 40);
+}
+
 #option {
   position: absolute;
   font-size: calc(min(95vw, calc(94vh * 10 / 7)) / 20);
   width: min(95vw, calc(94vh * 10 / 7));
-  padding-top: calc(min(95vw, calc(94vh * 10 / 7)) * 0.3);
+  padding-top: calc(min(95vw, calc(94vh * 10 / 7)) * 0.35);
   text-align: center;
   z-index: 2;
 }
@@ -71,7 +76,7 @@
   width: calc(min(95vw, calc(94vh * 10 / 7)) * 0.2);
   height: calc(min(95vw, calc(94vh * 10 / 7)) * 0.08);
   border: calc(min(95vw, calc(94vh * 10 / 7)) * 0.005) solid;
-  border-color: white;
+  border-color: orange;
   border-radius: calc(min(95vw, calc(94vh * 10 / 7)) * 0.02);
   color: black;
   font-size: calc(min(95vw, calc(94vh * 10 / 7)) / 30);
