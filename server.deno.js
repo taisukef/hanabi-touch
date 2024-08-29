@@ -137,6 +137,8 @@ Deno.serve(async (req) => {
       'fireworkSize': userGames[id].calcFireworkSize(),
       'enteredChars': userGames[id].getCompletedRoman(),
       'notEnteredChars': userGames[id].getRemainingRoman(),
+      'enteredYomigana': userGames[id].getCompletedYomigana(),
+      'notEnteredYomigana': userGames[id].getRemainingYomigana(),
     });
     // 前回と違う文章が出るまで再抽選
     if (userGames[id].isCompleted()) {

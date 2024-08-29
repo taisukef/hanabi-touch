@@ -138,11 +138,25 @@ class UserGame {
     return this.sentenceNowJapanese;
   }
   /**
-   * 現在の文章の読み仮名を取得
+   * 現在の状態に関わらずに読み仮名を取得
    * @returns {String}
    */
   getNowYomigana() {
     return this.sentenceNowTypingText.text;
+  }
+  /**
+   * 現在の残り読み仮名を取得
+   * @returns {String}
+   */
+  getRemainingYomigana() {
+    return this.sentenceNowTypingText.remainingText;
+  }
+  /**
+   * 現在の完了済み読み仮名を取得
+   * @returns {String}
+   */
+  getCompletedYomigana() {
+    return this.sentenceNowTypingText.completedText;
   }
   /**
    * 現在の状態に関わらずにタイプ文字を取得
