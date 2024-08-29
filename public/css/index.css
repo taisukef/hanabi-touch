@@ -1,31 +1,38 @@
 #startButton {
-	text-align: center;
-	color: black;
-	background-color: orange;
-	border-radius: calc(min(95vw, calc(94vh * 10 / 7)) * 0.1);
-	width: 30%;
-	height: 15%;
-	font-weight: bold;
-	font-size: calc(min(95vw, calc(94vh * 10 / 7)) * 0.05);
+  text-align: center;
+  color: black;
+  background-color: orange;
+  border-radius: calc(min(95vw, calc(94vh * 10 / 7)) * 0.1);
+  width: 30%;
+  height: 15%;
+  font-weight: bold;
+  font-size: calc(min(95vw, calc(94vh * 10 / 7)) * 0.05);
 }
 
 #rankingButton {
-	text-align: center;
-	color: black;
-	background-color: orange;
-	border-radius: calc(min(95vw, calc(94vh * 10 / 7)) * 0.1);
-	width: 25%;
-	height: 10%;
-	font-weight: bold;
-	font-size: calc(min(95vw, calc(94vh * 10 / 7)) * 0.03);
-	margin-top: 1%;
+  text-align: center;
+  color: black;
+  background-color: orange;
+  border-radius: calc(min(95vw, calc(94vh * 10 / 7)) * 0.1);
+  width: 25%;
+  height: 10%;
+  font-weight: bold;
+  font-size: calc(min(95vw, calc(94vh * 10 / 7)) * 0.03);
+  margin-top: 1%;
 }
 
 #gameMain img {
-	width: 30%;
-	margin-bottom: calc(min(95vw, calc(94vh * 10 / 7)) * 0.05);
+  width: 30%;
+  margin-bottom: calc(min(95vw, calc(94vh * 10 / 7)) * 0.05);
 }
 
 #gameMain {
-	justify-content: center;
+  justify-content: center;
+  background-color: rgb(0 0 0 / 0%);
+}
+
+#defaultCanvas0 {
+  border-radius: 10vh;
+  position: absolute;
+  z-index: -1;
 }
