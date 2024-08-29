@@ -5,27 +5,21 @@ import { UserGame } from './model/UserGame.js';
 import {
   DIFFICULTY_STRING,
   OUTPUT_TOPRANKING_NUMBER,
+  THEME_SENTENCES,
 } from './utils/constantValue.js';
 
 function makeId() {
   return crypto.randomUUID();
 }
 
-// 「漢字入り文章,読み方」
-// 形式のcsvファイルを読み込む
-const themeSentencesText = await Deno.readTextFile('./private/sentences.csv');
-// 改行とカンマ区切りで2次元リスト化
-const themeSentences = themeSentencesText.split('\n').map((text) => {
-  text = text.replaceAll('\r', '');
-  return text.split(',');
-});
-
 /**
  * ランダムな文章とそのローマ字文章の組み合わせを出力
  * @returns [漢字入り文章,読み方]
  */
-function getRandomThemeSentence() {
-  return themeSentences[Math.floor(Math.random() * themeSentences.length)];
+function getRandomThemeSentence(difficulty) {
+  return THEME_SENTENCES[difficulty][
+    Math.floor(Math.random() * THEME_SENTENCES[difficulty].length)
+  ];
 }
 
 /**
@@ -96,7 +90,7 @@ Deno.serve(async (req) => {
     if (!DIFFICULTY_STRING.includes(difficulty)) {
       return makeErrorResponse('difficulty is different!', '10004');
     }
-    const targetSentence = getRandomThemeSentence();
+    const targetSentence = getRandomThemeSentence(difficulty);
     userGames[id] = new UserGame(
       id,
       difficulty,
@@ -157,9 +151,13 @@ Deno.serve(async (req) => {
     });
     // 前回と違う文章が出るまで再抽選
     if (userGames[id].isCompleted()) {
-      let targetSentence = getRandomThemeSentence();
+      let targetSentence = getRandomThemeSentence(
+        userGames[id].getDifficulty(),
+      );
       while (userGames[id].getNowJapanese() === targetSentence[0]) {
-        targetSentence = getRandomThemeSentence();
+        targetSentence = getRandomThemeSentence(
+          userGames[id].getDifficulty(),
+        );
       }
       userGames[id].setSentenceNow(targetSentence[0], targetSentence[1]);
     }
