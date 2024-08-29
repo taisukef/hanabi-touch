@@ -27,8 +27,9 @@ onload = async (event) => {
 
   const highScoreId = document.querySelector('#highScore');
   highScoreId.innerHTML = `${responseObj['highScore']}`;
-  if (responseObj['score'] >= responseObj['highScore']) {
-    highScoreId.innerHTML += '  自己ベスト更新!';
+  if (responseObj['score'] > responseObj['highScore']) {
+    const bestTextId = document.querySelector('#bestTextId');
+    bestTextId.innerHTML += '自己ベスト更新!';
   }
 
   //花火を打ち上げた回数を表示
