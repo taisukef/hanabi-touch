@@ -2,9 +2,9 @@
   font-size: calc(min(95vw, calc(94vh * 10 / 7)) / 40);
 }
 
-#explanation{
-	margin-top: calc(min(95vw, calc(94vh * 10 / 7)) / 40);
-	font-size: calc(min(95vw, calc(94vh * 10 / 7)) / 40);
+#explanation {
+  margin-top: calc(min(95vw, calc(94vh * 10 / 7)) / 40);
+  font-size: calc(min(95vw, calc(94vh * 10 / 7)) / 40);
 }
 
 #option {
@@ -81,7 +81,6 @@
   text-align: center;
 }
 
-
 .difficultyButton {
   width: calc(min(95vw, calc(94vh * 10 / 7)) * 0.2);
   height: calc(min(95vw, calc(94vh * 10 / 7)) * 0.08);
@@ -106,12 +105,13 @@ progress {
   -webkit-appearance: none;
   -moz-appearance: none;
   border: none;
+  border-radius: calc(min(95vw, calc(94vh * 10 / 7)) * 0.05); //firefox用
 }
 
 /* barの色 */
 //firefox用
-.red::-moz-progress-bar {
-  background-color: red;
+#red::-moz-progress-bar {
+  background-color: #ff0000;
 }
 #yellow::-moz-progress-bar {
   background-color: #ffffdf;
@@ -120,12 +120,41 @@ progress {
   background-color: #efefff;
 }
 
+#red::-ms-fill {
+  background-color: #ffefef;
+}
+#yellow::-ms-fill {
+  background-color: #ffffdf;
+}
+#blue::-ms-fill {
+  background-color: #efeffft;
+}
+
 /* Chrome, Safari 用 */
+/* progress::-webkit-progress-bar {
+  border-radius: calc(min(95vw, calc(94vh * 10 / 7)) * 0.05);
+}
+
+progress::-webkit-progress-value {
+  border-radius: calc(min(95vw, calc(94vh * 10 / 7)) * 0.05);
+} */
+/* Chrome, Safari 用 */
+progress::-webkit-progress-bar {
+  border-radius: calc(min(95vw, calc(94vh * 10 / 7)) * 0.05);
+  overflow: hidden; /* 中央部分をまっすぐにするための設定 */
+}
+
+progress::-webkit-progress-value {
+  border-radius: calc(min(95vw, calc(94vh * 10 / 7)) * 0.05) 0 0
+ 
+  calc(min(95vw, calc(94vh * 10 / 7)) * 0.05);
+}
+
 #red::-webkit-progress-bar {
   background-color: #ffefef;
 }
 #yellow::-webkit-progress-bar {
-  background-color: #ffffdf;
+  background-color: #efffef;
 }
 #blue::-webkit-progress-bar {
   background-color: #efefff;
@@ -135,7 +164,7 @@ progress {
   background-color: #ff0000;
 }
 #yellow::-webkit-progress-value {
-  background-color: #ffff00;
+  background-color: #00ff00;
 }
 #blue::-webkit-progress-value {
   background-color: #0000ff;
