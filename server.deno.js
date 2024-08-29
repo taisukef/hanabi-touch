@@ -225,7 +225,10 @@ Deno.serve(async (req) => {
     const kvValue = { 'score': highScore, 'userName': userName };
     // ランキングスコアが未登録、またはそれよりハイスコアが上ならスコアを登録する
     const rankingScore = (await kv.get(kvKey))['value']?.score;
-    if (!rankingScore || highScore > rankingScore) {
+    if (
+      (highScore || highScore === 0) &&
+      (!rankingScore || highScore > rankingScore)
+    ) {
       const kvResult = await kv.set(kvKey, kvValue);
       return make200Response({
         'isSuccessful': kvResult['ok'],
