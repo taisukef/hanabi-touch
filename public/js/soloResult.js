@@ -46,18 +46,42 @@ onload = async (event) => {
   document.getElementById('resultContents').style.visibility = 'visible';
 };
 
-// もう一度遊ぶボタン。現段階では、ボタンのidが「restartButton」と仮定して作っています。
+// もう一度遊ぶボタン
 document.querySelector('#restartButton').onclick = (event) => {
   location.href = '/solo.html';
 };
-
+// ランキング画面に遷移するボタン
 document.querySelector('#rankingButton').onclick = (event) => {
+  location.href = 'ranking.html';
 };
 
-// タイトルに戻るボタン。ひとまず、ボタンのidが「titleButton」と仮定して作ってます。
+// タイトルに戻るボタン
 document.querySelector('#titleButton').onclick = (event) => {
   location.href = '/index.html';
 };
-
-document.querySelector('#sendButton').onclick = (event) => {
+// 記録をランキングに登録するボタン
+document.querySelector('#sendRanking').onclick = async (event) => {
+  const name = prompt('ランキングに表示する名前を入力してください');
+  if (name.length === 0) {
+    alert('その名前は登録できません');
+  } else if (name.includes('<') || name.includes('>')) {
+    alert('使用できない文字が含まれています');
+  } else {
+    const response = await fetch(
+      '/solo/sendRanking',
+      {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ userName: name }),
+      },
+    );
+    const responseObj = await response.json();
+    if (!responseObj['isSuccessful']) {
+      alert('結果を正しく送信できませんでした');
+    } else {
+      alert('ランキングに登録しました');
+    }
+  }
 };

@@ -26,7 +26,7 @@ async function sendChar(key) {
 
   if (responseObj.isCorrect) { //正しい入力ならば
     // 打った文字の色の更新
-    updateWord(responseObj.enteredChars, responseObj.notEnteredChars);
+    updateWord(responseObj);
 
     const shape = random(['菊', '牡丹']);
     const firework = new Firework(
@@ -45,13 +45,9 @@ async function sendChar(key) {
       0.5, // lifespanMultiplier
     );
     fireworks.push(firework);
-    fireworkHugh.play();
-    setTimeout(() => {
-      fireworkBoom.play();
-    }, 1450);
+    new Audio(fireworkHugh.src).play();
   } else { // 間違った入力ならば
-    miss.play(); // 音声の再生
-    return;
+    new Audio(miss.src).play();
   }
 
   // 得点の更新
@@ -64,40 +60,40 @@ async function sendChar(key) {
     await fetchSentenceAndRefreshMeter();
 
     const size = responseObj.fireworkSize / 20 + 1.5;
+    const fireworkColor = getMeterColor();
+    let colorFrom; // 色彩の閾値のうち小さい方
+    if (fireworkColor === 'red') {
+      colorFrom = 280;
+    } else if (fireworkColor === 'yellow') {
+      colorFrom = 40;
+    } else { // blue
+      colorFrom = 170;
+    }
     const firework = new Firework(
       [
-        color(random(255), 255, 255),
-        color(random(255), 255, 255),
-        color(random(255), 255, 255),
+        color(random(colorFrom, colorFrom + 120) % 360, 255, 255),
+        color(random(colorFrom, colorFrom + 120) % 360, 255, 255),
+        color(random(colorFrom, colorFrom + 120) % 360, 255, 255),
       ],
       [random(['菊', '牡丹']), random(['菊', '牡丹']), random(['菊', '牡丹'])],
       graphicBuffers,
       launchPos = createVector(
         width * 0.5,
-        height,
+        height * 0.5,
       ), // launchPos
       size, //  speedMultiplier
       size, // lifespanMultiplier
       size,
+      true, // すぐ開くように
     );
     fireworks.push(firework);
-    fireworkHugh.play();
-    setTimeout(() => {
-      fireworkBoom.play();
-    }, 1450);
+    new Audio(fireworkBoom.src).play();
   }
 }
 
-/**
- * 入力した文字の更新（idがnotEnteredの文字をidがenteredの要素に移動）
- * @param {string} key 一文字
- */
-function updateWord(enteredChars, notEnteredChars) {
-  const entered = document.getElementById('entered');
-  const notEntered = document.getElementById('notEntered');
-
-  entered.textContent = enteredChars;
-  notEntered.textContent = notEnteredChars;
+function updateWord(responseObj) {
+  setWord('kana', responseObj.notEnteredYomigana, responseObj.enteredYomigana);
+  setWord('alphabet', responseObj.notEnteredChars, responseObj.enteredChars);
 }
 
 // 入力された文字をサーバーを送る
@@ -112,4 +108,17 @@ function startObserve() {
       sendChar(event.key);
     }
   });
+}
+
+/**
+ * 引数で指定した要素内の入力済みの部分を削除し、未入力部分に引数のワードを入れる。
+ * @param {string} id
+ * @param {string} notEntered
+ * @param {string} entered  ない場合は''を入れる。
+ */
+function setWord(id, notEntered, entered = '') {
+  const elem = document.getElementById(id);
+
+  elem.querySelector('.notEntered').textContent = notEntered;
+  elem.querySelector('.entered').textContent = entered;
 }
