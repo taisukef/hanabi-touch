@@ -28,7 +28,7 @@ const METER = {
   'METER_MIN': 1, // メーターの最小値
   'easy': {
     'PENALTY_COEFFICENT': 1.0, // ミス時の減少係数
-    'BONUS_COEFFICIENT': 0.1, // 正解時の上昇係数
+    'BONUS_COEFFICIENT': 0.25, // 正解時の上昇係数
   },
   'normal': {
     'PENALTY_COEFFICENT': 1.5, // ミス時の減少係数
@@ -36,7 +36,7 @@ const METER = {
   },
   'hard': {
     'PENALTY_COEFFICENT': 3.0, // ミス時の減少係数
-    'BONUS_COEFFICIENT': 0.4, // 正解時の上昇係数
+    'BONUS_COEFFICIENT': 0.10, // 正解時の上昇係数
   },
 };
 
@@ -50,6 +50,35 @@ const LAST_COEFFICIENT = {
   'COEFFICIENT_SMALL_FIREWORK': 1.0, // 小花火の最終倍率
 };
 
+// 「漢字入り文章,読み方」
+// 形式のcsvファイルを読み込む
+const themeSentencesTexts = [
+  await Deno.readTextFile(
+    './private/sentencesEasy.csv',
+  ),
+  await Deno.readTextFile(
+    './private/sentencesNormal.csv',
+  ),
+  await Deno.readTextFile(
+    './private/sentencesHard.csv',
+  ),
+];
+
+const THEME_SENTENCES = {
+  'easy': themeSentencesTexts[0].split('\n').map((text) => {
+    text = text.replaceAll('\r', '');
+    return text.split(',');
+  }),
+  'normal': themeSentencesTexts[1].split('\n').map((text) => {
+    text = text.replaceAll('\r', '');
+    return text.split(',');
+  }),
+  'hard': themeSentencesTexts[2].split('\n').map((text) => {
+    text = text.replaceAll('\r', '');
+    return text.split(',');
+  }),
+};
+
 // ランキングの上位何位まで出力するか
 const OUTPUT_TOPRANKING_NUMBER = 10;
 
@@ -60,5 +89,6 @@ export {
   LAST_COEFFICIENT,
   METER,
   OUTPUT_TOPRANKING_NUMBER,
+  THEME_SENTENCES,
   TIME_LIMIT,
 };
