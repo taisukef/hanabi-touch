@@ -118,6 +118,7 @@ const buttons = [
 let buttonIndex = 0;
 // 上下左右矢印で移動、Enterでボタンクリックと同じ挙動をさせる
 document.addEventListener('keydown', (event) => {
+  const sendRankingButton = document.querySelector('#sendRanking');
   if (event.key === 'ArrowRight') {
     buttons[buttonIndex].classList.remove('selected');
     buttonIndex = Math.min(buttonIndex + 1, 2);
@@ -126,10 +127,15 @@ document.addEventListener('keydown', (event) => {
     buttons[buttonIndex].classList.remove('selected');
     buttonIndex = Math.max(buttonIndex - 1, 0);
     buttons[buttonIndex].classList.add('selected');
-  } else if (event.key === 'ArrowUp') {
+  } else if (
+    event.key === 'ArrowUp' && sendRankingButton.style.visibility !== 'hidden'
+  ) {
     buttons[buttonIndex].classList.remove('selected');
     document.querySelector('#sendRanking').classList.add('selected');
-  } else if (event.key === 'ArrowDown') {
+  } else if (
+    event.key === 'ArrowDown' &&
+    sendRankingButton.style.visibility !== 'hidden'
+  ) {
     document.querySelector('#sendRanking').classList.remove('selected');
     buttons[buttonIndex].classList.add('selected');
   } else if (event.key === 'Enter') {
