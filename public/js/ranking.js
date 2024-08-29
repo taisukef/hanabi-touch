@@ -70,6 +70,8 @@ document.querySelector('#hardButton').onclick = async (event) => {
 document.querySelector('#oniButton').onclick = async (event) => {
     await displayRanking('oni');
     document.querySelector('#oniButton').style.color = 'white';
+    document.querySelector('#oniButton').style.border =
+        'outset rbg(20, 20, 50)';
     document.querySelector('#easyButton').style.background = 'midnightblue';
     document.querySelector('#normalButton').style.background = 'midnightblue';
     document.querySelector('#hardButton').style.background = 'midnightblue';
