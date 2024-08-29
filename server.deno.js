@@ -7,6 +7,7 @@ import {
   OUTPUT_TOPRANKING_NUMBER,
   THEME_SENTENCES,
 } from './utils/constantValue.js';
+import { MuxAsyncIterator } from 'https://deno.land/std@0.151.0/async/mux_async_iterator.ts';
 
 function makeId() {
   return crypto.randomUUID();
@@ -173,12 +174,32 @@ Deno.serve(async (req) => {
     if (!userGames[id]) {
       return makeErrorResponse('UserGame insntance is not made', '10003');
     }
+    // Deno KVにアクセス
+    const kv = await Deno.openKv();
+    // ハイスコアを取得し、KVにないかもしくは今回の得点の方が高かったら更新
+    const kvHighScore =
+      (await kv.get(['highScore', userGames[id].getDifficulty(), id]))['value'];
+    if (!kvHighScore || kvHighScore < userGames[id].getTotalScore()) {
+      await kv.set(
+        ['highScore', userGames[id].getDifficulty(), id],
+        userGames[id].getTotalScore(),
+      );
+    }
+    // ハイスコア再取得
+    const highScore =
+      (await kv.get(['highScore', userGames[id].getDifficulty(), id]))['value'];
+    // ランキングスコア取得
+    const rankingScore =
+      (await kv.get(['ranking', userGames[id].getDifficulty(), id]))['value']
+        ?.score;
     return make200Response({
       'score': userGames[id].getTotalScore(),
       'fireworkCount': userGames[id].calcTotalFireworks(),
       'typesPerSecond': userGames[id].calcTypesPerSecond(),
       'typeCount': userGames[id].getTotalCorrectTypeCount(),
       'typeMissCount': userGames[id].calcTotalMissType(),
+      'highScore': highScore,
+      'rankingScore': rankingScore,
     });
   }
 
@@ -196,17 +217,28 @@ Deno.serve(async (req) => {
     const userName = reqeustJson['userName'];
     // Deno KVにアクセス
     const kv = await Deno.openKv();
-    // キーと値を設定しkvにセット
+    // ハイスコア取得
+    const highScore =
+      (await kv.get(['highScore', userGames[id].getDifficulty(), id]))['value'];
+    // キーと値を設定
     const kvKey = ['ranking', userGames[id].getDifficulty(), id];
-    const kvValue = {
-      'score': userGames[id].getTotalScore(),
-      'userName': userName,
-    };
-    const kvResult = await kv.set(kvKey, kvValue);
-    // 成功したかをレスポンスに載せる
-    return make200Response({
-      'isSuccessful': kvResult['ok'],
-    });
+    const kvValue = { 'score': highScore, 'userName': userName };
+    // ランキングスコアが未登録、またはそれよりハイスコアが上ならスコアを登録する
+    const rankingScore = (await kv.get(kvKey))['value']?.score;
+    if (
+      (highScore || highScore === 0) &&
+      (!rankingScore || highScore > rankingScore)
+    ) {
+      const kvResult = await kv.set(kvKey, kvValue);
+      return make200Response({
+        'isSuccessful': kvResult['ok'],
+      });
+    } // ハイスコアがランキングスコア以下なら登録しない
+    else {
+      return make200Response({
+        'isSuccessful': false,
+      });
+    }
   }
 
   if (req.method === 'POST' && pathname === '/solo/getRanking') {

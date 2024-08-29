@@ -35,6 +35,10 @@
     border-radius: 0;
 }
 
+#bestText {
+    font-size: calc(min(95vw, calc(94vh * 10 / 7)) / 50);
+}
+
 #detailResult {
     font-size: calc(min(95vw, calc(94vh * 10 / 7)) / 40);
     display: flex;
@@ -47,6 +51,14 @@
     align-items: flex-end;
     flex-direction: column;
     margin-right: calc(min(95vw, calc(94vh * 10 / 7)) / 40);
+}
+
+#highScoreText {
+    font-size: calc(min(95vw, calc(94vh * 10 / 7)) / 30);
+}
+
+#highScore {
+    font-size: calc(min(95vw, calc(94vh * 10 / 7)) / 30);
 }
 
 #detailScore {

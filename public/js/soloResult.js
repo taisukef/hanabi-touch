@@ -25,6 +25,13 @@ onload = async (event) => {
   const scoreResult = document.querySelector('#score');
   scoreResult.innerHTML = `${responseObj['score']}`;
 
+  const highScoreId = document.querySelector('#highScore');
+  highScoreId.innerHTML = `${responseObj['highScore']}`;
+  if (responseObj['score'] >= responseObj['highScore']) {
+    const bestTextId = document.querySelector('#bestText');
+    bestTextId.innerHTML = '自己ベスト更新!';
+  }
+
   //花火を打ち上げた回数を表示
   const fireworkCountResult = document.querySelector('#fireworkCount');
   fireworkCountResult.innerHTML = `${responseObj['fireworkCount']}`;
@@ -44,6 +51,11 @@ onload = async (event) => {
   typeMissCountResult.innerHTML = `${responseObj['typeMissCount']}`;
 
   document.getElementById('resultContents').style.visibility = 'visible';
+  if (
+    responseObj.length < 7 || responseObj['score'] < responseObj['rankingScore']
+  ) {
+    document.getElementById('sendRanking').style.visibility = 'hidden';
+  }
 };
 
 // もう一度遊ぶボタン
@@ -62,8 +74,8 @@ document.querySelector('#titleButton').onclick = (event) => {
 // 記録をランキングに登録するボタン
 document.querySelector('#sendRanking').onclick = async (event) => {
   const name = prompt('ランキングに表示する名前を入力してください');
-  if (name.length === 0) {
-    alert('その名前は登録できません');
+  if (name.length < 1 || name.length >= 10) {
+    alert('1文字以上10文字以内で入力してください');
   } else if (name.includes('<') || name.includes('>')) {
     alert('使用できない文字が含まれています');
   } else {
