@@ -76,6 +76,8 @@ document.querySelector('#sendRanking').onclick = async (event) => {
   const name = prompt('ランキングに表示する名前を入力してください');
   if (name.length < 1 || name.length > 10) {
     alert('1文字以上10文字以内で入力してください');
+  } else if (!name.match(/\S/g)) {
+    alert('その名前は使用できません');
   } else {
     const response = await fetch(
       '/solo/sendRanking',

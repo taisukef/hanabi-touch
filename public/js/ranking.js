@@ -2,6 +2,11 @@
  メモ：名前とスコアはリストで送られる
 */
 
+function escapeHTML(str) {
+  return str
+    .replace(/\S/g, ' ');
+}
+
 async function displayRanking(difficulty) {
   const response = await fetch(
     '/solo/getRanking',
@@ -31,7 +36,7 @@ async function displayRanking(difficulty) {
     const nameId = document.querySelector(`#name${i + 1}`);
     const scoreId = document.querySelector(`#score${i + 1}`);
     rankId.innerText = `${i + 1}位`;
-    nameId.textContent = `${ranking[i]['userName']}`;
+    nameId.textContent = `${escapeHTML(ranking[i]['userName'])}`;
     scoreId.innerText = `${ranking[i]['score']}`;
   }
   document.querySelector(`#${difficulty}Button`).style.background =
