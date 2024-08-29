@@ -17,6 +17,15 @@ async function displayRanking(difficulty) {
     const responseObj = JSON.parse(responseJson);
     const ranking = responseObj['top10Results'];
 
+    for (let i = 0; i < 10; i++) {
+        const rankId = document.querySelector(`#rank${i + 1}`);
+        const nameId = document.querySelector(`#name${i + 1}`);
+        const scoreId = document.querySelector(`#score${i + 1}`);
+        rankId.innerText = '';
+        nameId.textContent = '';
+        scoreId.innerText = '';
+    }
+
     for (let i = 0; i < ranking.length; i++) {
         const rankId = document.querySelector(`#rank${i + 1}`);
         const nameId = document.querySelector(`#name${i + 1}`);
@@ -29,20 +38,20 @@ async function displayRanking(difficulty) {
         'rgba(255, 255, 255, 0.15)';
 }
 
-document.querySelector('#easyButton').onclick = (event) => {
-    displayRanking('easy');
+document.querySelector('#easyButton').onclick = async (event) => {
+    await displayRanking('easy');
     document.querySelector('#normalButton').style.background = 'midnightblue';
     document.querySelector('#hardButton').style.background = 'midnightblue';
 };
 
-document.querySelector('#normalButton').onclick = (event) => {
-    displayRanking('normal');
+document.querySelector('#normalButton').onclick = async (event) => {
+    await displayRanking('normal');
     document.querySelector('#easyButton').style.background = 'midnightblue';
     document.querySelector('#hardButton').style.background = 'midnightblue';
 };
 
-document.querySelector('#hardButton').onclick = (event) => {
-    displayRanking('hard');
+document.querySelector('#hardButton').onclick = async (event) => {
+    await displayRanking('hard');
     document.querySelector('#normalButton').style.background = 'midnightblue';
     document.querySelector('#easyButton').style.background = 'midnightblue';
 };
