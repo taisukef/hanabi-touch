@@ -2,8 +2,17 @@
  メモ：名前とスコアはリストで送られる
 */
 
-onload = async (event) => {
-    const response = await fetch('/solo/getRanking', { method: 'GET' });
+async function displayRanking(difficulty) {
+    const response = await fetch(
+        '/solo/getRanking',
+        {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ difficulty: difficulty }),
+        },
+    );
     const responseJson = await response.text();
     const responseObj = JSON.parse(responseJson);
     const ranking = responseObj['top10Results'];
@@ -16,8 +25,22 @@ onload = async (event) => {
         nameId.textContent = `${ranking[i]['userName']}`;
         scoreId.innerText = `${ranking[i]['score']}`;
     }
-    console.log(responseObj['top10Results'][0]);
+}
 
+document.querySelector('#easyButton').onclick = (event) => {
+    displayRanking('easy');
+};
+
+document.querySelector('#normalButton').onclick = (event) => {
+    displayRanking('normal');
+};
+
+document.querySelector('#hardButton').onclick = (event) => {
+    displayRanking('hard');
+};
+
+onload = async (event) => {
+    await displayRanking('normal');
     document.querySelector('#top10').style.visibility = 'visible';
     document.querySelector('#titleButton').style.visibility = 'visible';
 };
