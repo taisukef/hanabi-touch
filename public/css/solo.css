@@ -105,39 +105,41 @@ progress {
   -webkit-appearance: none;
   -moz-appearance: none;
   border: none;
-  border-radius: calc(min(95vw, calc(94vh * 10 / 7)) * 0.05); //firefox用
+  border-radius: calc(min(95vw, calc(94vh * 10 / 7)) * 0.05);
+  overflow: hidden; /* 中央部分をまっすぐにするための設定 */
 }
 
 /* barの色 */
-//firefox用
-#red::-moz-progress-bar {
+#red::-moz-progress-bar,
+#red::-webkit-progress-value {
   background-color: #ff0000;
 }
-#green::-moz-progress-bar {
-  background-color: #ffffdf;
-}
-#blue::-moz-progress-bar {
-  background-color: #efefff;
+
+#green::-moz-progress-bar,
+#green::-webkit-progress-value {
+  background-color: #00ff00;
 }
 
-#red::-ms-fill {
-  background-color: #ffefef;
+#blue::-moz-progress-bar,
+#blue::-webkit-progress-value {
+  background-color: #0000ff;
 }
-#green::-ms-fill {
-  background-color: #ffffdf;
-}
-#blue::-ms-fill {
-  background-color: #efeffft;
+
+/* Firefox用 */
+progress::-moz-progress-bar {
+  border-radius: calc(min(95vw, calc(94vh * 10 / 7)) * 0.05);
 }
 
 /* Chrome, Safari 用 */
-/* progress::-webkit-progress-bar {
+progress::-webkit-progress-bar {
   border-radius: calc(min(95vw, calc(94vh * 10 / 7)) * 0.05);
 }
 
 progress::-webkit-progress-value {
-  border-radius: calc(min(95vw, calc(94vh * 10 / 7)) * 0.05);
-} */
+  border-radius: calc(min(95vw, calc(94vh * 10 / 7)) * 0.05) 0 0
+    calc(min(95vw, calc(94vh * 10 / 7)) * 0.05);
+}
+
 /* Chrome, Safari 用 */
 progress::-webkit-progress-bar {
   border-radius: calc(min(95vw, calc(94vh * 10 / 7)) * 0.05);
