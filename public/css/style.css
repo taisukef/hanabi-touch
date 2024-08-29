@@ -64,7 +64,7 @@ main {
   height: 85%;
 
   background-color: rgb(20, 20, 50);
-  border-radius: calc(min(95vw, calc(94vh * 10 / 7)) * 0.1);
+  border-radius:  calc(min(95vw, calc(94vh * 10 / 7)) * 0.05);
 
   display: flex;
   flex-direction: column;

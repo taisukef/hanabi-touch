@@ -34,14 +34,16 @@
   flex-direction: column;
   align-items: center;
 
-  height: 20%;
+  height: 25%;
   width: 100%;
 }
 
 #alphabet {
   justify-content: center;
   display: flex;
-  width: calc(min(95vw, calc(94vh * 10 / 7)) * 0.7);
+  width: 100%;
+  height: 40%;
+  text-align: center;
 }
 
 #scorePanel {
@@ -52,15 +54,25 @@
   font-size: calc(min(95vw, calc(94vh * 10 / 7)) / 30);
 }
 
-#entered {
+.entered {
   color: red;
 }
 
-#alphabet {
+#japanese {
   width: 100%;
+  height: 35%;
   text-align: center;
 }
 
+#kana {
+  display: flex;
+  justify-content: center;
+  font-size: calc(min(95vw, calc(94vh * 10 / 7)) / 50);
+  letter-spacing: calc(min(95vw, calc(94vh * 10 / 7)) * 0.005);
+  width: 100%;
+  height: 25%;
+  text-align: center;
+}
 
 progress {
   display: none;
@@ -68,7 +80,6 @@ progress {
   -moz-appearance: none;
   border: none;
 }
-
 
 /* barの色 */
 //firefox用
