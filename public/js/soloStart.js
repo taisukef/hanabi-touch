@@ -75,8 +75,8 @@ async function soloGameStart(difficulty) {
   }
 }
 
-// enterでその時選択している難易度でゲームスタートできるようにする。
-// 押されたら、要素を消してスタートオンを鳴らす。
+// enter　その時選択している難易度でゲームスタート
+// ← →  難易度を変更
 document.addEventListener('keydown', async (event) => {
   const option = document.getElementById('option');
   if (!option) return;
@@ -108,36 +108,9 @@ document.addEventListener('keydown', async (event) => {
   }
 });
 
-// document.querySelectorAll('.difficultyButton').forEach((button) =>
-//   button.onclick = () => {
-
-// 	console.log(button);
-
-//     const option = document.getElementById('option');
-//     if (option) {
-//       soloGameStart(button.value);
-//       option.remove();
-//       start.play();
-//     }
-//   }
-// );
-// document.querySelectorAll('.difficultyButton').forEach((button) => {
-// 	console.log(button);
-// 	button.addEventListener("click", () => {
-// 		console.log("click");
-
-// 	  const option = document.getElementById('option');
-// 	  if (option) {
-// 		soloGameStart(button.value);
-// 		option.remove();
-// 		start.play();
-// 	  }
-// ;	});
-//   });
-
+// 難易度選択画面でボタンをクリックして始める
 document.querySelectorAll('.difficultyButton').forEach((button) => {
   button.addEventListener('click', () => {
-    console.log('Button clicked:', button.value); // デバッグ用ログ
     const option = document.getElementById('option');
     if (option) {
       soloGameStart(button.value);
