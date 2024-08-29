@@ -18,8 +18,12 @@
     border-top-left-radius: calc(min(95vw, calc(94vh * 10 / 7)) * 0.02);
     border-top-right-radius: calc(min(95vw, calc(94vh * 10 / 7)) * 0.02);
     background-color: rgb(20, 20, 50);
-    border-color: rgb(20, 20, 50);
+    border: rgb(20, 20, 50);
     visibility: hidden;
+}
+
+#oniButton:active {
+    border: inset;
 }
 
 .notOni {
@@ -30,7 +34,7 @@
     border-top-left-radius: calc(min(95vw, calc(94vh * 10 / 7)) * 0.02);
     border-top-right-radius: calc(min(95vw, calc(94vh * 10 / 7)) * 0.02);
     background-color: midnightblue;
-    border: rgb(20, 20, 50);
+    border-color: rgb(20, 20, 50);
     visibility: hidden;
 }
 
