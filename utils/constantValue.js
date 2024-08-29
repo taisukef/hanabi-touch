@@ -9,7 +9,7 @@ const DIFFICULTY_STRING = ['easy', 'normal', 'hard'];
 // 難易度で変化する箇所
 const DEPEND_DIFFICULTY = {
   'easy': {
-    'EXPECTED_TYPES_PER_SEC': 2.0, // 期待される1秒間のタイプ数
+    'EXPECTED_TYPES_PER_SEC': 1.0, // 期待される1秒間のタイプ数
     'SCORE_PER_CHAR': 50, // 1文字ごとに加点する点数
   },
   'normal': {
