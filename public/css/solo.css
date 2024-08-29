@@ -2,11 +2,18 @@
   font-size: calc(min(95vw, calc(94vh * 10 / 7)) / 40);
 }
 
-#enterToBegin {
+#explanation{
+	margin-top: calc(min(95vw, calc(94vh * 10 / 7)) / 40);
+	font-size: calc(min(95vw, calc(94vh * 10 / 7)) / 40);
+}
+
+#option {
   position: absolute;
   font-size: calc(min(95vw, calc(94vh * 10 / 7)) / 20);
-  width: 100%;
+  width: min(95vw, calc(94vh * 10 / 7));
+  padding-top: calc(min(95vw, calc(94vh * 10 / 7)) * 0.35);
   text-align: center;
+  z-index: 2;
 }
 
 #gameMain {
@@ -63,4 +70,23 @@
 #alphabet {
   width: 100%;
   text-align: center;
+}
+
+.difficultyButton {
+  width: calc(min(95vw, calc(94vh * 10 / 7)) * 0.2);
+  height: calc(min(95vw, calc(94vh * 10 / 7)) * 0.08);
+  border: calc(min(95vw, calc(94vh * 10 / 7)) * 0.005) solid;
+  border-color: orange;
+  border-radius: calc(min(95vw, calc(94vh * 10 / 7)) * 0.02);
+  color: black;
+  font-size: calc(min(95vw, calc(94vh * 10 / 7)) / 30);
+  background-color: orange;
+}
+
+.difficultyButton:hover {
+  background-color: #ffc520; /* 少し白めのオレンジ */
+}
+
+.selected {
+  border-color: red;
 }
