@@ -69,19 +69,6 @@ progress {
   border: none;
 }
 
-/* #meter::-webkit-progress-value {
-  background-color: red;
-}
-
-#meter.red::-webkit-progress-value {
-  background-color: red;
-}
-#meter.yellow::-webkit-progress-value {
-  background-color: yellow;
-}
-#meter.blue::-webkit-progress-value {
-  background-color: blue;
-} */
 
 /* barの色 */
 //firefox用
