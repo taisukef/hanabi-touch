@@ -4,7 +4,11 @@
 
 function escapeHTML(str) {
   return str
-    .replace(/\S/g, ' ');
+    .replace(/\n/g, ' ')
+    .replace(/\r/g, ' ')
+    .replace(/\t/g, ' ')
+    .replace(/\v/g, ' ')
+    .replace(/\f/g, ' ');
 }
 
 async function displayRanking(difficulty) {
