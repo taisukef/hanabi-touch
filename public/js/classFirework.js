@@ -1,5 +1,4 @@
 const onFireworkExplode = new CustomEvent('onFireworkExplode');
-
 const onFireworkDispose = new CustomEvent('onFireworkDispose');
 
 const starCount = 3;
@@ -68,12 +67,14 @@ class Firework {
     size = 1,
     radius = 1,
     openNow = false,
+    sound = true,
   ) {
     this.buffers = buffers;
     this.colors = colors;
     this.types = types;
     this.size = size;
     this.radius = radius;
+    this.sound = sound;
 
     this.rasingParticle = new RasingParticle(
       this.buffers[0],
@@ -90,7 +91,7 @@ class Firework {
   }
 
   explode() {
-    new Audio(fireworkBoom.src).play();
+    if (this.sound) new Audio('sound/fireworkBoom.mp3').play();
     let fireworkSum = 0;
     for (let i = 0; i < starCount; i++) {
       if (this.types[i] === '牡丹') {
