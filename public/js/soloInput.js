@@ -1,3 +1,5 @@
+const COLOR_RANGE = 100;
+
 /**
  * サーバに入力された文字を送信
  * @param {string} key 一文字
@@ -61,19 +63,31 @@ async function sendChar(key) {
 
     const size = responseObj.fireworkSize / 20 + 1.5;
     const fireworkColor = getMeterColor();
-    let colorFrom; // 色彩の閾値のうち小さい方
+    let colorMid; // 色彩の範囲の真ん中
     if (fireworkColor === 'red') {
-      colorFrom = 280;
-    } else if (fireworkColor === 'yellow') {
-      colorFrom = 40;
+      colorMid = 0;
+    } else if (fireworkColor === 'green') {
+      colorMid = 120;
     } else { // blue
-      colorFrom = 170;
+      colorMid = 240;
     }
     const firework = new Firework(
       [
-        color(random(colorFrom, colorFrom + 120) % 360, 255, 255),
-        color(random(colorFrom, colorFrom + 120) % 360, 255, 255),
-        color(random(colorFrom, colorFrom + 120) % 360, 255, 255),
+        color(
+          (random(COLOR_RANGE) - COLOR_RANGE / 2 + colorMid) % 360,
+          255,
+          255,
+        ),
+        color(
+          (random(COLOR_RANGE) - COLOR_RANGE / 2 + colorMid) % 360,
+          255,
+          255,
+        ),
+        color(
+          (random(COLOR_RANGE) - COLOR_RANGE / 2 + colorMid) % 360,
+          255,
+          255,
+        ),
       ],
       [random(['菊', '牡丹']), random(['菊', '牡丹']), random(['菊', '牡丹'])],
       graphicBuffers,

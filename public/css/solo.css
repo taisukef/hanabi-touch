@@ -2,9 +2,9 @@
   font-size: calc(min(95vw, calc(94vh * 10 / 7)) / 40);
 }
 
-#explanation{
-	margin-top: calc(min(95vw, calc(94vh * 10 / 7)) / 40);
-	font-size: calc(min(95vw, calc(94vh * 10 / 7)) / 40);
+#explanation {
+  margin-top: calc(min(95vw, calc(94vh * 10 / 7)) / 40);
+  font-size: calc(min(95vw, calc(94vh * 10 / 7)) / 40);
 }
 
 #option {
@@ -81,7 +81,6 @@
   text-align: center;
 }
 
-
 .difficultyButton {
   width: calc(min(95vw, calc(94vh * 10 / 7)) * 0.2);
   height: calc(min(95vw, calc(94vh * 10 / 7)) * 0.08);
@@ -106,36 +105,49 @@ progress {
   -webkit-appearance: none;
   -moz-appearance: none;
   border: none;
+  border-radius: calc(min(95vw, calc(94vh * 10 / 7)) * 0.05);
+  overflow: hidden; /* 中央部分をまっすぐにするため */
 }
 
-/* barの色 */
-//firefox用
-.red::-moz-progress-bar {
-  background-color: red;
+
+
+/* Firefox用 */
+progress::-moz-progress-bar {
+	border-radius: calc(min(95vw, calc(94vh * 10 / 7)) * 0.05);
 }
-#yellow::-moz-progress-bar {
-  background-color: #ffffdf;
+
+#red::-moz-progress-bar {
+  background-color: #ff0000;
 }
+
+#green::-moz-progress-bar {
+  background-color: #00ff00;
+}
+
 #blue::-moz-progress-bar {
-  background-color: #efefff;
+  background-color: #0000ff;
 }
 
 /* Chrome, Safari 用 */
-#red::-webkit-progress-bar {
-  background-color: #ffefef;
+progress::-webkit-progress-bar {
+  border-radius: calc(min(95vw, calc(94vh * 10 / 7)) * 0.05);
+  overflow: hidden; /* 中央部分をまっすぐにするための設定 */
 }
-#yellow::-webkit-progress-bar {
-  background-color: #ffffdf;
+
+progress::-webkit-progress-value {
+  border-radius: calc(min(95vw, calc(94vh * 10 / 7)) * 0.05) 0 0
+    calc(min(95vw, calc(94vh * 10 / 7)) * 0.05);
 }
-#blue::-webkit-progress-bar {
-  background-color: #efefff;
+
+progress::-webkit-progress-bar {
+  background-color: #ffffff;
 }
 
 #red::-webkit-progress-value {
   background-color: #ff0000;
 }
-#yellow::-webkit-progress-value {
-  background-color: #ffff00;
+#green::-webkit-progress-value {
+  background-color: #00ff00;
 }
 #blue::-webkit-progress-value {
   background-color: #0000ff;
