@@ -29,7 +29,7 @@ onload = async (event) => {
   highScoreId.innerHTML = `${responseObj['highScore']}`;
   if (responseObj['score'] > responseObj['highScore']) {
     const bestTextId = document.querySelector('#bestTextId');
-    bestTextId.innerHTML += '自己ベスト更新!';
+    bestTextId.innerHTML = '自己ベスト更新!';
   }
 
   //花火を打ち上げた回数を表示
@@ -51,6 +51,11 @@ onload = async (event) => {
   typeMissCountResult.innerHTML = `${responseObj['typeMissCount']}`;
 
   document.getElementById('resultContents').style.visibility = 'visible';
+  if (
+    responseObj.length < 7 || responseObj['score'] < responseObj['rankingScore']
+  ) {
+    document.getElementById('sendRanking').style.visibility = 'hidden';
+  }
 };
 
 // もう一度遊ぶボタン
