@@ -6,6 +6,7 @@
 	<meta charset="utf-8">
 	<link rel="stylesheet" href="css/style.css">
 	<link rel="stylesheet" href="css/solo.css">
+	<link rel="stylesheet" href="css/animation.css">
 
 	<!-- p5js -->
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.7.0/p5.min.js"></script>
@@ -24,6 +25,8 @@
 	<script src="js/soloScore.js" defer></script>
 	<script src="js/soloGetSentence.js" defer></script>
 	<script src="js/soloOption.js" defer></script>
+	<script src="js/soloOni.js" defer></script>
+
 
 	<title>花火タイピング</title>
 </head>
@@ -58,11 +61,11 @@
 				</div>
 			</div>
 			<div id="option">
-				<!-- <p>難易度を選んでください</p> -->
 				<div id="difficulty">
-					<button value="easy" class="difficultyButton">簡単</button>
-					<button value="normal" class="difficultyButton selected">普通</button>
-					<button value="hard" class="difficultyButton">難しい</button>
+					<button value="easy" class="difficultyButton notOni">簡単</button>
+					<button value="normal" class="difficultyButton selected notOni">普通</button>
+					<button value="hard" class="difficultyButton notOni">難しい</button>
+					<button id="oni" value="oni" class="difficultyButton">鬼</button>
 				</div>
 				<p id="explanation">矢印キーで選択、ENTERで開始</p>
 			</div>

@@ -1,0 +1,17 @@
+/* アニメーションの定義 */
+@keyframes moveLeft {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-55%);
+  }
+}
+
+
+
+.animate {
+  display: inline-block;
+  padding: 10px;
+  animation: moveLeft 1s forwards;
+}

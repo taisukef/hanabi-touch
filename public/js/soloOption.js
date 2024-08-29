@@ -1,4 +1,7 @@
-// // 難易度選択画面でボタンをクリックして始める
+let oniCounter = 0;
+let oniMode = false;
+
+// 難易度選択画面でボタンをクリックして始める
 document.querySelectorAll('.difficultyButton').forEach((button) => {
   button.addEventListener('click', () => {
     const option = document.getElementById('option');
@@ -39,7 +42,16 @@ document.addEventListener('keydown', async (event) => {
       option.querySelector('[value="normal"]').classList.add('selected');
     }
   } else if (event.key === 'ArrowRight') {
-    if (element.value === 'hard') return;
+    if (element.value === 'hard') {
+      // 10回押したら鬼モード
+      if (oniCounter < 10) {
+        oniCounter++;
+      } else {
+        if (!oniMode) displayOni();
+      }
+      return;
+    }
+
     element.classList.remove('selected');
 
     if (element.value === 'normal') {
