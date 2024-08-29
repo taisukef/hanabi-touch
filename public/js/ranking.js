@@ -68,6 +68,7 @@ document.querySelector('#hardButton').onclick = async (event) => {
 };
 
 document.querySelector('#oniButton').onclick = async (event) => {
+    document.querySelector('#oniButton').style.border = 'inset rgb(20, 20, 50)';
     await displayRanking('oni');
     document.querySelector('#oniButton').style.color = 'white';
     document.querySelector('#oniButton').style.border =
