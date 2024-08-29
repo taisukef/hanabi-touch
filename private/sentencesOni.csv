@@ -1,0 +1,4 @@
+株式会社jig.jp,かぶしきがいしゃjig.jp
+#include <stdio.h> int main() {return 0;},#include <stdio.h> int main() {return 0;}
+print('Hello World!'),print('Hello World!')
+console.log('Hello World!');,console.log('Hello World!');

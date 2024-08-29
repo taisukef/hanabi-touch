@@ -4,7 +4,7 @@ const TIME_LIMIT = 60 * 1000;
 const INITIALIZED_SCORE = 0;
 
 // 難易度を表す文字列
-const DIFFICULTY_STRING = ['easy', 'normal', 'hard'];
+const DIFFICULTY_STRING = ['easy', 'normal', 'hard', 'oni'];
 
 // 難易度で変化する箇所
 const DEPEND_DIFFICULTY = {
@@ -20,6 +20,10 @@ const DEPEND_DIFFICULTY = {
     'EXPECTED_TYPES_PER_SEC': 4.0, // 期待される1秒間のタイプ数
     'SCORE_PER_CHAR': 200, // 1文字ごとに加点する点数
   },
+  'oni': {
+    'EXPECTED_TYPES_PER_SEC': 7.0, // 期待される1秒間のタイプ数
+    'SCORE_PER_CHAR': 400, // 1文字ごとに加点する点数
+  },
 };
 
 // メーターに関する数値を載せた辞書型
@@ -32,11 +36,15 @@ const METER = {
   },
   'normal': {
     'PENALTY_COEFFICENT': 1.5, // ミス時の減少係数
-    'BONUS_COEFFICIENT': 0.2, // 正解時の上昇係数
+    'BONUS_COEFFICIENT': 0.20, // 正解時の上昇係数
   },
   'hard': {
     'PENALTY_COEFFICENT': 3.0, // ミス時の減少係数
     'BONUS_COEFFICIENT': 0.10, // 正解時の上昇係数
+  },
+  'oni': {
+    'PENALTY_COEFFICENT': 3.0, // ミス時の減少係数
+    'BONUS_COEFFICIENT': 0.05, // 正解時の上昇係数
   },
 };
 
@@ -62,6 +70,9 @@ const themeSentencesTexts = [
   await Deno.readTextFile(
     './private/sentencesHard.csv',
   ),
+  await Deno.readTextFile(
+    './private/sentencesOni.csv',
+  ),
 ];
 
 const THEME_SENTENCES = {
@@ -74,6 +85,10 @@ const THEME_SENTENCES = {
     return text.split(',');
   }),
   'hard': themeSentencesTexts[2].split('\n').map((text) => {
+    text = text.replaceAll('\r', '');
+    return text.split(',');
+  }),
+  'oni': themeSentencesTexts[3].split('\n').map((text) => {
     text = text.replaceAll('\r', '');
     return text.split(',');
   }),
