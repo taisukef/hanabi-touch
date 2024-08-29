@@ -16,7 +16,7 @@ class UserGame {
    */
   constructor(id, difficulty, japanese, reading) {
     this.id = id;
-    this.initialize();
+    this.initialize(difficulty);
     this.setSentenceNow(japanese, reading);
     this.endTime = Date.now() + TIME_LIMIT;
   }
