@@ -2,7 +2,10 @@ import { serveDir } from 'https://deno.land/std@0.151.0/http/file_server.ts';
 import { getCookies } from 'https://deno.land/std@0.74.0/http/mod.ts';
 import { UserGame } from './model/UserGame.js';
 
-import { OUTPUT_TOPRANKING_NUMBER } from './utils/constantValue.js';
+import {
+  DIFFICULTY_STRING,
+  OUTPUT_TOPRANKING_NUMBER,
+} from './utils/constantValue.js';
 
 function makeId() {
   return crypto.randomUUID();
@@ -81,13 +84,25 @@ Deno.serve(async (req) => {
   }
 
   // ゲームスタートと同時に初期化
-  if (req.method === 'GET' && pathname === '/solo/start') {
+  if (req.method === 'POST' && pathname === '/solo/start') {
     if (!getCookies(req)['id']) {
       return makeErrorResponse('id in cookies is not set', '10001');
     }
     const id = getCookies(req)['id'];
+    // 送られてきた難易度を取得
+    const reqeustJson = await req.json();
+    const difficulty = reqeustJson['difficulty'];
+    // 送られた難易度が規定値以外ならエラー
+    if (!DIFFICULTY_STRING.includes(difficulty)) {
+      return makeErrorResponse('difficulty is different!', '10004');
+    }
     const targetSentence = getRandomThemeSentence();
-    userGames[id] = new UserGame(id, targetSentence[0], targetSentence[1]);
+    userGames[id] = new UserGame(
+      id,
+      difficulty,
+      targetSentence[0],
+      targetSentence[1],
+    );
     return make200Response({
       'endTime': userGames[id].getEndTime(),
       'initializedScore': userGames[id].getInitializedScore(),
@@ -184,7 +199,7 @@ Deno.serve(async (req) => {
     // Deno KVにアクセス
     const kv = await Deno.openKv();
     // キーと値を設定しkvにセット
-    const kvKey = ['ranking', id];
+    const kvKey = ['ranking', userGames[id].getDifficulty(), id];
     const kvValue = {
       'score': userGames[id].getTotalScore(),
       'userName': userName,
@@ -196,11 +211,18 @@ Deno.serve(async (req) => {
     });
   }
 
-  if (req.method === 'GET' && pathname === '/solo/getRanking') {
+  if (req.method === 'POST' && pathname === '/solo/getRanking') {
+    // 送られてきた難易度を取得
+    const reqeustJson = await req.json();
+    const difficulty = reqeustJson['difficulty'];
+    // 送られた難易度が規定値以外ならエラー
+    if (!DIFFICULTY_STRING.includes(difficulty)) {
+      return makeErrorResponse('difficulty is different!', '10004');
+    }
     // Deno KVにアクセス
     const kv = await Deno.openKv();
     // ランキングに登録されているkeyを取得してリスト化
-    const listResult = await kv.list({ prefix: ['ranking'] });
+    const listResult = await kv.list({ prefix: ['ranking', difficulty] });
     const listRanking = [];
     for await (const item of listResult) {
       listRanking.push(item['value']);

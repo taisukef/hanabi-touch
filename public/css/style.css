@@ -20,7 +20,7 @@ body {
 header {
   height: 6vh;
   background-color: black;
-  font-size: 3vh;
+  font-size: min(3vh,5vw);
   padding: 1.5vh;
   display: flex;
   flex-direction: row;

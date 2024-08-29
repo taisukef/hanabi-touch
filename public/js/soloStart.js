@@ -6,15 +6,11 @@ async function getId() {
     // GETリクエストを送信し、レスポンスを受け取る
     const response = await fetch('/getId', {
       method: 'GET',
-      headers: {
-        'Content-Type': 'application/json',
-      },
     });
-
-    const responseObj = await response.json();
 
     // ステータスコードが200でなければエラーハンドリング
     if (response.status !== 200) {
+      const responseObj = await response.json();
       console.error('Error:', responseObj.message || 'Unknown error');
       deleteCookie();
       location.reload();
@@ -30,23 +26,24 @@ async function getId() {
  * ゲームスタート時に一回のみ実行する関数
  * サーバーにゲーム開始を伝える
  */
-async function soloGameStart() {
+async function soloGameStart(difficulty) {
   try {
     // POSTリクエストを送信し、レスポンスを受け取る
     const response = await fetch('/solo/start', {
-      method: 'GET',
+      method: 'POST',
       headers: {
         'Content-Type': 'application/json',
       },
+      body: JSON.stringify({ difficulty: difficulty }),
     });
 
+    const responseObj = await response.json();
     // ステータスコードが200でなければエラーハンドリング
     if (response.status !== 200) {
       console.error('Error:', responseObj.message || 'Unknown error');
       deleteCookie();
       location.reload();
     }
-    const responseObj = await response.json();
     //タイマーを開始
     timer(responseObj.endTime);
     // scoreの初期化
@@ -72,19 +69,6 @@ async function soloGameStart() {
     console.error('Fetch error:', error);
   }
 }
-
-// enterでゲームスタートできるようにする。
-// 押されたら、要素を消してスタートオンを鳴らす。
-document.addEventListener('keydown', async (event) => {
-  if (event.key === 'Enter') {
-    const element = document.getElementById('enterToBegin');
-    if (element) {
-      element.remove();
-      start.play();
-      soloGameStart(); // Enterキーが押された時にゲームを開始
-    }
-  }
-});
 
 // ページロード時に実行する処理
 onload = async (_event) => {
