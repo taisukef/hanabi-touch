@@ -15,7 +15,7 @@ function updateColor() {
   if (meter.value >= 666 + OFFSET) {
     meter.id = 'red';
   } else if (meter.value >= 333 + OFFSET) {
-    meter.id = 'yellow';
+    meter.id = 'green';
   } else {
     meter.id = 'blue';
   }

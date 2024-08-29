@@ -113,7 +113,7 @@ progress {
 #red::-moz-progress-bar {
   background-color: #ff0000;
 }
-#yellow::-moz-progress-bar {
+#green::-moz-progress-bar {
   background-color: #ffffdf;
 }
 #blue::-moz-progress-bar {
@@ -123,7 +123,7 @@ progress {
 #red::-ms-fill {
   background-color: #ffefef;
 }
-#yellow::-ms-fill {
+#green::-ms-fill {
   background-color: #ffffdf;
 }
 #blue::-ms-fill {
@@ -146,14 +146,13 @@ progress::-webkit-progress-bar {
 
 progress::-webkit-progress-value {
   border-radius: calc(min(95vw, calc(94vh * 10 / 7)) * 0.05) 0 0
- 
-  calc(min(95vw, calc(94vh * 10 / 7)) * 0.05);
+    calc(min(95vw, calc(94vh * 10 / 7)) * 0.05);
 }
 
 #red::-webkit-progress-bar {
   background-color: #ffefef;
 }
-#yellow::-webkit-progress-bar {
+#green::-webkit-progress-bar {
   background-color: #efffef;
 }
 #blue::-webkit-progress-bar {
@@ -163,7 +162,7 @@ progress::-webkit-progress-value {
 #red::-webkit-progress-value {
   background-color: #ff0000;
 }
-#yellow::-webkit-progress-value {
+#green::-webkit-progress-value {
   background-color: #00ff00;
 }
 #blue::-webkit-progress-value {
