@@ -19,6 +19,7 @@
     border-top-right-radius: calc(min(95vw, calc(94vh * 10 / 7)) * 0.02);
     background-color: midnightblue;
     border-color: rgb(20, 20, 50);
+    visibility: hidden;
     /*border-radius: calc(min(95vw, calc(94vh * 10 / 7)) * 0.1);*/
 }
 

@@ -60,4 +60,5 @@ onload = async (event) => {
     await displayRanking('normal');
     document.querySelector('#top10').style.visibility = 'visible';
     document.querySelector('#titleButton').style.visibility = 'visible';
+    document.querySelector('#difficulties').style.visibility = 'visible';
 };
