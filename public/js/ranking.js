@@ -5,6 +5,8 @@
 let clickedOni = 0;
 
 async function displayRanking(difficulty) {
+    document.querySelector(`${difficulty}Button`).style.border =
+        'inset rgb(20, 20, 50)';
     const response = await fetch(
         '/solo/getRanking',
         {
@@ -38,6 +40,8 @@ async function displayRanking(difficulty) {
     }
     document.querySelector(`#${difficulty}Button`).style.background =
         'rgba(255, 255, 255, 0.15)';
+    document.querySelector(`#${difficulty}Button`).style.border =
+        'outset rgb(20, 20, 50)';
 }
 
 document.querySelector('#easyButton').onclick = async (event) => {
@@ -68,11 +72,8 @@ document.querySelector('#hardButton').onclick = async (event) => {
 };
 
 document.querySelector('#oniButton').onclick = async (event) => {
-    document.querySelector('#oniButton').style.border = 'inset rgb(20, 20, 50)';
     await displayRanking('oni');
     document.querySelector('#oniButton').style.color = 'white';
-    document.querySelector('#oniButton').style.border =
-        'outset rgb(20, 20, 50)';
     document.querySelector('#easyButton').style.background = 'midnightblue';
     document.querySelector('#normalButton').style.background = 'midnightblue';
     document.querySelector('#hardButton').style.background = 'midnightblue';

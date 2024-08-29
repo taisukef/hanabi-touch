@@ -22,10 +22,6 @@
     visibility: hidden;
 }
 
-#oniButton:active {
-    border: inset;
-}
-
 .notOni {
     color: white;
     width: 25%;
@@ -34,7 +30,7 @@
     border-top-left-radius: calc(min(95vw, calc(94vh * 10 / 7)) * 0.02);
     border-top-right-radius: calc(min(95vw, calc(94vh * 10 / 7)) * 0.02);
     background-color: midnightblue;
-    border-color: rgb(20, 20, 50);
+    border: outset rgb(20, 20, 50);
     visibility: hidden;
 }
 
