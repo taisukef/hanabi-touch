@@ -5,7 +5,7 @@
 let clickedOni = 0;
 
 async function displayRanking(difficulty) {
-    document.querySelector(`${difficulty}Button`).style.border =
+    document.querySelector(`#${difficulty}Button`).style.border =
         'inset rgb(20, 20, 50)';
     const response = await fetch(
         '/solo/getRanking',
