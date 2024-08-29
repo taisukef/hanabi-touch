@@ -24,15 +24,11 @@
   font-size: calc(min(95vw, calc(94vh * 10 / 7)) / 30);
 }
 
-#meter {
-  display: none;
-}
-
 #sentence {
   margin-top: calc(min(95vw, calc(94vh * 10 / 7)) / 3);
   padding: calc(min(95vw, calc(94vh * 10 / 7)) * 0.02);
   z-index: 1;
-  background-color: rgba(255, 255, 255, 0.1);
+  background-color: rgba(0, 0, 0, 0.15);
 
   display: none;
   flex-direction: column;
@@ -63,4 +59,46 @@
 #alphabet {
   width: 100%;
   text-align: center;
+}
+
+
+progress {
+  display: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  border: none;
+}
+
+
+/* barの色 */
+//firefox用
+.red::-moz-progress-bar {
+  background-color: red;
+}
+#yellow::-moz-progress-bar {
+  background-color: #ffffdf;
+}
+#blue::-moz-progress-bar {
+  background-color: #efefff;
+}
+
+/* Chrome, Safari 用 */
+#red::-webkit-progress-bar {
+  background-color: #ffefef;
+}
+#yellow::-webkit-progress-bar {
+  background-color: #ffffdf;
+}
+#blue::-webkit-progress-bar {
+  background-color: #efefff;
+}
+
+#red::-webkit-progress-value {
+  background-color: #ff0000;
+}
+#yellow::-webkit-progress-value {
+  background-color: #ffff00;
+}
+#blue::-webkit-progress-value {
+  background-color: #0000ff;
 }
