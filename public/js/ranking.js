@@ -2,6 +2,8 @@
  メモ：名前とスコアはリストで送られる
 */
 
+let clickedOni = 0;
+
 async function displayRanking(difficulty) {
     const response = await fetch(
         '/solo/getRanking',
@@ -42,25 +44,44 @@ document.querySelector('#easyButton').onclick = async (event) => {
     await displayRanking('easy');
     document.querySelector('#normalButton').style.background = 'midnightblue';
     document.querySelector('#hardButton').style.background = 'midnightblue';
+    if (clickedOni) {
+        document.querySelector('#oniButton').style.background = 'midnightblue';
+    }
 };
 
 document.querySelector('#normalButton').onclick = async (event) => {
     await displayRanking('normal');
     document.querySelector('#easyButton').style.background = 'midnightblue';
     document.querySelector('#hardButton').style.background = 'midnightblue';
+    if (clickedOni) {
+        document.querySelector('#oniButton').style.background = 'midnightblue';
+    }
 };
 
 document.querySelector('#hardButton').onclick = async (event) => {
     await displayRanking('hard');
-    document.querySelector('#normalButton').style.background = 'midnightblue';
     document.querySelector('#easyButton').style.background = 'midnightblue';
+    document.querySelector('#normalButton').style.background = 'midnightblue';
+    if (clickedOni) {
+        document.querySelector('#oniButton').style.background = 'midnightblue';
+    }
+};
+
+document.querySelector('#oniButton').onclick = async (event) => {
+    await displayRanking('oni');
+    document.querySelector('#oniButton').style.color = 'white';
+    document.querySelector('#easyButton').style.background = 'midnightblue';
+    document.querySelector('#normalButton').style.background = 'midnightblue';
+    document.querySelector('#hardButton').style.background = 'midnightblue';
+    clickedOni = 1;
 };
 
 onload = async (event) => {
-    await displayRanking('normal');
+    await displayRanking('easy');
     document.querySelector('#top10').style.visibility = 'visible';
     document.querySelector('#titleButton').style.visibility = 'visible';
     document.querySelector('#easyButton').style.visibility = 'visible';
     document.querySelector('#normalButton').style.visibility = 'visible';
     document.querySelector('#hardButton').style.visibility = 'visible';
+    document.querySelector('#oniButton').style.visibility = 'visible';
 };
