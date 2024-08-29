@@ -1,7 +1,6 @@
 #startButton {
 	text-align: center;
 	color: black;
-	background-color: orange;
 	border-radius: calc(min(95vw, calc(94vh * 10 / 7)) * 0.1);
 	width: 30%;
 	height: 15%;
@@ -12,7 +11,6 @@
 #rankingButton {
 	text-align: center;
 	color: black;
-	background-color: orange;
 	border-radius: calc(min(95vw, calc(94vh * 10 / 7)) * 0.1);
 	width: 25%;
 	height: 10%;
@@ -28,4 +26,17 @@
 
 #gameMain {
 	justify-content: center;
+}
+
+.startMenuButton {
+	background-color: orange;
+}
+
+.startMenuButton:hover {
+	/* 少し白めのオレンジ */
+	background-color: #ffc520;
+}
+
+.selected {
+	border-color: red;
 }
