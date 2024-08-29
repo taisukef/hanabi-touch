@@ -7,6 +7,7 @@ import {
   OUTPUT_TOPRANKING_NUMBER,
   THEME_SENTENCES,
 } from './utils/constantValue.js';
+import { MuxAsyncIterator } from 'https://deno.land/std@0.151.0/async/mux_async_iterator.ts';
 
 function makeId() {
   return crypto.randomUUID();
@@ -173,12 +174,27 @@ Deno.serve(async (req) => {
     if (!userGames[id]) {
       return makeErrorResponse('UserGame insntance is not made', '10003');
     }
+    // Deno KVにアクセス
+    const kv = await Deno.openKv();
+    // ハイスコアを取得し、KVにないかもしくは今回の得点の方が高かったら更新
+    const kvHighScore =
+      (await kv.get(['highScore', userGames[id].getDifficulty(), id]))['value'];
+    if (!kvHighScore || kvHighScore < userGames[id].getTotalScore()) {
+      await kv.set(
+        ['highScore', userGames[id].getDifficulty(), id],
+        userGames[id].getTotalScore(),
+      );
+    }
+    // ハイスコア再取得
+    const highScore =
+      (await kv.get(['highScore', userGames[id].getDifficulty(), id]))['value'];
     return make200Response({
       'score': userGames[id].getTotalScore(),
       'fireworkCount': userGames[id].calcTotalFireworks(),
       'typesPerSecond': userGames[id].calcTypesPerSecond(),
       'typeCount': userGames[id].getTotalCorrectTypeCount(),
       'typeMissCount': userGames[id].calcTotalMissType(),
+      'highScore': highScore,
     });
   }
 
