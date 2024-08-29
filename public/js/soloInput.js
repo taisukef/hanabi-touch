@@ -67,8 +67,9 @@ async function sendChar(key) {
     } else if (fireworkColor === 'yellow') {
       colorFrom = 40;
     } else { // blue
-      colorFrom = 170;
+      colorFrom = 160;
     }
+
     const firework = new Firework(
       [
         color(random(colorFrom, colorFrom + 120) % 360, 255, 255),
