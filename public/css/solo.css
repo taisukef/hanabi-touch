@@ -96,8 +96,20 @@
   background-color: #ffc520; /* 少し白めのオレンジ */
 }
 
+#difficulty {
+  padding-left: calc(min(95vw, calc(94vh * 10 / 7)) * 0.17);
+  display: flex;
+  justifyc-content: flex-start;
+  width: 100%%;
+  gap: calc(min(95vw, calc(94vh * 10 / 7)) * 0.03);
+}
+
 .selected {
   border-color: red;
+}
+
+#oni {
+  visibility: hidden;
 }
 
 progress {
