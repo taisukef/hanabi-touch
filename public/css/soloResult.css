@@ -26,10 +26,6 @@
     margin-left: calc(min(95vw, calc(94vh * 10 / 7)) / 5);
 }
 
-#highScore {
-    font-size: calc(min(95vw, calc(94vh * 10 / 7)) / 30);
-}
-
 #sendRanking {
     width: calc(min(95vw, calc(94vh * 10 / 7)) / 10);
     height: 30%;
@@ -38,6 +34,7 @@
     top: 0;
     border-radius: 0;
 }
+
 
 #detailResult {
     font-size: calc(min(95vw, calc(94vh * 10 / 7)) / 40);
@@ -51,6 +48,14 @@
     align-items: flex-end;
     flex-direction: column;
     margin-right: calc(min(95vw, calc(94vh * 10 / 7)) / 40);
+}
+
+#highScoreText {
+    font-size: calc(min(95vw, calc(94vh * 10 / 7)) / 30);
+}
+
+#highScore {
+    font-size: calc(min(95vw, calc(94vh * 10 / 7)) / 30);
 }
 
 #detailScore {

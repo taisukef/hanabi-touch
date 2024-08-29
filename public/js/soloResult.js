@@ -26,7 +26,7 @@ onload = async (event) => {
   scoreResult.innerHTML = `${responseObj['score']}`;
 
   const highScoreId = document.querySelector('#highScore');
-  highScoreId.innerHTML = `ハイスコア: ${responseObj['highScore']}`;
+  highScoreId.innerHTML = `${responseObj['highScore']}`;
   if (responseObj['score'] >= responseObj['highScore']) {
     highScoreId.innerHTML += '  自己ベスト更新!';
   }
