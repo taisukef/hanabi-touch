@@ -57,12 +57,10 @@ async function soloGameStart() {
     scorePanel.style.display = 'flex';
 
     // 最初の文字を設定
-    document.getElementById('notEntered').textContent =
-      responseObj.sentenceAlphabet;
+    setWord('kana', responseObj.sentenceKana);
+    setWord('alphabet', responseObj.sentenceAlphabet);
     document.getElementById('japanese').textContent =
       responseObj.sentenceJapanese;
-    document.getElementById('kana').textContent = responseObj.sentenceKana;
-
     // メーターを設定
     initializeMeter(responseObj.expectedTime);
     startMeter();

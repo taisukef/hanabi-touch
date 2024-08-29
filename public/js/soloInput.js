@@ -27,7 +27,7 @@ async function sendChar(key) {
 
   if (responseObj.isCorrect) { //正しい入力ならば
     // 打った文字の色の更新
-    updateWord(responseObj.enteredChars, responseObj.notEnteredChars);
+    updateWord(responseObj);
 
     const shape = random(['菊', '牡丹']);
     const firework = new Firework(
@@ -70,7 +70,6 @@ async function sendChar(key) {
       colorFrom = 40;
     } else { // blue
       colorFrom = 170;
-
     }
     const firework = new Firework(
       [
@@ -94,16 +93,9 @@ async function sendChar(key) {
   }
 }
 
-/**
- * 入力した文字の更新（idがnotEnteredの文字をidがenteredの要素に移動）
- * @param {string} key 一文字
- */
-function updateWord(enteredChars, notEnteredChars) {
-  const entered = document.getElementById('entered');
-  const notEntered = document.getElementById('notEntered');
-
-  entered.textContent = enteredChars;
-  notEntered.textContent = notEnteredChars;
+function updateWord(responseObj) {
+  setWord('kana', responseObj.notEnteredYomigana, responseObj.enteredYomigana);
+  setWord('alphabet', responseObj.notEnteredChars, responseObj.enteredChars);
 }
 
 // 入力された文字をサーバーを送る
@@ -118,4 +110,18 @@ function startObserve() {
       sendChar(event.key);
     }
   });
+}
+
+/**
+ * 引数で指定した要素内の入力済みの部分を削除し、未入力部分に引数のワードを入れる。
+ * @param {string} id
+ * @param {string} notEntered
+ * @param {string} entered  ない場合は''を入れる。
+ */
+function setWord(id, notEntered, entered = '') {
+  const elem = document.getElementById(id);
+  console.log(elem);
+
+  elem.querySelector('.notEntered').textContent = notEntered;
+  elem.querySelector('.entered').textContent = entered;
 }

@@ -27,12 +27,12 @@ async function fetchSentenceAndRefreshMeter() {
     initializeMeter(responseObj.expectedTime);
 
     //  文章を設定
-    document.getElementById('entered').textContent = '';
-    document.getElementById('notEntered').textContent =
-      responseObj.sentenceAlphabet;
+    console.log(responseObj.sentenceKana, responseObj.sentenceJapanese);
+
+    setWord('kana', responseObj.sentenceKana);
+    setWord('alphabet', responseObj.sentenceAlphabet);
     document.getElementById('japanese').textContent =
       responseObj.sentenceJapanese;
-    document.getElementById('kana').textContent = responseObj.sentenceKana;
   } catch (error) {
     // ネットワークエラーなどの例外をキャッチして処理
     console.error('Fetch error:', error);
