@@ -18,20 +18,19 @@ class UserGame {
     this.id = id;
     this.initialize();
     this.setSentenceNow(japanese, reading);
-    this.difficulty = difficulty;
     this.endTime = Date.now() + TIME_LIMIT;
   }
 
   /**
    * メンバ変数の初期化(idを除く)
    */
-  initialize() {
+  initialize(difficulty) {
     this.endTime = 0; // このゲームの終了時刻
     this.totalScore = 0; // このゲームの合計スコア
     this.totalSentenceCount = 0; // このゲームの合計完了文章
     this.totalTypeCount = 0; // このゲームの合計タイプ数
     this.totalCorrectTypeCount = 0; // このゲームの合計正解タイプ数
-    this.difficulty = 'normal';
+    this.difficulty = difficulty; // このゲームの難易度
     this.meter = METER['METER_MAX']; // 花火メーター
   }
   /**
