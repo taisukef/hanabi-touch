@@ -64,3 +64,10 @@ onload = async (event) => {
     document.querySelector('#normalButton').style.visibility = 'visible';
     document.querySelector('#hardButton').style.visibility = 'visible';
 };
+
+// Enterが押されたらタイトルへ戻る
+document.addEventListener('keydown', (event) => {
+    document.querySelector('#titleButton').dispatchEvent(
+        new PointerEvent('click'),
+    );
+});
