@@ -58,20 +58,26 @@ document.querySelector('#titleButton').onclick = (event) => {
 // 記録をランキングに登録するボタン
 document.querySelector('#sendRanking').onclick = async (event) => {
   const name = prompt('ランキングに表示する名前を入力してください');
-  const response = await fetch(
-    '/solo/sendRanking',
-    {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({ userName: name }),
-    },
-  );
-  const responseObj = await response.json();
-  if (!responseObj['isSuccessful']) {
-    alert('結果を正しく送信できませんでした');
+  if (name.length === 0) {
+    alert('その名前は登録できません');
+  } else if (name.includes('<') || name.includes('>')) {
+    alert('使用できない文字が含まれています');
   } else {
-    alert('ランキングに登録しました');
+    const response = await fetch(
+      '/solo/sendRanking',
+      {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ userName: name }),
+      },
+    );
+    const responseObj = await response.json();
+    if (!responseObj['isSuccessful']) {
+      alert('結果を正しく送信できませんでした');
+    } else {
+      alert('ランキングに登録しました');
+    }
   }
 };
