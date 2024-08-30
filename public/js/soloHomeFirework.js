@@ -20,5 +20,28 @@ function makeSmallFirework() {
   );
   fireworks.push(firework);
 }
+document.addEventListener('visibilitychange', function() {
+    if (document.visibilityState === 'hidden') {
+        // タブが非アクティブになったときに実行を停止する処理
+        stopScripts();
+    } else if (document.visibilityState === 'visible') {
+        // タブがアクティブになったときにスクリプトを再開する処理
+        startScripts();
+    }
+});
 
-setInterval(makeSmallFirework, 500);
+function stopScripts() {
+    // 停止
+    clearInterval(someInterval);
+}
+
+function startScripts() {
+    // 再開
+    someInterval = setInterval(() => {
+        makeSmallFirework();
+    }, 1000);
+}
+
+let someInterval = setInterval(() => {
+    makeSmallFirework();
+}, 1000);
