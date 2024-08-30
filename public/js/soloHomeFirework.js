@@ -44,4 +44,4 @@ function startScripts() {
 
 let someInterval = setInterval(() => {
     makeSmallFirework();
-}, 500);
+}, 1000);
