@@ -10,17 +10,28 @@
     justify-content: space-between;
 }
 
-#difficulties button {
+#oniButton {
+    color: rgb(20, 20, 50);
+    width: 25%;
+    text-align: center;
+    font-size: calc(min(95vw, calc(94vh * 10 / 7)) * 0.025);
+    border-top-left-radius: calc(min(95vw, calc(94vh * 10 / 7)) * 0.02);
+    border-top-right-radius: calc(min(95vw, calc(94vh * 10 / 7)) * 0.02);
+    background-color: rgb(20, 20, 50);
+    border: rgb(20, 20, 50);
+    visibility: hidden;
+}
+
+.notOni {
     color: white;
-    width: 33%;
+    width: 25%;
     text-align: center;
     font-size: calc(min(95vw, calc(94vh * 10 / 7)) * 0.025);
     border-top-left-radius: calc(min(95vw, calc(94vh * 10 / 7)) * 0.02);
     border-top-right-radius: calc(min(95vw, calc(94vh * 10 / 7)) * 0.02);
     background-color: midnightblue;
-    border-color: rgb(20, 20, 50);
+    border: outset rgb(20, 20, 50);
     visibility: hidden;
-    /*border-radius: calc(min(95vw, calc(94vh * 10 / 7)) * 0.1);*/
 }
 
 #top10 {
