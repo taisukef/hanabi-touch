@@ -2,6 +2,16 @@
  メモ：名前とスコアはリストで送られる
 */
 
+
+function escapeHTML(str) {
+  return str
+    .replace(/\n/g, ' ')
+    .replace(/\r/g, ' ')
+    .replace(/\t/g, ' ')
+    .replace(/\v/g, ' ')
+    .replace(/\f/g, ' ');
+}
+
 let clickedOni = 0;
 
 async function displayRanking(difficulty) {
@@ -30,14 +40,14 @@ async function displayRanking(difficulty) {
     scoreId.innerText = '';
   }
 
-    for (let i = 0; i < ranking.length; i++) {
-        const rankId = document.querySelector(`#rank${i + 1}`);
-        const nameId = document.querySelector(`#name${i + 1}`);
-        const scoreId = document.querySelector(`#score${i + 1}`);
-        rankId.innerText = `${i + 1}位`;
-        nameId.textContent = `${ranking[i]['userName']}`;
-        scoreId.innerText = `${ranking[i]['score']}`;
-    }
+  for (let i = 0; i < ranking.length; i++) {
+    const rankId = document.querySelector(`#rank${i + 1}`);
+    const nameId = document.querySelector(`#name${i + 1}`);
+    const scoreId = document.querySelector(`#score${i + 1}`);
+    rankId.innerText = `${i + 1}位`;
+    nameId.textContent = `${escapeHTML(ranking[i]['userName'])}`;
+    scoreId.innerText = `${ranking[i]['score']}`;
+  }
     document.querySelector(`#${difficulty}Button`).style.background =
         'rgba(255, 255, 255, 0.15)';
     document.querySelector(`#${difficulty}Button`).style.border =
