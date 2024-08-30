@@ -83,3 +83,16 @@ button {
     margin: calc(min(95vw, calc(94vh * 10 / 7)) / 20);
     font-size: calc(min(95vw, calc(94vh * 10 / 7)) / 35);
 }
+
+.resultButton {
+    background-color: orange;
+}
+
+.resultButton:hover {
+    /* 少し白めのオレンジ */
+    background-color: #ffc520;
+}
+
+.selected {
+    border-color: red;
+}

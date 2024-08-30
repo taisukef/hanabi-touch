@@ -1,24 +1,22 @@
 #startButton {
-  text-align: center;
-  color: black;
-  background-color: orange;
-  border-radius: calc(min(95vw, calc(94vh * 10 / 7)) * 0.1);
-  width: 30%;
-  height: 15%;
-  font-weight: bold;
-  font-size: calc(min(95vw, calc(94vh * 10 / 7)) * 0.05);
+	text-align: center;
+	color: black;
+	border-radius: calc(min(95vw, calc(94vh * 10 / 7)) * 0.1);
+	width: 30%;
+	height: 15%;
+	font-weight: bold;
+	font-size: calc(min(95vw, calc(94vh * 10 / 7)) * 0.05);
 }
 
 #rankingButton {
-  text-align: center;
-  color: black;
-  background-color: orange;
-  border-radius: calc(min(95vw, calc(94vh * 10 / 7)) * 0.1);
-  width: 25%;
-  height: 10%;
-  font-weight: bold;
-  font-size: calc(min(95vw, calc(94vh * 10 / 7)) * 0.03);
-  margin-top: 1%;
+	text-align: center;
+	color: black;
+	border-radius: calc(min(95vw, calc(94vh * 10 / 7)) * 0.1);
+	width: 25%;
+	height: 10%;
+	font-weight: bold;
+	font-size: calc(min(95vw, calc(94vh * 10 / 7)) * 0.03);
+	margin-top: 1%;
 }
 
 #gameMain img {
@@ -30,6 +28,20 @@
   justify-content: center;
   background-color: rgb(0 0 0 / 0%);
 }
+
+.startMenuButton {
+	background-color: orange;
+}
+
+.startMenuButton:hover {
+	/* 少し白めのオレンジ */
+	background-color: #ffc520;
+}
+
+.selected {
+	border-color: red;
+}
+
 
 #defaultCanvas0 {
   border-radius: 10vh;
