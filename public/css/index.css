@@ -20,12 +20,13 @@
 }
 
 #gameMain img {
-	width: 30%;
-	margin-bottom: calc(min(95vw, calc(94vh * 10 / 7)) * 0.05);
+  width: 30%;
+  margin-bottom: calc(min(95vw, calc(94vh * 10 / 7)) * 0.05);
 }
 
 #gameMain {
-	justify-content: center;
+  justify-content: center;
+  background-color: rgb(0 0 0 / 0%);
 }
 
 .startMenuButton {
@@ -39,4 +40,11 @@
 
 .selected {
 	border-color: red;
+}
+
+
+#defaultCanvas0 {
+  border-radius: 10vh;
+  position: absolute;
+  z-index: -1;
 }
