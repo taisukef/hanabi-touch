@@ -31,16 +31,12 @@ document.addEventListener('visibilitychange', function() {
 });
 
 function stopScripts() {
-    // 実行を停止するスクリプト
-    console.log("Scripts are stopped.");
-    // 例: タイマーをクリア
+    // 停止
     clearInterval(someInterval);
 }
 
 function startScripts() {
-    // 再開するスクリプト
-    console.log("Scripts are running again.");
-    // 例: タイマーを再開
+    // 再開
     someInterval = setInterval(() => {
         makeSmallFirework();
     }, 1000);
