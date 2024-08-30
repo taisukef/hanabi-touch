@@ -97,3 +97,51 @@ document.querySelector('#sendRanking').onclick = async (event) => {
     }
   }
 };
+
+// マウスホバーで選択中にする
+document.querySelectorAll('.startMenuButton').forEach((button) => {
+  button.addEventListener('mouseover', function () {
+    document.querySelectorAll('.startMenuButton').forEach((btn) => {
+      btn.classList.remove('selected');
+    });
+    this.classList.add('selected');
+  });
+});
+
+// 横並びのボタン
+const buttons = [
+  document.querySelector('#restartButton'),
+  document.querySelector('#rankingButton'),
+  document.querySelector('#titleButton'),
+];
+// 選択中のボタンの位置
+let buttonIndex = 0;
+// 上下左右矢印で移動、Enterでボタンクリックと同じ挙動をさせる
+document.addEventListener('keydown', (event) => {
+  const sendRankingButton = document.querySelector('#sendRanking');
+  if (event.key === 'ArrowRight') {
+    buttons[buttonIndex].classList.remove('selected');
+    buttonIndex = Math.min(buttonIndex + 1, 2);
+    buttons[buttonIndex].classList.add('selected');
+  } else if (event.key === 'ArrowLeft') {
+    buttons[buttonIndex].classList.remove('selected');
+    buttonIndex = Math.max(buttonIndex - 1, 0);
+    buttons[buttonIndex].classList.add('selected');
+  } else if (
+    event.key === 'ArrowUp' && sendRankingButton.style.visibility !== 'hidden'
+  ) {
+    buttons[buttonIndex].classList.remove('selected');
+    document.querySelector('#sendRanking').classList.add('selected');
+  } else if (
+    event.key === 'ArrowDown' &&
+    sendRankingButton.style.visibility !== 'hidden'
+  ) {
+    document.querySelector('#sendRanking').classList.remove('selected');
+    buttons[buttonIndex].classList.add('selected');
+  } else if (event.key === 'Enter') {
+    document.querySelector('.selected').dispatchEvent(
+      new PointerEvent('click'),
+    );
+  }
+  return;
+});

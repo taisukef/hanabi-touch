@@ -7,7 +7,6 @@
 	<link rel="stylesheet" href="./css/style.css">
 	<link rel="stylesheet" href="./css/soloResult.css">
 	<script src="js/soloResult.js" defer></script>
-
 	<title>無限花火タッチ</title>
 </head>
 
@@ -24,7 +23,7 @@
 				<div id="resultContents">
 					<div id="resultText">
 						<p id="score"></p>
-						<button id="sendRanking">登録</button>
+						<button id="sendRanking" class="resultButton">登録</button>
 					</div>
 					<div id="bestText"></div>
 					<div id="detailResult">
@@ -44,9 +43,9 @@
 						</div>
 					</div>
 					<div id="buttonResult">
-						<button id="restartButton" onclick="location.href='/solo'">もう一度</button>
-						<button id="rankingButton">ランキング</button>
-						<button id="titleButton">タイトルへ</button>
+						<button id="restartButton" class="resultButton selected" onclick="location.href='/solo'">もう一度</button>
+						<button id="rankingButton" class="resultButton">ランキング</button>
+						<button id="titleButton" class="resultButton">タイトルへ</button>
 					</div>
 				</div>
 			</div>
