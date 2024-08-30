@@ -20,5 +20,32 @@ function makeSmallFirework() {
   );
   fireworks.push(firework);
 }
+document.addEventListener('visibilitychange', function() {
+    if (document.visibilityState === 'hidden') {
+        // タブが非アクティブになったときに実行を停止する処理
+        stopScripts();
+    } else if (document.visibilityState === 'visible') {
+        // タブがアクティブになったときにスクリプトを再開する処理
+        startScripts();
+    }
+});
 
-setInterval(makeSmallFirework, 500);
+function stopScripts() {
+    // 実行を停止するスクリプト
+    console.log("Scripts are stopped.");
+    // 例: タイマーをクリア
+    clearInterval(someInterval);
+}
+
+function startScripts() {
+    // 再開するスクリプト
+    console.log("Scripts are running again.");
+    // 例: タイマーを再開
+    someInterval = setInterval(() => {
+        makeSmallFirework();
+    }, 1000);
+}
+
+let someInterval = setInterval(() => {
+    makeSmallFirework();
+}, 500);
