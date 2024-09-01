@@ -1,4 +1,5 @@
-import { TypingText } from 'npm:@mogamoga1024/typing-jp';
+//import { TypingText } from 'npm:@mogamoga1024/typing-jp';
+import { TypingText } from "https://taisukef.github.io/typing-jp/main.js";
 
 import {
   DEPEND_DIFFICULTY,
