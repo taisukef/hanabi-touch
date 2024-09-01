@@ -61,8 +61,9 @@ function make200Response(bodyJson) {
 const userGames = {};
 
 const port = Deno.args[0];
+const hostname = "[::]"; // for IPv6 support
 
-Deno.serve({ port }, async (req) => {
+Deno.serve({ port, hostname }, async (req) => {
   const pathname = new URL(req.url).pathname;
   console.log(pathname);
 
