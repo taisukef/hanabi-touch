@@ -60,7 +60,9 @@ function make200Response(bodyJson) {
 // idをキーにuserGameのインスタンスを保持する辞書型
 const userGames = {};
 
-Deno.serve(async (req) => {
+const port = Deno.args[0];
+
+Deno.serve({ port }, async (req) => {
   const pathname = new URL(req.url).pathname;
   console.log(pathname);
 
